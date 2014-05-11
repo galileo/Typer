@@ -39,10 +39,9 @@ body
   margin: auto;
 }
 
-#logo
+#logo img
 {
-	height: 252px;
-	background: url("../images/logo.png") 150px 0px no-repeat;
+	height: 250px;
 }
 
 

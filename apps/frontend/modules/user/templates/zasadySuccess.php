@@ -4,7 +4,7 @@
 		Użytkownik, który chce wejśc do ligi typerów wpłaca składkę w wysokości <strong>10zł</strong>.
 	</li>
 	<li>
-		Każdy użytkownik <strong>ma prawo </strong> wytypować wyniki <strong>wszystkich </strong> meczy  <strong>Mistrzostw Europy 2012 Polska i Ukraina</strong>.
+		Każdy użytkownik <strong>ma prawo </strong> wytypować wyniki <strong>wszystkich </strong> meczy  <strong>Mistrzostw Świata Brazylia 2014</strong>.
 	</li>
 	<li>
 		Typowanie meczu polega na podaniu <strong>dokładnego wyniku </strong> jakim zakończy się spotkanie ( w <strong>regulaminowym</strong> czasie gry, dogrywka się nie liczy).

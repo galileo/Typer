@@ -30,13 +30,12 @@
 	<?php include_partial('user/menu', array('sf_user' => $sf_user))?>
 	
 	<div id="logo">
+        <img src="<?php echo url_for("@homepage"); ?>images/world-cup-2014.jpg" />
 		<div class="fastTableTop">
 			<h4>Top 5</h4>
 			<?php include_component('punkty','fastTable', array('limit' => 5)); ?>
 		</div>
 	</div>
-	<script TYPE="text/javascript" src="http://www.cpmprofit.com/ads.php?r=58861926c3d71eea128f7e35a2fe7c432252ae4a71143360&popup=0"></script>
-	
 	<div id="content" class="span-13">
 			<?php if($sf_user->isAuthenticated()): ?>
 		<div class="menu">
