@@ -1,0 +1,63 @@
+fields:
+  username:
+    required:
+      msg:       Podaj nazwę użytkownika
+    sfStringValidator:
+      min:       3
+      min_error: Nazwa użytkownika zbyt krótka (min 3 znaki)
+      max:       20
+      max_error: Nazwa użytkownika zbyt długa. (max 20 znaków)
+    sfPropelUniqueValidator:
+      class:        sfGuardUser
+      column:       username
+      unique_error: Użytkownik z taką nazwą już istnieje.
+    galileoStringValidator:  
+  
+  first_name:
+    required: 
+      msg:      Podaj swoje imię
+    sfStringValidator:
+      min:    3
+      min_error: Imię zbyt krótkie. (min 3 znaki)
+      max:   20
+      max_error: Imię zbyt długie. (max 20 znaków)
+      
+  last_name:
+    required:
+      msg: Podaj nazwisko
+    sfStringValidator:
+      min:       3
+      min_error: Nazwisko zbyt krótkie. (min 3 znaki)
+      max:       20
+      max_error: Naywisko zbyt długie. (max 20 znaków) 
+  email:
+    required:
+      msg: Proszę wpisać email
+    sfEmailValidator:
+     strict:       true
+     email_error:  Podany email nie jest poprawny
+  password:
+   required:
+     msg:       Podaj hasło
+   sfCompareValidator:
+      check:    password_re
+      compare_error: Podane hasła nie są identyczne
+   sfStringValidator:
+    min: 3
+    min_error:  Zbyk krótkie hasło
+  
+  password_re:
+   required:
+     msg:       Powtórz hasło
+   sfStringValidator:
+    min: 3
+    min_error:  Zbyk krótkie hasło
+   
+     
+validators:
+ galileoStringValidator:
+  class: sfRegexValidator
+  param:
+   match:        yes
+   match_error:  Tylko znaki alfanumeryczne i '_'
+   pattern:      /^[a-zA-Z_0-9]*$/

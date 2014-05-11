@@ -1,0 +1,7 @@
+config/config.php
+lib/symfony
+
+cache/*
+log/*
+
+.idea

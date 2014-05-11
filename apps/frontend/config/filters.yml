@@ -1,0 +1,10 @@
+rendering: ~
+web_debug: ~
+rememberme:
+  class: sfGuardRememberMeFilter
+security:  ~
+
+cache:     ~
+common:    ~
+flash:     ~
+execution: ~

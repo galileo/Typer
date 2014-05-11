@@ -1,0 +1,5 @@
+all:
+  propel:
+    class:          sfPropelDatabase
+    param:
+      dsn:          mysql://galileo2:kamil1986@localhost/galileo2_euro2012

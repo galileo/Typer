@@ -1,0 +1,169 @@
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input
+{ margin: 0; padding: 0; }
+a img,:link img,:visited img { border: none; }
+
+a
+{
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+a:visited
+{
+	
+}
+
+.is_logged
+{
+	background-color: lime;
+	text-align: right;
+	padding: 3px;
+}
+
+body, td
+{
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, sans-serif;
+  font-size: 11px;
+  background-color: #fff;
+}
+
+body
+{
+  padding: 0px;
+  width: 1000px;
+  margin: auto;
+}
+
+#logo
+{
+	height: 252px;
+	background: url("../images/logo.png") 150px 0px no-repeat;
+}
+
+
+.menu
+{
+	float:left;
+}
+
+.menu li
+{
+	display:inline;
+}
+
+.menu li a, a:visited
+{
+	display: block;
+	float: left;
+	padding: 6px;
+	margin: 2px;
+	
+	font-weight: bold;
+	color: #999;
+	background-color: #efefef;
+}
+.menu li a:hover, a:focus
+{
+	background-color: #2c97ef;
+	color: #eee;
+}
+.menu .special a
+{
+	background-color: #2c97ef;
+	color: white;
+}
+.menu .important a
+{
+	color: red;
+}
+
+
+.table_header
+{
+	margin-top: 10px;
+	background-color: #F6F6F6;
+}
+
+
+.table_header
+.tables
+.table
+{
+	padding: 20px;
+	float:left;
+	margin: 0px 20px;
+}
+
+.fastTableTop
+{
+	width: 200px;
+	float: right;
+	margin-top: 3em;
+}
+
+.fastTableTop h4
+{
+	text-align: center;
+	color: #CCC;
+}
+.fastTableTop .table_points
+{
+	background-color: #999999;
+	color: white;
+	font-weight: bold;
+}
+
+.fastTableTop .table_lp
+{
+	color: #CCC;
+}
+
+.fastTableTop .table_user
+{
+	color: #999;
+	text-align: right;
+}
+
+.fastTableTop table
+{
+	border: 1px solid #2c97ef;
+	width: 100%;
+}
+
+.comments
+{
+	width: 350px;
+	float: right;
+	background-color: #999;
+}
+
+.comments td
+{
+	background-color: #999;
+}
+
+.comments .comment_date
+{
+	color: #EEE;
+}
+
+.comments .comment_author
+{
+	color: #2c97ef;
+	background-color: white;
+}
+
+.comments .comment_content
+{
+	padding: 20px;
+	color: #fefefe;
+	text-align: left;
+}
+
+
+

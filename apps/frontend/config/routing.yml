@@ -1,0 +1,27 @@
+# default rules
+typ_create:
+  url:  /typy/utworz/:mecz
+  param: { module: typy, action: create }
+
+typ_edit:
+  url: /typ/edytuj/*
+  param: { module: typy, action: edit }
+  
+typ_update:
+  url: /typy/update/*
+  param: { module: typy, action: update }
+  
+homepage:
+  url:   /
+  param: { module: mecze, action: dzisiaj }
+
+default_symfony:
+  url:   /symfony/:action/*
+  param: { module: default }
+
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*
