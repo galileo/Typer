@@ -1,6 +1,12 @@
 config/config.php
 lib/symfony
 
+app/cache
+app/logs
+
+vendor/*
+web/bundles/*
+
 cache/*
 log/*
 
