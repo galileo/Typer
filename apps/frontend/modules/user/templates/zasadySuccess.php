@@ -38,5 +38,8 @@
 			</ol>
 			
 	</li>
+    <li>
+        Jeśli pula nagród nie przekroczy 200 zł. Całość trafia do zawodnika znajdującego się na pierwszym miejscu reszta pozostaje bez nagrody.
+    </li>
 </ol>
 Powodzenia!    

@@ -3,13 +3,13 @@ default:
     content-type: text/html
 
   metas:
-    title:        Typer mistrzostwa �wiata RPA 2010
+    title:        Typer mistrzostwa świata Brazylia 2014
     robots:       index, follow
     description:  Wytypuj sobie co chcesz
-    keywords:     euro 2008
+    keywords:     brazylia 2014, mistrzowa świata, world cup
     language:     pl
 
-  stylesheets:    [blueprint/screen.css, euro2012]
+  stylesheets:    [blueprint/screen.css, world_cup_2014]
 
   javascripts:    []
 
