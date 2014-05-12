@@ -1,0 +1,33 @@
+Galileo\SimpleBet\ModelBundle\Entity\Game:
+    type: entity
+    table: gsbm_game
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        date:
+            type: string
+    manyToOne:
+        tournamentStage:
+            targetEntity: TournamentStage
+            inversedBy: games
+            joinColumn:
+                name: tournament_stage_id
+                referencedColumnName: id
+        homeTeam:
+            targetEntity: Team
+            joinColumn:
+                name: home_team_id
+                referencedColumnName: id
+        awayTeam:
+            targetEntity: Team
+            joinColumn:
+                name: away_team_id
+                referencedColumnName: id
+        score:
+            name: score_id
+            targetEntity: Score
+            joinColumn:
+                name: score_id
+                referencedColumnName: id

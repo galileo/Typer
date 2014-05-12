@@ -1,0 +1,18 @@
+Galileo\SimpleBet\ModelBundle\Entity\TournamentStage:
+    type: entity
+    table: gsbm_tournament_stage
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+          type: string
+    manyToOne:
+        tournament:
+            targetEntity: Tournament
+            mappedBy: tournament
+    oneToMany:
+        games:
+            targetEntity: Game
+            mappedBy: tournamentStage

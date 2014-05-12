@@ -1,0 +1,4 @@
+galileo_simple_bet_model:
+    resource: "@GalileoSimpleBetModelBundle/Resources/config/routing.yml"
+    prefix:   /
+

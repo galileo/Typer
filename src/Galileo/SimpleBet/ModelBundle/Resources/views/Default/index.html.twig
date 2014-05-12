@@ -1,0 +1,3 @@
+{% for game in games %}
+    <p>{{ game.homeTeam.name }} : {{ game.awayTeam.name }} {{ game.score.score }}</p>
+{% endfor %}
