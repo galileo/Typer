@@ -7,20 +7,17 @@ Galileo\SimpleBet\ModelBundle\Entity\Player:
             generator:
                 strategy: AUTO
     fields:
-        login:
-            type: string
-        password:
-            type: string
         firstName:
             type: string
             column: first_name
+            nullable: true
         lastName:
             type: string
             column: last_name
+            nullable: true
         displayName:
             type: string
             column: display_name
-        email:
-            type: string
+            nullable: true
 
 

@@ -3,14 +3,12 @@
 
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
+use FOS\UserBundle\Model\User;
 
-class Player
+class Player extends User
 {
     protected $id;
-    protected $login;
-    protected $password;
     protected $displayName;
     protected $firstName;
     protected $lastName;
-    protected $email;
 }
