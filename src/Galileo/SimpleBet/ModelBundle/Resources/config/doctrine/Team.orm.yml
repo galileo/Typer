@@ -7,5 +7,5 @@ Galileo\SimpleBet\ModelBundle\Entity\Team:
             generator: { strategy: AUTO }
     fields:
         name:
-            name: name_galileo
+            name: name
             type: string

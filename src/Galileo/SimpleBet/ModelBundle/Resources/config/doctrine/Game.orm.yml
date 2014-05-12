@@ -31,3 +31,7 @@ Galileo\SimpleBet\ModelBundle\Entity\Game:
             joinColumn:
                 name: score_id
                 referencedColumnName: id
+    oneToMany:
+        bets:
+            targetEntity: Bet
+            mappedBy: game

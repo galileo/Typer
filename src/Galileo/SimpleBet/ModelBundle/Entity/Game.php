@@ -4,8 +4,12 @@ namespace Galileo\SimpleBet\ModelBundle\Entity;
 class Game
 {
     protected $id;
-    protected $date;
+    protected $bets;
+    protected $tournamentStage;
     protected $homeTeam;
+    protected $awayTeam;
+    protected $score;
+    protected $date;
 
     /**
      * @return mixed
@@ -22,9 +26,6 @@ class Game
     {
         return $this->homeTeam;
     }
-    protected $awayTeam;
-    protected $tournamentStage;
-    protected $score;
 
     /**
      * @return mixed

@@ -4,7 +4,8 @@ namespace Galileo\SimpleBet\ModelBundle\Entity;
 class Score
 {
     protected $id;
-    protected $score;
+    protected $home;
+    protected $away;
     protected $scoreType;
 
     /**

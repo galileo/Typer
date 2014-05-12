@@ -6,8 +6,10 @@ Galileo\SimpleBet\ModelBundle\Entity\Score:
             type: integer
             generator: { strategy: AUTO }
     fields:
-        score:
-            type: string
+        home:
+            type: integer
+        away:
+            type: integer
         scoreType:
             name: score_type
             type: string

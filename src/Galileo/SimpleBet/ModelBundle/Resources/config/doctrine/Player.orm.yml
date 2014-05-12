@@ -1,0 +1,26 @@
+Galileo\SimpleBet\ModelBundle\Entity\Player:
+    type: entity
+    table: gsbm_player
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        login:
+            type: string
+        password:
+            type: string
+        firstName:
+            type: string
+            column: first_name
+        lastName:
+            type: string
+            column: last_name
+        displayName:
+            type: string
+            column: display_name
+        email:
+            type: string
+
+
