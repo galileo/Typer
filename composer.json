@@ -19,7 +19,9 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "friendsofsymfony/user-bundle": "2.0.x-dev"
+        "friendsofsymfony/user-bundle": "2.0.x-dev",
+        "twbs/bootstrap": "3.1.x-dev",
+        "braincrafted/bootstrap-bundle": "2.0.x"
     },
     "scripts": {
         "post-install-cmd": [

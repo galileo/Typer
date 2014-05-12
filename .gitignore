@@ -3,9 +3,12 @@ lib/symfony
 
 app/cache
 app/logs
-
 vendor/*
+
 web/bundles/*
+web/css/
+web/js/
+
 
 cache/*
 log/*
