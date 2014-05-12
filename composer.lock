@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "f5d7dca31f873619d843a902f131e043",
+    "hash": "869abe9aa49efff1895933a5b2d60fa1",
     "packages": [
         {
             "name": "braincrafted/bootstrap-bundle",
@@ -855,6 +855,17 @@
                 "sql"
             ],
             "time": "2014-01-12 16:20:24"
+        },
+        {
+            "name": "jquery/jquery",
+            "version": "1.10.2",
+            "dist": {
+                "type": "file",
+                "url": "http://code.jquery.com/jquery-1.10.2.js",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
         },
         {
             "name": "kriswallsmith/assetic",

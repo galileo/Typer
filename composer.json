@@ -6,6 +6,19 @@
     "autoload": {
         "psr-0": { "": "src/" }
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "jquery/jquery",
+                "version": "1.10.2",
+                "dist": {
+                    "url": "http://code.jquery.com/jquery-1.10.2.js",
+                    "type": "file"
+                }
+            }
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.4",
@@ -21,7 +34,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/user-bundle": "2.0.x-dev",
         "twbs/bootstrap": "3.1.x-dev",
-        "braincrafted/bootstrap-bundle": "2.0.x"
+        "braincrafted/bootstrap-bundle": "2.0.x",
+        "jquery/jquery":  "1.10.*"
     },
     "scripts": {
         "post-install-cmd": [
