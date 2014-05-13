@@ -19,16 +19,26 @@ class Score
     /**
      * @return mixed
      */
-    public function getScore()
+    public function getScoreType()
     {
-        return $this->score;
+        return $this->scoreType;
     }
 
     /**
      * @return mixed
      */
-    public function getScoreType()
+    public function getAway()
     {
-        return $this->scoreType;
+        return $this->away;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHome()
+    {
+        return $this->home;
     } // Simple type 2:1, Football type 2:1 (0:1), Tennis Type: 7:6 4:6 6:1 etc
+
+
 } 

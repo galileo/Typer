@@ -17,8 +17,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="{{ path('fos_user_security_logout')}}">Wyloguj</a></li>
-                <li><a href="{{ path('fos_user_security_login')}}">Zaloguj</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">Zaloguj</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -26,15 +26,17 @@
 </div>
 
 
-<section>
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        {% block top %}
+        {% endblock %}
+    </div>
 
-    Witam serdecznie na naszej stronie
-</section>
-
-{% block content %}
-    Galileo
-{% endblock content %}
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    {% block content %}
+        Galileo
+    {% endblock content %}
+</div>
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
 </body>
 </html>
