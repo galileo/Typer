@@ -1,0 +1,7 @@
+Galileo\SimpleBet\ModelBundle\Entity\TournamentPlayer:
+    type: entity
+    table: gsbm_tournament_player
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO}

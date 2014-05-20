@@ -10,6 +10,8 @@ class Game
     protected $awayTeam;
     protected $score;
     protected $date;
+    protected $isActive;
+    protected $isPlayed;
 
     /**
      * @return mixed

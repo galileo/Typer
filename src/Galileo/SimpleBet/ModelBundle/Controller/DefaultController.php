@@ -11,10 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction($id)
     {
         /** @var Tournament $tournament */
-        $tournament = $this->getDoctrine()->getRepository('GalileoSimpleBetModelBundle:Tournament')->find(1);
+        $tournament = $this->getDoctrine()->getRepository('GalileoSimpleBetModelBundle:Tournament')->find($id);
         /** @var TournamentStage $tournamentStage */
         foreach ($tournament->getTournamentStages() as $tournamentStage)
         {

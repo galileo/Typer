@@ -8,6 +8,12 @@ Galileo\SimpleBet\ModelBundle\Entity\Game:
     fields:
         date:
             type: string
+        isPlayed:
+            type: boolean
+            column: is_played
+        isActive:
+            type: boolean
+            column: is_active
     manyToOne:
         tournamentStage:
             targetEntity: TournamentStage

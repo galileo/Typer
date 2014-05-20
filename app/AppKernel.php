@@ -19,7 +19,8 @@ class AppKernel extends Kernel
             new Galileo\SimpleBet\ModelBundle\GalileoSimpleBetModelBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Galileo\SimpleBet\MainBundle\GalileoSimpleBetMainBundle(),
-            new \Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
+            new Galileo\SimpleBet\MigrationOldBundle\GalileoSimpleBetMigrationOldBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

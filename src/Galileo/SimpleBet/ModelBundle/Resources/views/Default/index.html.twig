@@ -5,12 +5,13 @@
     {% for game in games %}
         <div class="row">
             <div class="col-xs-6 col-sm-3">
-                <p><strong>{{ game.tournamentStage.name }}</strong> {{ game.homeTeam.name }} - {{ game.awayTeam.name }} {{ game.score.home }}:{{ game.score.away }}</p>
+                <p><strong>{{ game.tournamentStage.name }}</strong> {{ game.homeTeam.name }}
+                    - {{ game.awayTeam.name }} {{ game.score.home }}:{{ game.score.away }}</p>
             </div>
             <div class="col-xs-1 col-sm-1">
                 <span class="btn btn-danger"> 2:1 </span>
             </div>
-</div>
+        </div>
         <div class="row">
 
             <div class="col-xs-4 col-sm-8">
