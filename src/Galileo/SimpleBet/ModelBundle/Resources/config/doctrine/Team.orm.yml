@@ -1,0 +1,11 @@
+Galileo\SimpleBet\ModelBundle\Entity\Team:
+    type: entity
+    table: gsbm_team
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            name: name
+            type: string

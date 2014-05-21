@@ -1,0 +1,15 @@
+Galileo\SimpleBet\ModelBundle\Entity\Score:
+    type: entity
+    table: gsbm_score
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        home:
+            type: integer
+        away:
+            type: integer
+        scoreType:
+            name: score_type
+            type: string

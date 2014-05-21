@@ -1,0 +1,42 @@
+<html>
+<head>
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Kto to wygra?</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Wyloguj</a></li>
+                <li><a href="{{ path('fos_user_security_login') }}">Zaloguj</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container theme-showcase" role="main">
+    <div class="jumbotron">
+        {% block top %}
+        {% endblock %}
+    </div>
+
+    {% block content %}
+        Galileo
+    {% endblock content %}
+</div>
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+</body>
+</html>

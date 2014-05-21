@@ -1,0 +1,34 @@
+Galileo\SimpleBet\ModelBundle\Entity\Bet:
+  type: entity
+  table: gsbm_bet
+  id:
+      id:
+          type: integer
+          generator:
+              strategy: AUTO
+  fields:
+      isActive:
+          type: boolean
+          column: is_active
+      pointsEarned:
+          type: integer
+
+  manyToOne:
+      score:
+          name: score_id
+          targetEntity: Galileo\SimpleBet\ModelBundle\Entity\Score
+          joinColumn:
+              name: score_id
+              referencedColumnName: id
+      game:
+          targetEntity: Galileo\SimpleBet\ModelBundle\Entity\Game
+          inversedBy: bets
+          joinColumn:
+              name: game_id
+              referencedColumnName: id
+      player:
+          targetEntity: Galileo\SimpleBet\ModelBundle\Entity\Player
+          inversedBy: bets
+          joinColumn:
+              name: player_id
+              referencedColumnName: id

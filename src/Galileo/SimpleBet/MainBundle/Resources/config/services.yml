@@ -1,0 +1,7 @@
+parameters:
+#    galileo_simple_bet_main.example.class: Galileo\SimpleBet\MainBundle\Example
+
+services:
+#    galileo_simple_bet_main.example:
+#        class: %galileo_simple_bet_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
