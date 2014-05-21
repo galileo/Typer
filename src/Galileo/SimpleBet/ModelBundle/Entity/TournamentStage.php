@@ -28,6 +28,14 @@ class TournamentStage
     }
 
     /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
      * @return mixed
      */
     public function getGames()
@@ -49,6 +57,14 @@ class TournamentStage
     public function getTournament()
     {
         return $this->tournament;
+    }
+
+    /**
+     * @param mixed $tournament
+     */
+    public function setTournament($tournament)
+    {
+        $this->tournament = $tournament;
     }
 
 

@@ -5,3 +5,13 @@ Galileo\SimpleBet\ModelBundle\Entity\TournamentPlayer:
         id:
             type: integer
             generator: { strategy: AUTO}
+    manyToOne:
+        player:
+            targetEntity: Player
+            inversedBy: tournaments
+            joinColumn:
+                name: player_id
+                referencedColumnName: id
+        tournament:
+            targetEntity: Tournament
+            mappedBy: tournament

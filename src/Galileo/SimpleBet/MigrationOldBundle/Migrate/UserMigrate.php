@@ -6,6 +6,7 @@ namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
 
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Doctrine\ORM\EntityManagerInterface;
+use Galileo\SimpleBet\ModelBundle\Entity\TournamentPlayer;
 
 class UserMigrate
 {
@@ -38,7 +39,7 @@ class UserMigrate
         $this->output = $output;
     }
 
-    protected function findByEmail($email)
+    public function findByEmail($email)
     {
         return $this->em->getRepository('GalileoSimpleBetModelBundle:Player')->findOneByEmail($email);
     }
@@ -49,7 +50,7 @@ class UserMigrate
         $this->em->flush();
     }
 
-    public function execute()
+    public function execute($torunament)
     {
         $stmt = mysqli_query(
             $this->mysqlLink, 'SELECT * FROM sf_guard_user u
@@ -79,6 +80,8 @@ class UserMigrate
                 $this->write("Znaleziono użytkownika {$player->getEmail()}");
             }
 
+            $this->createUserInTorunament($player, $torunament);
+
             $this->addUser($row['id'], $player->getId());
         }
     }
@@ -97,5 +100,16 @@ class UserMigrate
     public function getOldForNew($newId)
     {
         return array_search($newId, $this->user);
+    }
+
+    private function createUserInTorunament($player, $torunament)
+    {
+        $tp = new TournamentPlayer();
+        $tp->setPlayer($player);
+        $tp->setTournament($torunament);
+        $tp->setIsActive(1);
+
+        $this->save($tp);
+
     }
 }

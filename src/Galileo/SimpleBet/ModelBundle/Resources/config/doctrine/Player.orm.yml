@@ -20,4 +20,7 @@ Galileo\SimpleBet\ModelBundle\Entity\Player:
             column: display_name
             nullable: true
 
-
+    oneToMany:
+        bets:
+            targetEntity: Bet
+            mappedBy: player

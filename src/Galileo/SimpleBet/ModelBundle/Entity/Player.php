@@ -12,6 +12,10 @@ class Player extends User
     protected $firstName;
     protected $lastName;
 
+    protected $tournaments;
+
+    protected $bets;
+
     /**
      * @return mixed
      */

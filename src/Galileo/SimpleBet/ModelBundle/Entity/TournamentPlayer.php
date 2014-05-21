@@ -27,11 +27,35 @@ class TournamentPlayer
     protected $isActive;
 
     /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return boolean
      */
-    public function getIsActive()
+    public function isIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * @param boolean $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
     }
 
     /**
@@ -43,10 +67,27 @@ class TournamentPlayer
     }
 
     /**
+     * @param Player $player
+     */
+    public function setPlayer($player)
+    {
+        $this->player = $player;
+    }
+
+    /**
      * @return Tournament
      */
     public function getTournament()
     {
         return $this->tournament;
     }
+
+    /**
+     * @param Tournament $tournament
+     */
+    public function setTournament($tournament)
+    {
+        $this->tournament = $tournament;
+    }
+
 }

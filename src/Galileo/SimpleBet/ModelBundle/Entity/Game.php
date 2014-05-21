@@ -13,8 +13,25 @@ class Game
     protected $isActive;
     protected $isPlayed;
 
+
     /**
-     * @return mixed
+     * @return Team
+     */
+    public function getHomeTeam()
+    {
+        return $this->homeTeam;
+    }
+
+    /**
+     * @param mixed $homeTeam
+     */
+    public function setHomeTeam($homeTeam)
+    {
+        $this->homeTeam = $homeTeam;
+    }
+
+    /**
+     * @return Team
      */
     public function getAwayTeam()
     {
@@ -22,11 +39,11 @@ class Game
     }
 
     /**
-     * @return mixed
+     * @param mixed $awayTeam
      */
-    public function getHomeTeam()
+    public function setAwayTeam($awayTeam)
     {
-        return $this->homeTeam;
+        $this->awayTeam = $awayTeam;
     }
 
     /**
@@ -61,4 +78,68 @@ class Game
         return $this->tournamentStage;
     }
 
-} 
+    /**
+     * @return mixed
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsPlayed()
+    {
+        return $this->isPlayed;
+    }
+
+    /**
+     * @param mixed $isPlayed
+     */
+    public function setIsPlayed($isPlayed)
+    {
+        $this->isPlayed = $isPlayed;
+    }
+
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $score
+     */
+    public function setScore($score)
+    {
+        $this->score = $score;
+    }
+
+    /**
+     * @param mixed $tournamentStage
+     */
+    public function setTournamentStage($tournamentStage)
+    {
+        $this->tournamentStage = $tournamentStage;
+    }
+
+}

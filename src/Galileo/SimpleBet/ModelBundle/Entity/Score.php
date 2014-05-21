@@ -11,9 +11,49 @@ class Score
     /**
      * @return mixed
      */
+    public function getAway()
+    {
+        return $this->away;
+    }
+
+    /**
+     * @param mixed $away
+     */
+    public function setAway($away)
+    {
+        $this->away = $away;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHome()
+    {
+        return $this->home;
+    }
+
+    /**
+     * @param mixed $home
+     */
+    public function setHome($home)
+    {
+        $this->home = $home;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -25,20 +65,11 @@ class Score
     }
 
     /**
-     * @return mixed
+     * @param mixed $scoreType
      */
-    public function getAway()
+    public function setScoreType($scoreType)
     {
-        return $this->away;
+        $this->scoreType = $scoreType;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getHome()
-    {
-        return $this->home;
-    } // Simple type 2:1, Football type 2:1 (0:1), Tennis Type: 7:6 4:6 6:1 etc
-
-
-} 
+}

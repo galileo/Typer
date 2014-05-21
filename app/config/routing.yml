@@ -1,7 +1,3 @@
-galileo_simple_bet_migration_old:
-    resource: "@GalileoSimpleBetMigrationOldBundle/Resources/config/routing.yml"
-    prefix:   /
-
 galileo_simple_bet_main:
     resource: "@GalileoSimpleBetMainBundle/Resources/config/routing.yml"
     prefix:   /

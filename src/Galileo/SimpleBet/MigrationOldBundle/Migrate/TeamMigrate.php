@@ -7,6 +7,7 @@ use Galileo\SimpleBet\ModelBundle\Entity\Team;
 
 class TeamMigrate extends Write
 {
+    protected $teamObjects;
 
     /**
      * @var
@@ -47,7 +48,7 @@ class TeamMigrate extends Write
                 $this->save($team);
             }
 
-            $this->addTeam($teamName, $team->getId());
+            $this->addTeam($teamName, $team->getId(), $team);
         }
     }
 
@@ -61,9 +62,14 @@ class TeamMigrate extends Write
         return $this->teams[$id];
     }
 
-    protected function addTeam($name, $id)
+    public function getTeamObject($id){
+        return $this->teamObjects[$id];
+    }
+
+    protected function addTeam($name, $id, $team)
     {
         $this->teams[$id] = $name;
+        $this->teamObjects[$id] = $team;
     }
 
     protected function findByName($teamName)
