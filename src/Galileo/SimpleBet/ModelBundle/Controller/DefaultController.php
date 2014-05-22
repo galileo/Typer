@@ -13,18 +13,6 @@ class DefaultController extends Controller
 {
     public function indexAction($id)
     {
-        /** @var Tournament $tournament */
-        $tournament = $this->getDoctrine()->getRepository('GalileoSimpleBetModelBundle:Tournament')->find($id);
-        /** @var TournamentStage $tournamentStage */
-        foreach ($tournament->getTournamentStages() as $tournamentStage)
-        {
-            /** @var Game $game */
-            foreach ($tournamentStage->getGames() as $game)
-            {
-                $games[] = $game;
-            }
-        }
 
-        return $this->render('GalileoSimpleBetModelBundle:Default:index.html.twig', array('games' => $games));
     }
 }
