@@ -12,6 +12,9 @@ Galileo\SimpleBet\ModelBundle\Entity\TournamentStage:
         tournament:
             targetEntity: Tournament
             mappedBy: tournament
+            joinColumn:
+                name: tournament_id
+                referencedColumnName: id
     oneToMany:
         games:
             targetEntity: Game

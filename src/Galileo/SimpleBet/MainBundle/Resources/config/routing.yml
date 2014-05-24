@@ -1,7 +1,7 @@
-galileo_simple_bet_main_homepage:
+galileo_simple_bet_main_tournament_homepage:
     pattern:  /
     defaults: { _controller: galileo_simplebet_mainbundle.controller.tournamentcontroller:homeAction }
 
-galileo_simple_bet_main_homepage:
+galileo_simple_bet_main_tournament_show:
     pattern:  /t/{tournamentId}
     defaults: { _controller: galileo_simplebet_mainbundle.controller.tournamentcontroller:listAction }

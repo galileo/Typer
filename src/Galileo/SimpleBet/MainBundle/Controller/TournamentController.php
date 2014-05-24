@@ -4,36 +4,53 @@
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
 
+use Doctrine\ORM\EntityManager;
+use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
+use Galileo\SimpleBet\ModelBundle\Entity\TournamentStage;
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
 class TournamentController
 {
-//    protected $tournamentRepository;
-//
-//    function __construct($tournamentRepository)
-//    {
-//        $this->tournamentRepository = $tournamentRepository;
-//    }
+    /**
+     * @var \Doctrine\ORM\EntityManager
+     */
+    protected $entityManager;
 
+    /**
+     * @var \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface
+     */
+    protected $templating;
+
+
+    protected $tournamentRepository;
+
+    function __construct(EntityManager $entityManager, EngineInterface $templating)
+    {
+        $this->entityManager = $entityManager;
+        $this->tournamentRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Tournament');
+        $this->playerRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Player');
+        $this->templating = $templating;
+    }
 
     public function homeAction()
     {
-//        /** @var Tournament $tournament */
-//        $tournament = $this->tournamentRepository->find($id);
-//        /** @var TournamentStage $tournamentStage */
-//        foreach ($tournament->getTournamentStages() as $tournamentStage) {
-//            /** @var Game $game */
-//            foreach ($tournamentStage->getGames() as $game) {
-//                $games[] = $game;
-//            }
-//        }
-//
-//        return $this->render('GalileoSimpleBetModelBundle:Default:index.html.twig', array('games' => $games));
-        return new Response('Suuper');
+        $tournaments = $this->tournamentRepository->findAll();
+
+        $bestPlayers = $this->playerRepository->findBestPlayers();
+
+        return $this->templating->renderResponse(
+            '@GalileoSimpleBetMain/Torunament/home.html.twig', array(
+                'tournaments' => $tournaments,
+                'bestPlayers' => $bestPlayers
+            )
+        );
     }
 
     public function listAction($tournamentId)
     {
-        return new Response("This is $tournamentId id.");
+        $tournament = $this->tournamentRepository->find($tournamentId);
+
+        return $this->templating->renderResponse('@GalileoSimpleBetMain/Torunament/show.html.twig');
     }
 } 

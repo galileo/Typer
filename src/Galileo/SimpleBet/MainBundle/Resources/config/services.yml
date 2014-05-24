@@ -4,3 +4,6 @@ parameters:
 services:
     galileo_simplebet_mainbundle.controller.tournamentcontroller:
         class: %galileo_simplebet_mainbundle.controller.tournamentcontroller.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @templating

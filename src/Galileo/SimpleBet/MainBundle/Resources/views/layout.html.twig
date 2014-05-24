@@ -31,10 +31,19 @@
         {% block top %}
         {% endblock %}
     </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-8">
+            {% block content %}
+                Galileo
+            {% endblock content %}
+        </div>
+        <div class="col-sm-6 col-md-4">
+            {% block sidebar %}
+            {% endblock sidebar %}
+        </div>
+    </div>
 
-    {% block content %}
-        Galileo
-    {% endblock content %}
+
 </div>
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/bootstrap.js') }}"></script>
