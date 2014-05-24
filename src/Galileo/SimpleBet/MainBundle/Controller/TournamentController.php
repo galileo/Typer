@@ -51,6 +51,8 @@ class TournamentController
     {
         $tournament = $this->tournamentRepository->find($tournamentId);
 
-        return $this->templating->renderResponse('@GalileoSimpleBetMain/Torunament/show.html.twig');
+        return $this->templating->renderResponse('@GalileoSimpleBetMain/Torunament/show.html.twig',
+            array('tournament' => $tournament)
+        );
     }
 } 

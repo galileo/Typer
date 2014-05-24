@@ -1,10 +1,13 @@
 {% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
 
 {% block top %}
-    <h2>Mistrzostswa świata 2012</h2>
+    <h2>{{ tournament.name }}</h2>
 {% endblock %}
 
 {% block content %}
+    {% for stage in tournament.stages %}
+        {{ include('GalileoSimpleBetMainBundle:TournamentStage:viewMatches.html.twig', {'type': 'table', 'stage': stage}) }}
+    {% endfor %}
 {% endblock %}
 
 {% block sidabar %}

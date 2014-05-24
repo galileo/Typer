@@ -69,4 +69,12 @@ class Tournament
 
         return $this;
     }
+
+    /**
+     * Alias for getTournamentStages
+     */
+    public function getStages()
+    {
+        return $this->getTournamentStages();
+    }
 }

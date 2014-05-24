@@ -4,7 +4,7 @@
     <ul>
         {% for tournament in tournaments %}
             <li>
-                <a href="{{ path('galileo_simple_bet_main_tournament_show', { 'tournamentId': tournament.id }) }}">
+                <a href="{{ path('gsbm_tournament_show', { 'tournamentId': tournament.id }) }}">
                     {{ tournament.name }}
                 </a>
             </li>

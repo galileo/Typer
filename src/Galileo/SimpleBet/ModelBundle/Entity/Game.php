@@ -1,17 +1,35 @@
 <?php
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Game
 {
     protected $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
     protected $bets;
+
     protected $tournamentStage;
+
     protected $homeTeam;
+
     protected $awayTeam;
+
     protected $score;
+
     protected $date;
+
     protected $isActive;
+
     protected $isPlayed;
+
+    public function __construct()
+    {
+        $this->bets = new ArrayCollection();
+    }
 
 
     /**
@@ -23,11 +41,15 @@ class Game
     }
 
     /**
-     * @param mixed $homeTeam
+     * @param Team $homeTeam
+     *
+     * @return Game
      */
-    public function setHomeTeam($homeTeam)
+    public function setHomeTeam(Team $homeTeam)
     {
         $this->homeTeam = $homeTeam;
+
+        return $this;
     }
 
     /**
@@ -142,4 +164,11 @@ class Game
         $this->tournamentStage = $tournamentStage;
     }
 
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getBets()
+    {
+        return $this->bets;
+    }
 }
