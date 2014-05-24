@@ -3,7 +3,9 @@
 
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User;
+use Galileo\SimpleBet\ModelBundle\Providers\BetStats;
 
 class Player extends User
 {
@@ -15,6 +17,17 @@ class Player extends User
     protected $tournaments;
 
     protected $bets;
+
+    /**
+     * @var BetStats
+     */
+    protected $betStats;
+
+    function __construct()
+    {
+        $this->bets = new ArrayCollection();
+    }
+
 
     /**
      * @return mixed
@@ -78,5 +91,13 @@ class Player extends User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    /**
+     * @return ArrayCollection|Bet[]
+     */
+    public function getBets()
+    {
+        return $this->bets;
     }
 }

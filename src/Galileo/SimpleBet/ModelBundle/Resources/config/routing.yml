@@ -1,3 +1,0 @@
-galileo_simple_bet_model_homepage:
-    pattern:  /torunament/{id}
-    defaults: { _controller: GalileoSimpleBetModelBundle:Default:index }

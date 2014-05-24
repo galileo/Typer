@@ -7,6 +7,12 @@ class Team
     protected $id;
     protected $name;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
     /**
      * @return mixed
      */

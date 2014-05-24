@@ -1,0 +1,23 @@
+<h4>{{ stage.name }}</h4>
+<table class="table table-condensed">
+    <tr>
+        <th colspan="2">Drużyny</th>
+        <th>Wynik</th>
+        <th>Typy</th>
+    </tr>
+    {% for game in stage.games %}
+        <tr>
+            <td>{{ game.homeTeam }}</td>
+            <td>{{ game.awayTeam }}</td>
+            <td><span class="label label-primary">{{ game.score }}</span></td>
+            <td>
+                <a href="{{ path('gsbm_game_bets', {'gameId' : game.id}) }}">
+                <span class="label label-default">
+                        {{ game.bets.count }}
+                </span>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+
+</table>

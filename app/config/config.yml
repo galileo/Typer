@@ -79,3 +79,9 @@ fos_user:
 
 braincrafted_bootstrap:
     less_filter: less
+
+services:
+    twig.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }

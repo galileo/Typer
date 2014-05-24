@@ -1,7 +1,15 @@
 parameters:
-#    galileo_simple_bet_main.example.class: Galileo\SimpleBet\MainBundle\Example
+    gsbm.controller.tournamentcontroller.class: Galileo\SimpleBet\MainBundle\Controller\TournamentController
+    gsbm.controller.gamecontroller.class: Galileo\SimpleBet\MainBundle\Controller\GameController
 
 services:
-#    galileo_simple_bet_main.example:
-#        class: %galileo_simple_bet_main.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    gsbm.controller.tournamentcontroller:
+        class: %gsbm.controller.tournamentcontroller.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @templating
+    gsbm.controller.gamecontroller:
+        class: %gsbm.controller.gamecontroller.class%
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @templating

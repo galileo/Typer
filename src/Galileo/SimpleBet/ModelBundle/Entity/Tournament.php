@@ -1,11 +1,19 @@
 <?php
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class Tournament
 {
     protected $id;
     protected $name;
     protected $tournamentStages;
+
+    public function __constructor()
+    {
+        $this->tournamentStages = new ArrayCollection();
+    }
+
 
     public function __toString()
     {
@@ -21,14 +29,6 @@ class Tournament
     }
 
     /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return mixed
      */
     public function getName()
@@ -38,10 +38,14 @@ class Tournament
 
     /**
      * @param mixed $name
+     *
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
 
@@ -54,10 +58,23 @@ class Tournament
     }
 
     /**
-     * @param mixed $tournamentStages
+     * @param mixed $tournamentStage
+     *
+     * @return $this;
      */
-    public function addTournamentStages($tournamentStages)
+    public function addTournamentStage(TournamentStage $tournamentStage)
     {
-        $this->tournamentStages = $tournamentStages;
+        $tournamentStage->setTournament($this);
+        $this->tournamentStages[] = $tournamentStage;
+
+        return $this;
+    }
+
+    /**
+     * Alias for getTournamentStages
+     */
+    public function getStages()
+    {
+        return $this->getTournamentStages();
     }
 }

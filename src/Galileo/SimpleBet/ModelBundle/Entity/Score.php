@@ -8,6 +8,11 @@ class Score
     protected $away;
     protected $scoreType;
 
+    public function __toString()
+    {
+        return $this->home . ':' . $this->away;
+    }
+
     /**
      * @return mixed
      */

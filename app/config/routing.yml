@@ -2,10 +2,6 @@ galileo_simple_bet_main:
     resource: "@GalileoSimpleBetMainBundle/Resources/config/routing.yml"
     prefix:   /
 
-galileo_simple_bet_model:
-    resource: "@GalileoSimpleBetModelBundle/Resources/config/routing.yml"
-    prefix:   /
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

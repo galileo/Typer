@@ -28,8 +28,8 @@ class MigrateCommand extends Command
 
         $migrate = new MigrateOldDatabase($entityManager, $output);
         $migrate->execute('galileo2_typer', 'Euro 2008 - Austria i Szwajcaria');
-//        $migrate->execute('galileo2_rpa', 'Mistrzostwa Świata 2010 - RPA');
-//        $migrate->execute('galileo2_euro2012', 'Euro 2012 - Polska i Ukraina');
+        $migrate->execute('galileo2_rpa', 'Mistrzostwa Świata 2010 - RPA');
+        $migrate->execute('galileo2_euro2012', 'Euro 2012 - Polska i Ukraina');
     }
 
 }

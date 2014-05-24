@@ -1,0 +1,36 @@
+{% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
+
+{% block content %}
+    <ul>
+        {% for tournament in tournaments %}
+            <li>
+                <a href="{{ path('gsbm_tournament_show', { 'tournamentId': tournament.id }) }}">
+                    {{ tournament.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+
+{% block sidebar %}
+    <h4>Tabela wszechczasów</h4>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Zawodnik</th>
+            <th>Typy</th>
+            <th>%</th>
+            <th>Punkty</th>
+        </tr>
+    {% for betStat in bestPlayers %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ betStat.player.firstName }} {{ betStat.player.lastName|truncate(1, false, '.') }}</td>
+            <td><span class="label label-primary">{{ betStat.totalBets }}</span></td>
+            <td><span class="label label-default">{{ betStat.pointsPerBet|round(2) }}</span></td>
+            <td><span class="label label-success">{{ betStat.totalPoints }}</span></td>
+        </tr>
+    {% endfor %}
+    </ul>
+{% endblock %}

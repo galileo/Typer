@@ -1,6 +1,7 @@
 Galileo\SimpleBet\ModelBundle\Entity\Player:
     type: entity
     table: gsbm_player
+    repositoryClass: Galileo\SimpleBet\ModelBundle\Repository\PlayerRepository
     id:
         id:
             type: integer
