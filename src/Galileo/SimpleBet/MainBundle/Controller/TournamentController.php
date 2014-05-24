@@ -25,11 +25,15 @@ class TournamentController
 
     protected $tournamentRepository;
 
+
     function __construct(EntityManager $entityManager, EngineInterface $templating)
     {
         $this->entityManager = $entityManager;
+
         $this->tournamentRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Tournament');
         $this->playerRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Player');
+        $this->gameRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Game');
+
         $this->templating = $templating;
     }
 
@@ -53,6 +57,19 @@ class TournamentController
 
         return $this->templating->renderResponse('@GalileoSimpleBetMain/Torunament/show.html.twig',
             array('tournament' => $tournament)
+        );
+    }
+    
+    public function gameBetsAction($tournamentId, $gameId)
+    {
+        $tournament = $this->tournamentRepository->find($tournamentId);
+        $game = $this->gameRepository->find($gameId);
+
+        return $this->templating->renderResponse('@GalileoSimpleBetMain/Torunament/showWithBets.html.twig',
+            array(
+                'tournament' => $tournament,
+                'game' => $game,
+            )
         );
     }
 } 

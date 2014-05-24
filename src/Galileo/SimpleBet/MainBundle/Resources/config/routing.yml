@@ -2,13 +2,13 @@ homepage:
     pattern:  /
     defaults: { _controller: gsbm.controller.tournamentcontroller:homeAction }
 
-gsbm_tournament_show:
-    pattern:  /t/{tournamentId}
-    defaults: { _controller: gsbm.controller.tournamentcontroller:listAction }
-
 gsbm_tournament_show_game_bets:
     pattern:  /t/{tournamentId}-{gameId}
     defaults: { _controller: gsbm.controller.tournamentcontroller:gameBetsAction }
+
+gsbm_tournament_show:
+    pattern:  /t/{tournamentId}
+    defaults: { _controller: gsbm.controller.tournamentcontroller:listAction }
 
 gsbm_game_bets:
     pattern:  /b/{gameId}
