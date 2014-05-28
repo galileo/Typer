@@ -3,9 +3,9 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: galileo2_betawygra
-    database_user: galileo2
-    database_password: kamil1986
+    database_name: simple_bet
+    database_user: root
+    database_password: root
     mailer_transport: smtp
     mailer_host: 127.0.0.1
     mailer_user: null

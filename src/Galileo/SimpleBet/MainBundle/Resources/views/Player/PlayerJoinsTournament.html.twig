@@ -1,0 +1,12 @@
+{% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
+
+{% block content %}
+    {% if player_to_tournament.isActive == false %}
+        <h3>Gratulacje!</h3>
+        <p>Dołączyłeś do turnieju!</p>
+        <p>Ten turniej wymaga aktywacji administratora. Poczekaj na aktywację.</p>
+    {% else %}
+        <h3>Hej, hej!</h3>
+        <p>Jesteś już szczęśliwym uczestnikiem tego turnieju, proszę opanuj się ;), i bez nadgorliwośći.</p>
+    {% endif %}
+{% endblock %}

@@ -10,5 +10,10 @@
 {% endautoescape %}
 {% endblock %}
 {% block body_html %}
-Hello this is my body html
+    {{ 'resetting.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
+    Hello this is my body html
+
+    Nazwa użytkownika: {{ user.username }}
+
+    Link do poitwierdzenia: <a href="{{ confirmationUrl }}">Resetuj hasło</a>
 {% endblock %}

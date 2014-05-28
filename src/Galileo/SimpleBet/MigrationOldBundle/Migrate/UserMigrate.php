@@ -6,7 +6,7 @@ namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
 
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Doctrine\ORM\EntityManagerInterface;
-use Galileo\SimpleBet\ModelBundle\Entity\TournamentPlayer;
+use Galileo\SimpleBet\ModelBundle\Entity\PlayerToTournament;
 
 class UserMigrate
 {
@@ -104,7 +104,7 @@ class UserMigrate
 
     private function createUserInTorunament($player, $torunament)
     {
-        $tp = new TournamentPlayer();
+        $tp = new PlayerToTournament();
         $tp->setPlayer($player);
         $tp->setTournament($torunament);
         $tp->setIsActive(1);

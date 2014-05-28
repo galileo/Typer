@@ -4,7 +4,7 @@
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
 
-class TournamentPlayer
+class PlayerToTournament
 {
     /**
      * @var integer
@@ -12,12 +12,12 @@ class TournamentPlayer
     protected $id;
 
     /**
-     * @var Player
+     * @var \Galileo\SimpleBet\ModelBundle\Entity\Player
      */
     protected $player;
 
     /**
-     * @var Tournament
+     * @var \Galileo\SimpleBet\ModelBundle\Entity\Tournament
      */
     protected $tournament;
 
@@ -25,6 +25,13 @@ class TournamentPlayer
      * @var boolean
      */
     protected $isActive;
+
+    function __construct(Player $player, Tournament $tournament)
+    {
+        $this->player = $player;
+        $this->tournament = $tournament;
+    }
+
 
     /**
      * @return int
@@ -45,7 +52,7 @@ class TournamentPlayer
     /**
      * @return boolean
      */
-    public function isIsActive()
+    public function isActive()
     {
         return $this->isActive;
     }
@@ -59,7 +66,7 @@ class TournamentPlayer
     }
 
     /**
-     * @return Player
+     * @return \Galileo\SimpleBet\ModelBundle\Entity\Player
      */
     public function getPlayer()
     {
@@ -67,7 +74,7 @@ class TournamentPlayer
     }
 
     /**
-     * @param Player $player
+     * @param \Galileo\SimpleBet\ModelBundle\Entity\Player $player
      */
     public function setPlayer($player)
     {
@@ -75,7 +82,7 @@ class TournamentPlayer
     }
 
     /**
-     * @return Tournament
+     * @return \Galileo\SimpleBet\ModelBundle\Entity\Tournament
      */
     public function getTournament()
     {
@@ -83,7 +90,7 @@ class TournamentPlayer
     }
 
     /**
-     * @param Tournament $tournament
+     * @param \Galileo\SimpleBet\ModelBundle\Entity\Tournament $tournament
      */
     public function setTournament($tournament)
     {
