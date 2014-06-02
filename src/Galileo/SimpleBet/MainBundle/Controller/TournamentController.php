@@ -44,7 +44,7 @@ class TournamentController
         $bestPlayers = $this->playerRepository->findBestPlayers();
 
         return $this->templating->renderResponse(
-            '@GalileoSimpleBetMain/Torunament/home.html.twig', array(
+            '@GalileoSimpleBetMain/Tournament/home.html.twig', array(
                 'tournaments' => $tournaments,
                 'bestPlayers' => $bestPlayers
             )
@@ -55,7 +55,7 @@ class TournamentController
     {
         $tournament = $this->tournamentRepository->find($tournamentId);
 
-        return $this->templating->renderResponse('@GalileoSimpleBetMain/Torunament/show.html.twig',
+        return $this->templating->renderResponse('@GalileoSimpleBetMain/Tournament/show.html.twig',
             array('tournament' => $tournament)
         );
     }
@@ -65,7 +65,7 @@ class TournamentController
         $tournament = $this->tournamentRepository->find($tournamentId);
         $game = $this->gameRepository->find($gameId);
 
-        return $this->templating->renderResponse('@GalileoSimpleBetMain/Torunament/showWithBets.html.twig',
+        return $this->templating->renderResponse('@GalileoSimpleBetMain/Tournament/showWithBets.html.twig',
             array(
                 'tournament' => $tournament,
                 'game' => $game,

@@ -73,7 +73,7 @@ class PlayerToTournamentManager implements PlayerToTournamentManagerInterface
      * @param Tournament $tournament
      * @return array
      */
-    protected function getPlayerToTournament(Player $player, Tournament $tournament)
+    public function getPlayerToTournament(Player $player, Tournament $tournament)
     {
         $playerToTournament = $this->playerToTournamentRepository->findOneBy(array(
             'player' => $player->getId(),

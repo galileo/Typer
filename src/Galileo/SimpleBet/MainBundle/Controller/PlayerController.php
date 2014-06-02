@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
 use Galileo\SimpleBet\MainBundle\Service\Manager\PlayerToTournamentManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PlayerController
@@ -53,6 +54,28 @@ class PlayerController
         return $this->templating->renderResponse('@GalileoSimpleBetMain/Player/PlayerJoinsTournament.html.twig', array(
             'player_to_tournament' => $playerToTournament
         ));
+    }
+
+    /**
+     * @param $tournamentId
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewPlayerToTournament($tournamentId)
+    {
+        try {
+            $tournament = $this->loadTournamentOrFail($tournamentId);
+
+            $playerToTournament = $this->playerToTournamentManager->getPlayerToTournament($this->currentPlayerManager->getCurrentPlayer(), $tournament);
+
+            return $this->templating
+                ->renderResponse('@GalileoSimpleBetMain/PlayerToTournament/playerToTournamentView.html.twig', array(
+                    'tournament' => $tournament,
+                    'playerToTournament' => $playerToTournament
+                ));
+        } catch (\Exception $e) {
+            // @todo user not logged in
+            return new Response();
+        }
     }
 
     /**

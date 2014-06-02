@@ -1,0 +1,17 @@
+<p>
+    {% if playerToTournament %}
+    {% if false == playerToTournament.isActive %}
+        <a class="btn btn-lg btn-warning disabled btn-block">Oczekuje</a>
+    {% endif %}
+    {% else %}
+    <a class="btn btn-lg btn-success" href="{{ path('gsbm_player_join_tournament', {'tournamentId': tournament.id }) }}>Dołącz</a>
+{% endif %}
+</p>
+<p class=" tournamentStatusBar">
+<p>Cykl: <span class="label label-default pull-right">Galileo Prime: Typowanie</span></p>
+<p>Uczestnicy: <span class="label label-default pull-right">31</span></p>
+<p>Aktywni: <span class="label label-default pull-right">29</span></p>
+<p>Suma punktów: <span class="label label-default pull-right">384</span></p>
+<p>Ilość typów: <span class="label label-default pull-right">384</span></p>
+
+<p>Status: <span class="label label-success pull-right">aktywny</span></p>

@@ -17,3 +17,4 @@ gsbm_player_join_tournament:
 gsbm_game_bets:
     pattern:  /b/{gameId}
     defaults: { _controller: gsbm.controller.game:betsAction }
+

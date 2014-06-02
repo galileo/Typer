@@ -17,8 +17,8 @@
 
         <!-- PlayerToTournament manager -->
         <service id="gsbm.manager.player_to_tournament" class="%gsbm.manager.player_to_tournament.class%">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument type="service" id="gsbm.repository.player_to_tournament"/>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="gsbm.repository.player_to_tournament" />
         </service>
 
     </services>

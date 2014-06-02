@@ -9,9 +9,7 @@
         <service id="gsbm.repository.tournament"
                  class="Doctrine\ORM\EntityRepository"
                  factory-service="doctrine.orm.entity_manager"
-                 factory-method="getRepository"
-                >
-
+                 factory-method="getRepository">
             <argument>GalileoSimpleBetModelBundle:Tournament</argument>
         </service>
 

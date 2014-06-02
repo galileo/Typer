@@ -23,4 +23,11 @@ interface PlayerToTournamentManagerInterface {
      * @return boolean
      */
     public function checkPlayerInTournament(Player $player, Tournament $tournament);
+
+    /**
+     * @param Player $player
+     * @param Tournament $tournament
+     * @return array
+     */
+    public function getPlayerToTournament(Player $player, Tournament $tournament);
 } 
