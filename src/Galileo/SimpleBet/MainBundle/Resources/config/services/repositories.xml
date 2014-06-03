@@ -23,6 +23,24 @@
             <argument>GalileoSimpleBetModelBundle:PlayerToTournament</argument>
         </service>
 
+        <!-- Game repository -->
+        <service id="gsbm.repository.game"
+                class="Doctrine\ORM\EntityRepository"
+                factory-service="doctrine.orm.entity_manager"
+                factory-method="getRepository"
+                >
+
+            <argument>GalileoSimpleBetModelBundle:Game</argument>
+        </service>
+
+        <!-- Bet repository -->
+        <service id="gsbm.repository.bet"
+                 class="Doctrine\ORM\EntityRepository"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository"
+                 >
+            <argument>GalileoSimpleBetModelBundle:Bet</argument>
+        </service>
 
     </services>
 

@@ -6,6 +6,7 @@ namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class CurrentPlayerManager
@@ -36,6 +37,21 @@ class CurrentPlayerManager
         }
 
         return $user;
+    }
+
+    /**
+     * @throws \Symfony\Component\Security\Core\Exception\AccessDeniedException
+     *
+     * @return Player
+     */
+    public function getLoggedOrFail()
+    {
+        if (!$this->context->getToken()->isAuthenticated())
+        {
+            throw new AccessDeniedException('User not logged in.');
+        }
+
+        return $this->context->getToken()->getUser();
     }
 
 

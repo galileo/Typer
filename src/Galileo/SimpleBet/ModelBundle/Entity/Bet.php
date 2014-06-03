@@ -97,7 +97,7 @@ class Bet
     }
 
     /**
-     * @return mixed
+     * @return Score
      */
     public function getScore()
     {

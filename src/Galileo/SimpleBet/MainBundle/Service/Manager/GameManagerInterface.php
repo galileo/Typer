@@ -1,12 +1,14 @@
 <?php
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 
+use Galileo\SimpleBet\ModelBundle\Entity\Game;
+
 interface GameManagerInterface
 {
     /**
      * @param $gameId
      *
-     * @return object
+     * @return Game
      *
      * @throws \Symfony\Component\Translation\Exception\NotFoundResourceException
      */
