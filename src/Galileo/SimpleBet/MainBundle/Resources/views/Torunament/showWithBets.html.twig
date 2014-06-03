@@ -4,7 +4,6 @@
     <h2>{{ tournament.name }}</h2>
 {% endblock %}
 
-
 {% block content %}
     {% for stage in tournament.stages %}
         {{ include('GalileoSimpleBetMainBundle:TournamentStage:viewMatches.html.twig', {'type': 'table', 'stage': stage}) }}
@@ -12,5 +11,6 @@
 {% endblock %}
 
 {% block sidebar %}
-    {{ render(controller("gsbm.controller.player:viewPlayerToTournament", {'tournamentId': tournament.id})) }}
+        <h2>Typy</h2>
+        {{ include('GalileoSimpleBetMainBundle:Game:betsView.html.twig', {'type': 'table', 'game': game}) }}
 {% endblock %}

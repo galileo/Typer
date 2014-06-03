@@ -1,13 +1,15 @@
 {% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
 
 {% block content %}
+    <ul>
         {% for tournament in tournaments %}
-                <h4><a href="{{ path('gsbm_tournament_show', { 'tournamentId': tournament.id }) }}">
+            <li>
+                <a href="{{ path('gsbm_tournament_show', { 'tournamentId': tournament.id }) }}">
                     {{ tournament.name }}
-                </a></h4>
+                </a>
+            </li>
         {% endfor %}
-
-
+    </ul>
 {% endblock %}
 
 
