@@ -13,8 +13,6 @@
     <services>
         <!-- Game controller -->
         <service id="gsbm.controller.game" class="%gsbm.controller.game.class%">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument type="service" id="templating"/>
         </service>
 
         <!-- Tournament controller -->
@@ -27,8 +25,11 @@
         <service id="gsbm.controller.player" class="%gsbm.controller.player.class%">
             <argument type="service" id="gsbm.manager.current_player"/>
             <argument type="service" id="gsbm.repository.tournament"/>
+            <argument type="service" id="gsbm.repository.player"/>
             <argument type="service" id="gsbm.manager.player_to_tournament"/>
             <argument type="service" id="templating" />
+            <argument type="service" id="router" />
+            <argument type="service" id="session" />
         </service>
 
         <service id="gsbm.controller.bet" class="%gsbm.controller.bet.class%">

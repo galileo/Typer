@@ -29,7 +29,6 @@ class TournamentController
     function __construct(EntityManager $entityManager, EngineInterface $templating)
     {
         $this->entityManager = $entityManager;
-
         $this->tournamentRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Tournament');
         $this->playerRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Player');
         $this->gameRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Game');
@@ -41,12 +40,9 @@ class TournamentController
     {
         $tournaments = $this->tournamentRepository->findAll();
 
-        $bestPlayers = $this->playerRepository->findBestPlayers();
-
         return $this->templating->renderResponse(
             '@GalileoSimpleBetMain/Tournament/home.html.twig', array(
-                'tournaments' => $tournaments,
-                'bestPlayers' => $bestPlayers
+                'tournaments' => $tournaments
             )
         );
     }

@@ -12,5 +12,14 @@
 {% endblock %}
 
 {% block sidebar %}
-    {{ render(controller("gsbm.controller.player:viewPlayerToTournament", {'tournamentId': tournament.id})) }}
+<div class="row">
+    <div class="col-sm-6">
+
+    </div>
+    <div class="col-sm-6">
+        {% if app.user %}
+            {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

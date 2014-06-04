@@ -30,13 +30,7 @@ class CurrentPlayerManager
      */
     public function getCurrentPlayer()
     {
-        $user = $this->context->getToken()->getUser();
-
-        if ('anon.' === $user) {
-            throw new UnauthorizedHttpException('Please log in');
-        }
-
-        return $user;
+        return $this->context->getToken()->getUser();
     }
 
     /**

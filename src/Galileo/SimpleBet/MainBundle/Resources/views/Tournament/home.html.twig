@@ -2,33 +2,13 @@
 
 {% block content %}
         {% for tournament in tournaments %}
-                <h4><a href="{{ path('gsbm_tournament_show', { 'tournamentId': tournament.id }) }}">
+                <h4><a href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
                     {{ tournament.name }}
                 </a></h4>
         {% endfor %}
-
-
 {% endblock %}
 
 
 {% block sidebar %}
-    <h4>Tabela wszechczasów</h4>
-    <table class="table">
-        <tr>
-            <th></th>
-            <th>Zawodnik</th>
-            <th>Typy</th>
-            <th>%</th>
-            <th>Punkty</th>
-        </tr>
-    {% for betStat in bestPlayers %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ betStat.player.firstName }} {{ betStat.player.lastName|truncate(1, false, '.') }}</td>
-            <td><span class="label label-primary">{{ betStat.totalBets }}</span></td>
-            <td><span class="label label-default">{{ betStat.pointsPerBet|round(2) }}</span></td>
-            <td><span class="label label-success">{{ betStat.totalPoints }}</span></td>
-        </tr>
-    {% endfor %}
-    </ul>
+{{ render(controller('gsbm.controller.player:bestPlayerAction')) }}
 {% endblock %}

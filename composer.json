@@ -35,7 +35,9 @@
         "friendsofsymfony/user-bundle": "2.0.x-dev",
         "twbs/bootstrap": "3.1.x-dev",
         "braincrafted/bootstrap-bundle": "2.0.x",
-        "jquery/jquery":  "1.10.*"
+        "jquery/jquery":  "1.10.*",
+        "doctrine/migrations": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

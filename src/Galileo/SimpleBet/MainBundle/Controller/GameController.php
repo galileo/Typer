@@ -24,20 +24,8 @@ class GameController
 
     function __construct(EntityManager $entityManager, EngineInterface $templating)
     {
-        $this->entityManager = $entityManager;
-        $this->templating = $templating;
-
-        $this->gameRepository = $entityManager->getRepository('GalileoSimpleBetModelBundle:Game');
     }
 
-    public function betsAction($gameId)
-    {
-        $game = $this->getGameOrFail($gameId);
-
-        $this->templating->renderResponse('GalileoSimpleBetModelBundle::Game/betsAction.html.twig',
-            array('game' => $game)
-        );
-    }
 
     /**
      * @param $gameId

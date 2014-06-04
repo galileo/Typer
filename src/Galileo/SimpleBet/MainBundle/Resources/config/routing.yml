@@ -2,21 +2,17 @@ homepage:
     pattern:  /
     defaults: { _controller: gsbm.controller.tournament:homeAction }
 
-gsbm_tournament_show_game_bets:
+gsbm_tournament_view_game_bets:
     pattern:  /t/{tournamentId}-{gameId}
     defaults: { _controller: gsbm.controller.tournament:gameBetsAction }
 
-gsbm_tournament_show:
+gsbm_tournament_view:
     pattern:  /t/{tournamentId}
     defaults: { _controller: gsbm.controller.tournament:listAction }
 
 gsbm_player_join_tournament:
     pattern:   /p/j/t/{tournamentId}
-    defaults: { _controller: gsbm.controller.player:joinTournament }
-
-gsbm_game_bets:
-    pattern:  /b/{gameId}
-    defaults: { _controller: gsbm.controller.game:betsAction }
+    defaults: { _controller: gsbm.controller.player:joinTournamentAction }
 
 gsbm_bet_view:
     pattern: /bet/{gameId}
