@@ -41,6 +41,7 @@ class PlayerToTournamentManager implements PlayerToTournamentManagerInterface
     public function joinPlayerIntoTournament(Player $player, Tournament $tournament)
     {
         $playerToTournament = new PlayerToTournament($player, $tournament);
+        $playerToTournament->setIsActive(false);
 
         if ($this->entityManager->contains($playerToTournament)) {
             throw new Exception('Player already in tournament.');

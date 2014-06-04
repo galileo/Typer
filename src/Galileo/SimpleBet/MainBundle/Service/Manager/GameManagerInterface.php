@@ -13,4 +13,11 @@ interface GameManagerInterface
      * @throws \Symfony\Component\Translation\Exception\NotFoundResourceException
      */
     public function findGameOrFail($gameId);
+
+    /**
+     * @param Game $game
+     *
+     * @return bool
+     */
+    public function isBettingAvailable(Game $game);
 }

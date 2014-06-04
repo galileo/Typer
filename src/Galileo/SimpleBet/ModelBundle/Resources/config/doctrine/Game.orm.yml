@@ -7,7 +7,7 @@ Galileo\SimpleBet\ModelBundle\Entity\Game:
             generator: { strategy: AUTO }
     fields:
         date:
-            type: string
+            type: datetime
         isPlayed:
             type: boolean
             column: is_played

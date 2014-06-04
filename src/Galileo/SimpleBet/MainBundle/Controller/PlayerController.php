@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
 use Galileo\SimpleBet\MainBundle\Service\Manager\PlayerToTournamentManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -51,9 +52,7 @@ class PlayerController
 
         $playerToTournament = $this->playerToTournamentManager->joinPlayerIntoTournament($this->currentPlayerManager->getCurrentPlayer(), $tournament);
 
-        return $this->templating->renderResponse('@GalileoSimpleBetMain/Player/PlayerJoinsTournament.html.twig', array(
-            'player_to_tournament' => $playerToTournament
-        ));
+        return new RedirectResponse('/t/'.$tournamentId, 302);
     }
 
     /**

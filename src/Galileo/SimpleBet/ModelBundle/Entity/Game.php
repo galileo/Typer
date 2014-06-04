@@ -1,6 +1,7 @@
 <?php
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 
 class Game
@@ -69,7 +70,7 @@ class Game
     }
 
     /**
-     * @return mixed
+     * @return DateTime
      */
     public function getDate()
     {
