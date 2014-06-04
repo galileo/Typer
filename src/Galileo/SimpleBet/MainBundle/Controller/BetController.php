@@ -122,6 +122,7 @@ class BetController
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Bet:bet.html.twig', array(
                 'form' => $form->createView(),
+                'game' => $game
             )
         );
     }
