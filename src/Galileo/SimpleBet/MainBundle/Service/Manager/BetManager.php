@@ -7,6 +7,7 @@ use Galileo\SimpleBet\ModelBundle\Entity\Game;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 
 use Doctrine\ORM\EntityRepository;
+use Galileo\SimpleBet\ModelBundle\Entity\Score;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
@@ -31,8 +32,17 @@ class BetManager implements BetManagerInterface
      */
     public function createEntity(Player $player, Game $game)
     {
+        $score = new Score();
+        $score
+            ->setHome(0)
+            ->setAway(0)
+            ->setScoreType('simple');
+
         $bet = new Bet();
+        $bet->setScore($score);
         $bet->setGame($game);
+        $bet->setIsActive(true);
+        $bet->setPointsEarned(0);
         $bet->setPlayer($player);
 
         return $bet;
@@ -53,13 +63,6 @@ class BetManager implements BetManagerInterface
             'game' => $game
         ));
 
-        if (null === $bet) {
-            throw new NotFoundResourceException(sprintf('Bet not found for game "%d" and "%s"',
-                $game->getId(),
-                $player->getDisplayName()
-            ));
-        }
-
         return $bet;
     }
 
@@ -71,10 +74,8 @@ class BetManager implements BetManagerInterface
      */
     public function getBetOrCreate(Player $player, Game $game)
     {
-        try {
-            $bet = $this->findBet($player, $game);
-        } catch (ResourceNotFoundException $e)
-        {
+        $bet = $this->findBet($player, $game);
+        if (null === $bet) {
             $bet = $this->createEntity($player, $game);
         }
 

@@ -23,10 +23,14 @@ class Score
 
     /**
      * @param mixed $away
+     *
+     * @return $this
      */
     public function setAway($away)
     {
         $this->away = $away;
+
+        return $this;
     }
 
     /**
@@ -39,10 +43,14 @@ class Score
 
     /**
      * @param mixed $home
+     *
+     * @return $this
      */
     public function setHome($home)
     {
         $this->home = $home;
+
+        return $this;
     }
 
     /**

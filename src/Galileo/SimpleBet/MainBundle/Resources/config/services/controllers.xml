@@ -17,7 +17,8 @@
 
         <!-- Tournament controller -->
         <service id="gsbm.controller.tournament" class="%gsbm.controller.tournament.class%">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="gsbm.repository.tournament"/>
+            <argument type="service" id="gsbm.repository.game"/>
             <argument type="service" id="templating"/>
         </service>
 

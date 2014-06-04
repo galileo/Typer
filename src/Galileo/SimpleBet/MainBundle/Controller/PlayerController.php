@@ -119,11 +119,8 @@ class PlayerController
     {
         $bestPlayers = $this->playerRepository->findBestPlayers();
 
-        return $this->templating->renderResponse(
-            '@GalileoSimpleBetMain/Player/bestPlayerTable.html.twig', [
-                'bestPlayers' => $bestPlayers
-            ]
-        );
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Player:bestPlayerTable.html.twig',
+            array('bestPlayers' => $bestPlayers));
     }
 
     /**

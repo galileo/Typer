@@ -7,6 +7,7 @@ namespace Galileo\SimpleBet\MainBundle\Controller;
 use Doctrine\ORM\EntityManager;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
 use Galileo\SimpleBet\ModelBundle\Entity\Bet;
+use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Galileo\SimpleBet\ModelBundle\Entity\Score;
 use Galileo\SimpleBet\MainBundle\Service\Manager\GameManagerInterface;
 use Galileo\SimpleBet\MainBundle\Service\Manager\BetManagerInterface;
@@ -51,9 +52,14 @@ class BetController
      */
     protected $entityManager;
     /**
-     * @var \Symfony\Bundle\FrameworkBundle\Routing\Router
+     * @var Router
      */
     protected $router;
+
+    /**
+     * @var Player
+     */
+    protected $player;
 
     public function __construct(EngineInterface $templating,
                                 FormFactory $formFactory,
@@ -71,13 +77,14 @@ class BetController
         $this->betManager = $betManager;
         $this->entityManager = $entityManager;
         $this->router = $router;
+
+        $this->player = $this->playerManager->getCurrentPlayer();
     }
 
     public function betAction(Request $request, $gameId)
     {
         try {
             $game = $this->gameManager->findGameOrFail($gameId);
-            $player = $this->playerManager->getLoggedOrFail();
         } catch (NotFoundResourceException $e) {
             throw new NotFoundHttpException($e->getMessage());
         }
@@ -93,7 +100,7 @@ class BetController
             );
         }
 
-        $bet = $this->betManager->getBetOrCreate($player, $game);
+        $bet = $this->betManager->getBetOrCreate($this->player, $game);
 
         $score = $bet->getScore();
 
@@ -107,6 +114,7 @@ class BetController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->entityManager->persist($bet);
             $this->entityManager->persist($score);
             $this->entityManager->flush();
         }
@@ -123,9 +131,14 @@ class BetController
         $game = $this->gameManager->findGameOrFail($gameId);
 
         $bet = $this->betManager->findBet(
-            $this->playerManager->getLoggedOrFail(),
+            $this->player,
             $game
         );
+
+        if (null === $bet) {
+            $bet = new Bet();
+        }
+
 
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Bet:view.html.twig', array(

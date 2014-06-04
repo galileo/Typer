@@ -5,6 +5,7 @@ namespace Galileo\SimpleBet\MainBundle\Controller;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
 use Galileo\SimpleBet\ModelBundle\Entity\TournamentStage;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -13,27 +14,26 @@ use Symfony\Component\HttpFoundation\Response;
 class TournamentController
 {
     /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    protected $entityManager;
-
-    /**
-     * @var \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface
+     * @var EngineInterface
      */
     protected $templating;
 
-
+    /**
+     * @var EntityRepository
+     */
     protected $tournamentRepository;
 
+    /**
+     * @var EntityRepository
+     */
+    protected $gameRepository;
 
-    function __construct(EntityManager $entityManager, EngineInterface $templating)
+
+    function __construct(EntityRepository $tournamentRepository, EntityRepository $gameRepository, EngineInterface $templating)
     {
-        $this->entityManager = $entityManager;
-        $this->tournamentRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Tournament');
-        $this->playerRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Player');
-        $this->gameRepository = $this->entityManager->getRepository('GalileoSimpleBetModelBundle:Game');
-
+        $this->tournamentRepository = $tournamentRepository;
         $this->templating = $templating;
+        $this->gameRepository = $gameRepository;
     }
 
     public function homeAction()
@@ -41,7 +41,7 @@ class TournamentController
         $tournaments = $this->tournamentRepository->findAll();
 
         return $this->templating->renderResponse(
-            '@GalileoSimpleBetMain/Tournament/home.html.twig', array(
+            'GalileoSimpleBetMainBundle:Tournament:home.html.twig', array(
                 'tournaments' => $tournaments
             )
         );
@@ -51,7 +51,7 @@ class TournamentController
     {
         $tournament = $this->tournamentRepository->find($tournamentId);
 
-        return $this->templating->renderResponse('@GalileoSimpleBetMain/Tournament/show.html.twig',
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:show.html.twig',
             array('tournament' => $tournament)
         );
     }
@@ -61,7 +61,7 @@ class TournamentController
         $tournament = $this->tournamentRepository->find($tournamentId);
         $game = $this->gameRepository->find($gameId);
 
-        return $this->templating->renderResponse('@GalileoSimpleBetMain/Tournament/showWithBets.html.twig',
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:showWithBets.html.twig',
             array(
                 'tournament' => $tournament,
                 'game' => $game,
