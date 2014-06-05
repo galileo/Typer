@@ -10,7 +10,7 @@
     {% for betStat in bestPlayers %}
         <tr>
             <td>{{ loop.index }}</td>
-            <td>{{ betStat.player.firstName }} {{ betStat.player.lastName|truncate(1, false, '.') }}</td>
+            <td>{% if betStat.player.displayName %}{{ betStat.player.displayName }}{% else %}{{ betStat.player.firstName }} {{ betStat.player.lastName|truncate(1, false, '.') }}{% endif %}</td>
             <td><span class="label label-primary">{{ betStat.totalBets }}</span></td>
             <td><span class="label label-default">{{ betStat.pointsPerBet|round(2) }}</span></td>
             <td><span class="label label-success">{{ betStat.totalPoints }}</span></td>

@@ -5,6 +5,7 @@ namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 
 
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
+use Galileo\SimpleBet\ModelBundle\Entity\PlayerToTournament;
 use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
 
 interface PlayerToTournamentManagerInterface {
@@ -27,7 +28,7 @@ interface PlayerToTournamentManagerInterface {
     /**
      * @param Player $player
      * @param Tournament $tournament
-     * @return array
+     * @return PlayerToTournament
      */
     public function getPlayerToTournament(Player $player, Tournament $tournament);
 } 

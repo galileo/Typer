@@ -5,6 +5,7 @@ namespace Galileo\SimpleBet\MainBundle\Controller;
 
 
 use Doctrine\ORM\EntityRepository;
+use Exception;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
 use Galileo\SimpleBet\MainBundle\Service\Manager\PlayerToTournamentManagerInterface;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
@@ -81,7 +82,7 @@ class PlayerController
      * @param $tournamentId
      *
      * @return RedirectResponse
-     * @throws \Exception
+     * @throws Exception
      */
     public function joinTournamentAction($tournamentId)
     {
@@ -126,8 +127,8 @@ class PlayerController
     /**
      * @param $tournamentId
      *
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
-     * @return \Galileo\SimpleBet\ModelBundle\Entity\Tournament
+     * @throws NotFoundHttpException
+     * @return Tournament
      */
     protected function loadTournamentOrFail($tournamentId)
     {
@@ -152,16 +153,16 @@ class PlayerController
 
     /**
      * @return PlayerToTournament
-     * @throws \Exception
+     * @throws Exception
      */
     protected function joinIntoTournament()
     {
         if (null == $this->player) {
-            throw new \Exception('Player not recognized');
+            throw new Exception('Player not recognized');
         }
 
         if (null === $this->tournament) {
-            throw new \Exception('Tournament not recognized');
+            throw new Exception('Tournament not recognized');
         }
 
         return $this->playerToTournamentManager->joinPlayerIntoTournament(

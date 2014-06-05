@@ -30,6 +30,8 @@
 
         <service id="gsbm.manager.game" class="%gsbm.manager.game.class%">
             <argument type="service" id="gsbm.repository.game" />
+            <argument type="service" id="gsbm.manager.current_player" />
+            <argument type="service" id="gsbm.manager.player_to_tournament" />
         </service>
 
     </services>

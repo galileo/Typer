@@ -6,6 +6,7 @@ namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 
 use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\ModelBundle\Entity\Game;
+use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class GameManager implements GameManagerInterface
@@ -15,10 +16,24 @@ class GameManager implements GameManagerInterface
      */
     protected $gameRepository;
 
-    public function __construct(EntityRepository $gameRepository)
-    {
+    /**
+     * @var Player
+     */
+    protected $player;
 
+    /**
+     * @var PlayerToTournamentManagerInterface
+     */
+    protected $playerToTournamentManager;
+
+    public function __construct(EntityRepository $gameRepository,
+                                CurrentPlayerManager $playerManager,
+                                PlayerToTournamentManagerInterface $playerToTournamentManager
+    )
+    {
+        $this->player = $playerManager->getCurrentPlayer();
         $this->gameRepository = $gameRepository;
+        $this->playerToTournamentManager = $playerToTournamentManager;
     }
 
     /**
@@ -42,6 +57,17 @@ class GameManager implements GameManagerInterface
      */
     public function isBettingAvailable(Game $game)
     {
+        $playerToTournament = $this->playerToTournamentManager->getPlayerToTournament(
+            $this->player,
+            $game->getTournamentStage()->getTournament()
+        );
+
+        if (null === $playerToTournament) {
+            if (!$playerToTournament->isActive()) {
+                return false;
+            }
+        }
+
         $gameDate = $game->getDate();
 
         $now = new \DateTime();
