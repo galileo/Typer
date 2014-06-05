@@ -44,6 +44,11 @@ class YourBetListener
 
         if ($game instanceof Game) {
             $this->initialize();
+
+            if (!$this->currentPlayer instanceof Player) {
+                return;
+            }
+
             $bet = $this->betManager->findBet($this->currentPlayer, $game);
             if (null !== $bet) {
                 $game->setYourBet($bet);

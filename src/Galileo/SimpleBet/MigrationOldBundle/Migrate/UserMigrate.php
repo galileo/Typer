@@ -74,6 +74,7 @@ class UserMigrate
                 $player->setPassword(md5(rand(0, 1239124), microtime()));
                 $player->setFirstName($row['first_name']);
                 $player->setLastName($row['last_name']);
+                $player->setEnabled(1);
 
                 $this->save($player);
             } else {

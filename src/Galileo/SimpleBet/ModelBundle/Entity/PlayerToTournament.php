@@ -26,12 +26,6 @@ class PlayerToTournament
      */
     protected $isActive;
 
-    function __construct(Player $player, Tournament $tournament)
-    {
-        $this->player = $player;
-        $this->tournament = $tournament;
-    }
-
 
     /**
      * @return int

@@ -26,6 +26,7 @@ class Player extends User
     function __construct()
     {
         $this->bets = new ArrayCollection();
+        parent::__construct();
     }
 
 

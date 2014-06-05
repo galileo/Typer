@@ -50,6 +50,7 @@ class MigrateMecze extends Write
             $score->setHome($row['gole1']);
             $score->setAway($row['gole2']);
             $score->setScoreType('simple');
+
             $this->em->persist($score);
 
             $game = new Game();

@@ -42,11 +42,10 @@ class MigrateBets extends Write
         {
             $score = new Score();
             $score->setScoreType('simple');
-            $score->setHome('gole1');
-            $score->setAway('gole2');
+            $score->setHome($row['gole1']);
+            $score->setAway($row['gole2']);
 
             $this->em->persist($score);
-
             $player = $this->user->findByEmail($row['email']);
 
             $bet = new Bet();
