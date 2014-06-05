@@ -19,7 +19,7 @@ class GameManager implements GameManagerInterface
     /**
      * @var Player
      */
-    protected $player;
+    protected $loggedInPlayer;
 
     /**
      * @var PlayerToTournamentManagerInterface
@@ -31,7 +31,7 @@ class GameManager implements GameManagerInterface
                                 PlayerToTournamentManagerInterface $playerToTournamentManager
     )
     {
-        $this->player = $playerManager->getCurrentPlayer();
+        $this->loggedInPlayer = $playerManager->getCurrentPlayer();
         $this->gameRepository = $gameRepository;
         $this->playerToTournamentManager = $playerToTournamentManager;
     }
@@ -57,15 +57,19 @@ class GameManager implements GameManagerInterface
      */
     public function isBettingAvailable(Game $game)
     {
-        $playerToTournament = $this->playerToTournamentManager->getPlayerToTournament(
-            $this->player,
-            $game->getTournamentStage()->getTournament()
-        );
+        $player = $this->loggedInPlayer;
+        if (!$player instanceof Player) {
+            return false;
+        }
+        $tournament = $game->getTournamentStage()->getTournament();
+        $playerToTournament = $this->playerToTournamentManager->getPlayerToTournament($player, $tournament);
 
         if (null === $playerToTournament) {
-            if (!$playerToTournament->isActive()) {
-                return false;
-            }
+            return false;
+        }
+
+        if (!$playerToTournament->isActive()) {
+            return false;
         }
 
         $gameDate = $game->getDate();

@@ -20,4 +20,6 @@ interface GameManagerInterface
      * @return bool
      */
     public function isBettingAvailable(Game $game);
+
+
 }

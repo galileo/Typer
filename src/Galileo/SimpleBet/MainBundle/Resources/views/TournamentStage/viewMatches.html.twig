@@ -8,15 +8,31 @@
         <tr>
             <td><span class="label label-default">
                 {{ game.bets.count }}
-                </span></td>
+                </span>
+            </td>
             <td class="text-center">
-                <span class="pull-left">{{ game.date|date }}</span><span >{{ game.homeTeam }} - {{ game.awayTeam }}</span></td>
+                <span class="pull-left">{{ game.date|date }}</span><span>{{ game.homeTeam }}
+                    - {{ game.awayTeam }}</span>
+            </td>
             <td>
-                <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
-                {{ label_primary(game.score) }} Typuj
-                </a>
+                {{ label(game.score) }}
+                {% if game.betAble %}
+                    <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
+                        {% if game.yourBet %}
+                            {{ label_primary(game.yourBet) }}
+                        {% else %}
+                            Typuj
+                        {% endif %}
+                    </a>
+                {% else %}
+                    {% if game.yourBet %}
+                        {{ label_primary(game.yourBet) }}
+                    {% else %}
+                        Typuj
+                    {% endif %}
+                    Dołącz do turnieju
+                {% endif %}
             </td>
         </tr>
     {% endfor %}
-
 </table>

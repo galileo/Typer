@@ -27,6 +27,16 @@ class Game
 
     protected $isPlayed;
 
+    /**
+     * @var bool
+     */
+    protected $isBetAble = false;
+
+    /**
+     * @var Bet
+     */
+    protected $yourBet;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -171,5 +181,35 @@ class Game
     public function getBets()
     {
         return $this->bets;
+    }
+
+    public function isBetAble()
+    {
+        return $this->isBetAble;
+    }
+
+    public function markAsBetAble()
+    {
+        $this->isBetAble = true;
+    }
+
+    /**
+     * @param Bet $bet
+     *
+     * @return $this
+     */
+    public function setYourBet(Bet $bet)
+    {
+        $this->yourBet = $bet;
+
+        return $this;
+    }
+
+    /**
+     * @return Bet
+     */
+    public function getYourBet()
+    {
+        return $this->yourBet;
     }
 }

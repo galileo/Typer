@@ -8,6 +8,9 @@ class Bet
 
     protected $game;
 
+    /**
+     * @var Score
+     */
     protected $score;
 
     protected $player;
@@ -15,6 +18,8 @@ class Bet
     protected $isActive;
 
     protected $pointsEarned;
+
+    protected $isChangeAble = true;
 
     /**
      * @return mixed
@@ -111,4 +116,27 @@ class Bet
     {
         $this->score = $score;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isChangeAble()
+    {
+        return $this->isChangeAble;
+    }
+
+    /**
+     * @param boolean $isChangeAble
+     */
+    public function setIsChangeAble($isChangeAble)
+    {
+        $this->isChangeAble = $isChangeAble;
+    }
+
+
+    public function __toString()
+    {
+        return $this->score ? $this->score->getHome() . ':' . $this->score->getAway() : '-:-';
+    }
+
 } 

@@ -89,8 +89,7 @@ class BetController
             throw new NotFoundHttpException($e->getMessage());
         }
 
-        if (!$this->gameManager->isBettingAvailable($game)) {
-
+        if (!$game->isBetAble()) {
             return new RedirectResponse(
                 $this->router->generate(
                     $url,
@@ -144,7 +143,6 @@ class BetController
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Bet:view.html.twig', array(
                 'game' => $game,
-                'betAble' => $this->gameManager->isBettingAvailable($game),
                 'bet'  => $bet
             )
         );
