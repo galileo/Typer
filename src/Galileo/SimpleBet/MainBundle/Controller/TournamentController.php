@@ -38,7 +38,7 @@ class TournamentController
 
     public function homeAction()
     {
-        $tournaments = $this->tournamentRepository->findAll();
+        $tournaments = $this->tournamentRepository->findBy(array(), array('id' => 'DESC'));
 
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Tournament:home.html.twig', array(

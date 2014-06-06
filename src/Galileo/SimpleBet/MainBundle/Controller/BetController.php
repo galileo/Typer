@@ -4,7 +4,6 @@
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
 
-use Doctrine\ORM\EntityManager;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
 use Galileo\SimpleBet\ModelBundle\Entity\Bet;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
@@ -12,6 +11,7 @@ use Galileo\SimpleBet\ModelBundle\Entity\Score;
 use Galileo\SimpleBet\MainBundle\Service\Manager\GameManagerInterface;
 use Galileo\SimpleBet\MainBundle\Service\Manager\BetManagerInterface;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
