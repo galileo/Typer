@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class BetController
@@ -129,6 +130,11 @@ class BetController
     public function viewAction($gameId)
     {
         $game = $this->gameManager->findGameOrFail($gameId);
+
+        if (!$this->player instanceof Player) {
+            throw new AccessDeniedException('Ups');
+        }
+
 
         $bet = $this->betManager->findBet(
             $this->player,

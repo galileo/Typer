@@ -16,21 +16,23 @@
             </td>
             <td>
                 {{ label(game.score) }}
-                {% if game.betAble %}
-                    <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
+                {% if app.user %}
+                    {% if game.betAble %}
+                        <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
+                            {% if game.yourBet %}
+                                {{ label_primary(game.yourBet) }}
+                            {% else %}
+                                Typuj
+                            {% endif %}
+                        </a>
+                    {% else %}
                         {% if game.yourBet %}
                             {{ label_primary(game.yourBet) }}
                         {% else %}
-                            Typuj
+
                         {% endif %}
-                    </a>
-                {% else %}
-                    {% if game.yourBet %}
-                        {{ label_primary(game.yourBet) }}
-                    {% else %}
-                        Typuj
+                        Dołącz do turnieju
                     {% endif %}
-                    Dołącz do turnieju
                 {% endif %}
             </td>
         </tr>
