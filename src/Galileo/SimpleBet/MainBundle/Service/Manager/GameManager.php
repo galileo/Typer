@@ -3,10 +3,10 @@
 
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 
-
-use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\ModelBundle\Entity\Game;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
+
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class GameManager implements GameManagerInterface
@@ -73,14 +73,19 @@ class GameManager implements GameManagerInterface
         }
 
         $gameDate = $game->getDate();
+        if (!$gameDate instanceof \DateTime) {
+            throw new \InvalidArgumentException(sprintf('Date for game "%s" is not valid DateTime object', $game->getId()));
+        }
 
         $now = new \DateTime();
         $now->add(new \DateInterval('PT1H'));
 
-        if ($now > $gameDate) {
+        $isAvailableByTime = $now > $gameDate;
+        if ($isAvailableByTime) {
             return false;
         }
 
         return true;
     }
-} 
+
+}

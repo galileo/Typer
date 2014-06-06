@@ -40,6 +40,7 @@ class Game
     public function __construct()
     {
         $this->bets = new ArrayCollection();
+        $this->date = new DateTime();
     }
 
 

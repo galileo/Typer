@@ -91,13 +91,7 @@ class BetController
         }
 
         if (!$game->isBetAble()) {
-            return new RedirectResponse(
-                $this->router->generate(
-                    $url,
-                    array('gameId' => $game->getId())
-                ),
-                302
-            );
+            return $this->redirect($this->gameUrl($game->getId()));
         }
 
         $bet = $this->betManager->getBetOrCreate($this->player, $game);
@@ -106,8 +100,8 @@ class BetController
 
         $form = $this->formFactory
             ->createBuilder('form', $score)
-            ->add('away', 'integer')
             ->add('home', 'integer')
+            ->add('away', 'integer')
             ->add('save', 'submit')
             ->getForm();
 
@@ -117,7 +111,15 @@ class BetController
             $this->entityManager->persist($bet);
             $this->entityManager->persist($score);
             $this->entityManager->flush();
+
+            return $this->redirect(
+                $this->gameUrl(
+                    $game->getId(),
+                    $game->getTournamentStage()->getTournament()->getId()
+                )
+            );
         }
+
 
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Bet:bet.html.twig', array(
@@ -153,5 +155,28 @@ class BetController
             )
         );
 
+    }
+
+    /**
+     * @param string $url
+     *
+     * @return RedirectResponse
+     */
+    protected function redirect($url)
+    {
+        return new RedirectResponse(
+            $url,
+            302
+        );
+    }
+
+    private function gameUrl($gameId, $tournamentId)
+    {
+        return $this->router->generate(
+            'gsbm_tournament_view_game_bets', array(
+                'tournamentId' => $tournamentId,
+                'gameId'       => $gameId
+            )
+        );
     }
 } 
