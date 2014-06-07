@@ -2,7 +2,7 @@ Galileo\SimpleBet\ModelBundle\Entity\PlayerToTournament:
     type: entity
     table: gsbm_player_to_tournament
     uniqueConstraints:
-            unique_player_in_tournametn:
+            unique_player_in_tournament:
                 columns: player_id, tournament_id
     id:
         id:
