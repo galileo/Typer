@@ -5,8 +5,29 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Tournament
 {
+    /**
+     * @var
+     */
     protected $id;
+
+    /**
+     * @var
+     */
     protected $name;
+
+    /**
+     * @var
+     */
+    protected $image;
+
+    /**
+     * @var
+     */
+    protected $isActive;
+
+    /**
+     * @var
+     */
     protected $tournamentStages;
 
     public function __constructor()
@@ -37,6 +58,41 @@ class Tournament
     }
 
     /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function isActive()
+    {
+        return $this->isActive;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getTournamentStages()
+    {
+        return $this->tournamentStages;
+    }
+
+
+    /**
+     * Alias for getTournamentStages
+     */
+    public function getStages()
+    {
+        return $this->getTournamentStages();
+    }
+
+    /**
      * @param mixed $name
      *
      * @return $this
@@ -46,15 +102,6 @@ class Tournament
         $this->name = $name;
 
         return $this;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTournamentStages()
-    {
-        return $this->tournamentStages;
     }
 
     /**
@@ -68,13 +115,5 @@ class Tournament
         $this->tournamentStages[] = $tournamentStage;
 
         return $this;
-    }
-
-    /**
-     * Alias for getTournamentStages
-     */
-    public function getStages()
-    {
-        return $this->getTournamentStages();
     }
 }

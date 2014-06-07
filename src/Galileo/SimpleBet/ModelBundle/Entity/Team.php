@@ -4,14 +4,25 @@ namespace Galileo\SimpleBet\ModelBundle\Entity;
 
 class Team
 {
+    /**
+     * @var int
+     */
     protected $id;
+
+    /**
+     * @var string
+     */
     protected $name;
+
+    /**
+     * @var string
+     */
+    protected $image;
 
     public function __toString()
     {
         return $this->name;
     }
-
 
     /**
      * @return mixed
@@ -22,7 +33,7 @@ class Team
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -30,20 +41,27 @@ class Team
     }
 
     /**
-     * @param mixed $id
+     * @param string $id
+     *
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
+     *
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
-    }
 
+        return $this;
+    }
 
 }

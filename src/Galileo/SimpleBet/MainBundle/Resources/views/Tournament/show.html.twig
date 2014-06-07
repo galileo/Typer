@@ -1,7 +1,9 @@
 {% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
 
 {% block top %}
+    {{ include('GalileoSimpleBetMainBundle:Tournament:logo.html.twig', {'tournament': tournament}) }}
     <h2>{{ tournament.name }}</h2>
+    <hr />
 {% endblock %}
 
 
@@ -12,14 +14,14 @@
 {% endblock %}
 
 {% block sidebar %}
-<div class="row">
-    <div class="col-sm-6">
+    <div class="row">
+        <div class="col-sm-6">
 
+        </div>
+        <div class="col-sm-6">
+            {% if app.user %}
+                {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
+            {% endif %}
+        </div>
     </div>
-    <div class="col-sm-6">
-        {% if app.user %}
-            {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
-        {% endif %}
-    </div>
-</div>
 {% endblock %}

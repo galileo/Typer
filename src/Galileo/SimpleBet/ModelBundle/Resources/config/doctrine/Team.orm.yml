@@ -9,3 +9,6 @@ Galileo\SimpleBet\ModelBundle\Entity\Team:
         name:
             name: name
             type: string
+        image:
+            type: string
+            length: 64
