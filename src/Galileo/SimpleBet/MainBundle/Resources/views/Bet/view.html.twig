@@ -3,9 +3,15 @@
         <p>
             Twój typ: <span class="label label-success pull-right disabled">{{ bet.score }}</span>
         </p>
-        <a class="btn btn-block btn-success {% if game.betAble == false %}disabled{% endif %}"
-           href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">Zmień</a>
-    {% else %}
-        <a class="btn btn-block btn-success" href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">Dodaj</a>
+    {% endif %}
+
+    {% if game.betAble %}
+        <a class="btn btn-block btn-success" href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+            {% if bet.id %}
+                Zmień
+            {% else %}
+                Dodaj
+            {% endif %}
+        </a>
     {% endif %}
 </div>

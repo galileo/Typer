@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class PlayerController
 {
@@ -175,7 +176,7 @@ class PlayerController
         }
 
         return $this->playerToTournamentManager->joinPlayerIntoTournament(
-            $this->player,
+            $this->getPlayer(),
             $this->tournament
         );
     }
@@ -212,10 +213,22 @@ class PlayerController
         $this->loadTournamentOrFail($tournamentId);
 
         $playerToTournament = $this->playerToTournamentManager->getPlayerToTournament(
-            $this->player,
+            $this->getPlayer(),
             $this->tournament
         );
 
         return $playerToTournament;
+    }
+
+    /**
+     * @return Player
+     */
+    protected function getPlayer()
+    {
+        if (!$this->player instanceof Player){
+            throw new AccessDeniedException('Please log in.');
+        }
+
+        return $this->player;
     }
 } 

@@ -51,6 +51,10 @@ class GameBetAbleListener
         if ($this->gameManager->isBettingAvailable($game)) {
             $game->markAsBetAble();
         }
+
+        if ($this->gameManager->isAvailableForPlayer($game)) {
+            $game->markAsAvailableForCurrentPlayer();
+        }
     }
 
 } 

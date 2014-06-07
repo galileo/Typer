@@ -37,6 +37,11 @@ class Game
      */
     protected $yourBet;
 
+    /**
+     * @var bool
+     */
+    protected $availableForCurrentPlayer = false;
+
     public function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -219,5 +224,23 @@ class Game
         $notActive = !$this->isActive;
 
         return $notActive;
+    }
+
+    /**
+     * @return $this
+     */
+    public function markAsAvailableForCurrentPlayer()
+    {
+        $this->availableForCurrentPlayer = true;
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function availableForCurrentPlayer()
+    {
+        return $this->availableForCurrentPlayer;
     }
 }

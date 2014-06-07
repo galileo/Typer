@@ -27,12 +27,14 @@
 {% block sidebar %}
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">Informacje:</div>
-                <div class="panel-body">
-                    {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
+            {% if app.user %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">Informacje:</div>
+                    <div class="panel-body">
+                        {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
+                    </div>
                 </div>
-            </div>
+            {% endif %}
 
             <div class="panel panel-default">
                 <div class="panel-heading">Chat:</div>

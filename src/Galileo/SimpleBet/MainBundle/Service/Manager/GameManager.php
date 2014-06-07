@@ -57,18 +57,8 @@ class GameManager implements GameManagerInterface
      */
     public function isBettingAvailable(Game $game)
     {
-        $player = $this->loggedInPlayer;
-        if (!$player instanceof Player) {
-            return false;
-        }
-        $tournament = $game->getTournamentStage()->getTournament();
-        $playerToTournament = $this->playerToTournamentManager->getPlayerToTournament($player, $tournament);
-
-        if (null === $playerToTournament) {
-            return false;
-        }
-
-        if (!$playerToTournament->isActive()) {
+        $isNotAvailableForPlayer = !$this->isAvailableForPlayer($game);
+        if ($isNotAvailableForPlayer) {
             return false;
         }
 
@@ -82,6 +72,26 @@ class GameManager implements GameManagerInterface
 
         $isAvailableByTime = $now > $gameDate;
         if ($isAvailableByTime) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isAvailableForPlayer(Game $game)
+    {
+        $player = $this->loggedInPlayer;
+        if (!$player instanceof Player) {
+            return false;
+        }
+        $tournament = $game->getTournamentStage()->getTournament();
+        $playerToTournament = $this->playerToTournamentManager->getPlayerToTournament($player, $tournament);
+
+        if (null === $playerToTournament) {
+            return false;
+        }
+
+        if (!$playerToTournament->isActive()) {
             return false;
         }
 

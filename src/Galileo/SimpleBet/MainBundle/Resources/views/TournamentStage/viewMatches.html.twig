@@ -17,22 +17,37 @@
             <td>
                 {{ label(game.score) }}
                 {% if app.user %}
-                    {% if game.betAble %}
+
+                    {% if game.availableForCurrentPlayer %}
                         <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
                             {% if game.yourBet %}
                                 {{ label_primary(game.yourBet) }}
                             {% else %}
-                                Typuj
+                                {{ label_primary('?:?') }}
                             {% endif %}
                         </a>
-                    {% else %}
-                        {% if game.yourBet %}
-                            {{ label_primary(game.yourBet) }}
-                        {% else %}
-
+                        {% if not game.betAble %}
+                            <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
+                                Typy
+                            </a>
                         {% endif %}
-                        Dołącz do turnieju
+                    {% else %}
+                        nie
                     {% endif %}
+
+                    {#{% if game.betAble %}#}
+                    {##}
+                    {#{% if game.yourBet %}#}
+                    {#{{ label_primary(game.yourBet) }}#}
+                    {#{% else %}#}
+                    {#Typuj#}
+                    {#{% endif %}#}
+                    {#</a>#}
+                    {#{% else %}#}
+
+                    {#{% endif %}#}
+                    {#Dołącz do turnieju#}
+                    {#{% endif %}#}
                 {% endif %}
             </td>
         </tr>
