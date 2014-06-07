@@ -2,6 +2,6 @@
 
 {% block sidebar %}
         <h2>Typy</h2>
-        {{ render(controller('gsbm.controller.bet:viewAction', {'gameId': game.id})) }}
-        {{ include('GalileoSimpleBetMainBundle:Game:betsView.html.twig', {'type': 'table', 'game': game}) }}
+        <p>{{ render(controller('gsbm.controller.bet:viewAction', {'gameId': game.id})) }}</p>
+        {{ include('GalileoSimpleBetMainBundle:Game:betsView.html.twig', {'game': game}) }}
 {% endblock %}

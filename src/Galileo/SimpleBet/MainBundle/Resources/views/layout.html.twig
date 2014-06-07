@@ -47,12 +47,15 @@
 <div class="main-content container theme-showcase" role="main">
     <div class="row">
         <div class="col-sm-8 col-md-9">
-            {% block top %}{% endblock %}
+            {% block top_left %}{% endblock %}
         </div>
         <div class="col-sm-4 col-md-3">
             {% block top_right %}{% endblock %}
         </div>
     </div>
+
+    <div class="row">{% block top %}{% endblock %}</div>
+
     {% for flashMessage in app.session.flashbag.get('notice') %}
         <div class="flash-notice">
             {{ flashMessage }}
@@ -63,10 +66,10 @@
         {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
     </div>
     <div class="row">
-        <div class="col-sm-7 col-md-6">
+        <div class="col-sm-7 col-md-6 content">
             {% block content %}{% endblock content %}
         </div>
-        <div class="col-sm-5 col-md-6">
+        <div class="col-sm-5 col-md-6 sidebar">
             {% block sidebar %}{% endblock sidebar %}
         </div>
     </div>

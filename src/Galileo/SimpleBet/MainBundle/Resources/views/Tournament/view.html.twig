@@ -1,13 +1,21 @@
 {% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
 
-{% block top %}
+{% block top_left %}
     {{ include('GalileoSimpleBetMainBundle:Tournament:logo.html.twig', {'tournament': tournament}) }}
     <h2>{{ tournament.name }}</h2>
 {% endblock %}
 
 {% block top_right %}
-    <h4>Najlepsi gracze</h4>
-    {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament, 'limit': 5})) }}
+    <div class="panel panel-default">
+        <div class="panel-heading">Top 5</div>
+        {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament, 'limit': 5})) }}
+    </div>
+{% endblock %}
+
+{% block top %}
+    {% if tournament.isActive == 0 %}
+        <p class="alert alert-danger text-center">Ten turniej został już zakończony.</p>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
@@ -18,14 +26,30 @@
 
 {% block sidebar %}
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Informacje:</div>
+                <div class="panel-body">
+                    {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">Chat:</div>
+                <div class="panel-body">
+                    // wkrótce
+                </div>
+            </div>
 
         </div>
-        <div class="col-sm-8">
+        <div class="col-md-6">
             {% if app.user %}
-                {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
-                <h4>Aktualna tabela: </h4>
-                {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})) }}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Wszyscy zawodnicy
+                    </div>
+                    {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})) }}
+                </div>
             {% endif %}
         </div>
     </div>

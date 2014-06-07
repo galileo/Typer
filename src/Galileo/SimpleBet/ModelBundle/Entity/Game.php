@@ -213,4 +213,11 @@ class Game
     {
         return $this->yourBet;
     }
+
+    public function canShowOtherBets()
+    {
+        $notActive = !$this->isActive;
+
+        return $notActive;
+    }
 }
