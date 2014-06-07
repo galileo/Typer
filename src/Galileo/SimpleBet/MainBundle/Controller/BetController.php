@@ -16,6 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -62,13 +63,19 @@ class BetController
      */
     protected $player;
 
+    /**
+     * @var Session
+     */
+    protected $session;
+
     public function __construct(EngineInterface $templating,
                                 FormFactory $formFactory,
                                 GameManagerInterface $gameManager,
                                 CurrentPlayerManager $currentPlayerManager,
                                 BetManagerInterface $betManager,
                                 EntityManager $entityManager,
-                                Router $router
+                                Router $router,
+                                Session $session
     )
     {
         $this->templating = $templating;
@@ -80,6 +87,7 @@ class BetController
         $this->router = $router;
 
         $this->player = $this->playerManager->getCurrentPlayer();
+        $this->session = $session;
     }
 
     public function betAction(Request $request, $gameId)
@@ -91,7 +99,14 @@ class BetController
         }
 
         if (!$game->isBetAble()) {
-            return $this->redirect($this->gameUrl($game->getId()));
+
+            $this->betIsNotAvailable();
+
+            return $this->redirect($this->gameUrl(
+                    $gameId,
+                    $game->getTournamentStage()->getTournament()->getId()
+                )
+            );
         }
 
         $bet = $this->betManager->getBetOrCreate($this->player, $game);
@@ -170,13 +185,21 @@ class BetController
         );
     }
 
-    private function gameUrl($gameId, $tournamentId)
+    protected function gameUrl($gameId, $tournamentId)
     {
         return $this->router->generate(
             'gsbm_tournament_view_game_bets', array(
                 'tournamentId' => $tournamentId,
                 'gameId'       => $gameId
             )
+        );
+    }
+
+    protected function betIsNotAvailable()
+    {
+        $this->session->getFlashBag()->add(
+            'error',
+            'Zmiana lub dodanie typu nie jest możliwa'
         );
     }
 } 

@@ -19,18 +19,16 @@
                 {% if app.user %}
 
                     {% if game.availableForCurrentPlayer %}
-                        <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
+                        <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
                             {% if game.yourBet %}
                                 {{ label_primary(game.yourBet) }}
                             {% else %}
                                 {{ label_primary('?:?') }}
                             {% endif %}
                         </a>
-                        {% if not game.betAble %}
-                            <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
-                                Typy
-                            </a>
-                        {% endif %}
+                        <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': stage.tournament.id, 'gameId' : game.id}) }}">
+                            Typy
+                        </a>
                     {% else %}
                         nie
                     {% endif %}

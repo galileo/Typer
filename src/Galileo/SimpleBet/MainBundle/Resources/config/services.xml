@@ -8,5 +8,6 @@
         <import resource="services/repositories.xml"/>
         <import resource="services/managers.xml"/>
         <import resource="services/listeners.xml"/>
+        <import resource="services/form.types.xml"/>
     </imports>
 </container>
