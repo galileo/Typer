@@ -26,6 +26,11 @@
 
 {% block sidebar %}
     <div class="row">
+        <div class="col-lg-12">
+            {{ render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id })) }}
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-6">
             {% if app.user %}
                 <div class="panel panel-default">

@@ -22,7 +22,7 @@ class RegistrationFormType extends BaseType
         $builder->add('firstName', 'text', array('label' => 'Imię'));
         $builder->add('lastName', 'text', array('label' => 'Nazwisko'));
         $builder->add('displayName', 'text', array('label' => 'Nazwa wyświetlana innym użytkownikom'));
-        
+
     }
 
     public function getName()

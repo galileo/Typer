@@ -1,0 +1,19 @@
+<p>
+    {{ label_success('3 punkty') }}
+    {{ label_warning('1 punkt') }}
+    {{ label_danger('0 puntków') }}
+</p>
+<div class="progress">
+    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ perfect }}" aria-valuemin="0"
+         aria-valuemax="{{ all }}" style="width: {{ (perfect / all) * 100 }}%">
+        <span class="sr-only">40% Complete (success)</span>
+    </div>
+    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{ good }}" aria-valuemin="0"
+         aria-valuemax="{{ all }}" style="width: {{ (good / all) * 100 }}%">
+        <span class="sr-only">40% Complete (success)</span>
+    </div>
+    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ bad }}" aria-valuemin="0"
+         aria-valuemax="{{ all }}" style="width: {{ (bad / all) * 100 }}%">
+        <span class="sr-only">40% Complete (success)</span>
+    </div>
+</div>
