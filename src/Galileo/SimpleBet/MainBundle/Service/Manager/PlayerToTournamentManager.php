@@ -40,7 +40,9 @@ class PlayerToTournamentManager implements PlayerToTournamentManagerInterface
      */
     public function joinPlayerIntoTournament(Player $player, Tournament $tournament)
     {
-        $playerToTournament = new PlayerToTournament($player, $tournament);
+        $playerToTournament = new PlayerToTournament();
+        $playerToTournament->setPlayer($player);
+        $playerToTournament->setTournament($tournament);
         $playerToTournament->setIsActive(false);
 
         if ($this->entityManager->contains($playerToTournament)) {
