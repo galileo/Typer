@@ -1,19 +1,18 @@
-<h4>Tabela wszechczasów</h4>
-<table class="table">
-    <tr>
-        <th></th>
-        <th>Zawodnik</th>
-        <th>Typy</th>
-        <th>%</th>
-        <th>Punkty</th>
-    </tr>
-    {% for betStat in bestPlayers %}
+<table class="table table-condensed table-hover table-striped">
+    {#<tr>#}
+        {#<th></th>#}
+        {#<th>Zawodnik</th>#}
+        {#<th>Typy</th>#}
+        {#<th>%</th>#}
+        {#<th>Punkty</th>#}
+    {#</tr>#}
+    {% for betStat in playerStats %}
         <tr>
             <td>{{ loop.index }}</td>
             <td>{% if betStat.player.displayName %}{{ betStat.player.displayName }}{% else %}{{ betStat.player.firstName }} {{ betStat.player.lastName|truncate(1, false, '.') }}{% endif %}</td>
             <td><span class="label label-primary">{{ betStat.totalBets }}</span></td>
             <td><span class="label label-default">{{ betStat.pointsPerBet|round(2) }}</span></td>
-            <td><span class="label label-success">{{ betStat.totalPoints }}</span></td>
+            <td class="text-right">{{ label_success(betStat.totalPoints) }}</td>
         </tr>
     {% endfor %}
 </table>

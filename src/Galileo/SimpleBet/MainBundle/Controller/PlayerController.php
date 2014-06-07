@@ -108,8 +108,7 @@ class PlayerController
         $playerToTournament = $this->loadPlayerToTournament($tournamentId);
 
         return $this->templating
-            ->renderResponse(
-                '@GalileoSimpleBetMain/Tournament/playerStatusBar.html.twig', array(
+            ->renderResponse('GalileoSimpleBetMainBundle:Tournament:playerStatusBar.html.twig', array(
                     'tournament'         => $this->tournament,
                     'playerToTournament' => $playerToTournament
                 )
@@ -120,8 +119,18 @@ class PlayerController
     {
         $bestPlayers = $this->playerRepository->findBestPlayers();
 
-        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Player:bestPlayerTable.html.twig',
-            array('bestPlayers' => $bestPlayers));
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Player:playerStatsTable.html.twig',
+            array('playerStats' => $bestPlayers)
+        );
+    }
+
+    public function tournamentPlayerStatsAction($tournament, $limit = null)
+    {
+        $playerStats = $this->playerRepository->tournamentPlayerStats($tournament, $limit);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Player:playerStatsTable.html.twig',
+            array('playerStats' => $playerStats)
+        );
     }
 
     /**

@@ -4,13 +4,15 @@
     <h3>3 mistrzostwa świata!</h3>
     <p>To już 8 lat od naszej pierwszej rozgrywki!</p>
     {% for tournament in tournaments %}
-        <h4><a href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
+        <h4>
+            <a href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
                 {{ tournament.name }}
-            </a></h4>
+            </a>
+        </h4>
     {% endfor %}
 {% endblock %}
 
-
 {% block sidebar %}
+    <h4>Tabela wszechczasów</h4>
     {{ render(controller('gsbm.controller.player:bestPlayerAction')) }}
 {% endblock %}

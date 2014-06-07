@@ -45,12 +45,20 @@
 </div>
 
 <div class="main-content container theme-showcase" role="main">
-    {% block top %}{% endblock %}
-        {% for flashMessage in app.session.flashbag.get('notice') %}
-            <div class="flash-notice">
-                {{ flashMessage }}
-            </div>
-        {% endfor %}
+    <div class="row">
+        <div class="col-sm-8 col-md-9">
+            {% block top %}{% endblock %}
+        </div>
+        <div class="col-sm-4 col-md-3">
+            {% block top_right %}{% endblock %}
+        </div>
+    </div>
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    <hr />
     <div class="row">
         {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
     </div>

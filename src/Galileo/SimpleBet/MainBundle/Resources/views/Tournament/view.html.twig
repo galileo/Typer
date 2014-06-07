@@ -3,9 +3,12 @@
 {% block top %}
     {{ include('GalileoSimpleBetMainBundle:Tournament:logo.html.twig', {'tournament': tournament}) }}
     <h2>{{ tournament.name }}</h2>
-    <hr />
 {% endblock %}
 
+{% block top_right %}
+    <h4>Najlepsi gracze</h4>
+    {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament, 'limit': 5})) }}
+{% endblock %}
 
 {% block content %}
     {% for stage in tournament.stages %}
@@ -15,12 +18,14 @@
 
 {% block sidebar %}
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
 
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
             {% if app.user %}
                 {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
+                <h4>Aktualna tabela: </h4>
+                {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})) }}
             {% endif %}
         </div>
     </div>

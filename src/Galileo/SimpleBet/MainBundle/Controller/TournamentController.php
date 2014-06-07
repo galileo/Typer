@@ -51,7 +51,7 @@ class TournamentController
     {
         $tournament = $this->tournamentRepository->find($tournamentId);
 
-        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:show.html.twig',
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:view.html.twig',
             array('tournament' => $tournament)
         );
     }
@@ -61,7 +61,7 @@ class TournamentController
         $tournament = $this->tournamentRepository->find($tournamentId);
         $game = $this->gameRepository->find($gameId);
 
-        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:showWithBets.html.twig',
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:viewWithBets.html.twig',
             array(
                 'tournament' => $tournament,
                 'game' => $game,
