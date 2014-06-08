@@ -1,0 +1,12 @@
+{% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
+
+{% block content %}
+    <table class="table">
+        {% for element in playerAndBetStatistics %}
+            <tr>
+                <td>{{ element.player.firstName }}</td>
+                <td>{{ include('@GalileoSimpleBetMain/Statistics/viewBetAccuracy.html.twig', {'betStatistics': element.betStatistics}) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

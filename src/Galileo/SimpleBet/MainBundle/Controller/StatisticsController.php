@@ -3,9 +3,12 @@
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
 use Doctrine\ORM\EntityRepository;
+use Galileo\SimpleBet\MainBundle\Service\Manager\BetStatisticsManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class StatisticsController {
+class StatisticsController
+{
 
     /**
      * @var EntityRepository
@@ -17,26 +20,45 @@ class StatisticsController {
      */
     protected $templating;
 
-    public function __construct(EntityRepository $tournamentRepository, EngineInterface $templating)
+    /**
+     * @var BetStatisticsManagerInterface
+     */
+    protected $betStatisticsManager;
+
+    public function __construct(
+        EngineInterface $templating,
+        BetStatisticsManagerInterface $betStatisticsManager,
+        EntityRepository $tournamentRepository
+    )
     {
-        $this->tournamentRepository = $tournamentRepository;
         $this->templating = $templating;
+        $this->tournamentRepository = $tournamentRepository;
+        $this->betStatisticsManager = $betStatisticsManager;
     }
 
     public function getBetAccuracyStatsView($tournamentId)
     {
-        $perfectCount = 1;
-        $goodCount = 2;
-        $badCount = 4;
-
-        $all = $perfectCount + $goodCount + $badCount;
+        $betStatistics = $this->betStatisticsManager->tournamentBetAccuracyStatistics($tournamentId);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Statistics:viewBetAccuracy.html.twig', array(
-                'perfect' => $perfectCount,
-                'good' => $goodCount,
-                'bad' => $badCount,
-                'all' => $all
-            ));
+                'betStatistics' => $betStatistics
+            )
+        );
+    }
+
+    public function playerTournamentAccuracyStatisticsView($tournamentId)
+    {
+        $tournament = $this->tournamentRepository->find($tournamentId);
+
+        if (null === $tournament) {
+            throw new NotFoundHttpException(sprintf('Tournament %d not found.', $tournamentId));
+        }
+
+        $playerAndBetStatistics = $this->betStatisticsManager->tournamentPlayerBetAccuracy($tournament);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Statistics:playerTournamentBetAccuracy.html.twig',
+            array('playerAndBetStatistics' => $playerAndBetStatistics)
+        );
     }
 
 } 

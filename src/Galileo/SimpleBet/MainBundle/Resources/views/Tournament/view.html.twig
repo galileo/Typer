@@ -27,6 +27,13 @@
 {% block sidebar %}
     <div class="row">
         <div class="col-lg-12">
+            <strong>Dystrybucja punktów</strong>
+            <a href="{{ path('gsbm_player_tournament_bet_accuracy', {'tournamentId': tournament.id}) }}">Statystki</a>
+            <p>
+                {{ label_success('3 punkty') }}
+                {{ label_warning('1 punkt') }}
+                {{ label_danger('0 puntków') }}
+            </p>
             {{ render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id })) }}
         </div>
     </div>

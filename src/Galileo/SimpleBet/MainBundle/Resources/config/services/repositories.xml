@@ -35,7 +35,7 @@
 
         <!-- Bet repository -->
         <service id="gsbm.repository.bet"
-                 class="Doctrine\ORM\EntityRepository"
+                 class="Galileo\SimpleBet\ModelBundle\Repository\BetRepository"
                  factory-service="doctrine.orm.entity_manager"
                  factory-method="getRepository"
                  >

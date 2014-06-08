@@ -17,3 +17,7 @@ gsbm_player_join_tournament:
 gsbm_bet_view:
     pattern: /bet/{gameId}
     defaults: { _controller: gsbm.controller.bet:betAction }
+
+gsbm_player_tournament_bet_accuracy:
+    pattern: /tournament/{tournamentId}/accuracy
+    defaults: { _controller: gsbm.controller.statistics:playerTournamentAccuracyStatisticsView }

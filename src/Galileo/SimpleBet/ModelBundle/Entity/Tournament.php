@@ -6,29 +6,34 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Tournament
 {
     /**
-     * @var
+     * @var int
      */
     protected $id;
 
     /**
-     * @var
+     * @var string
      */
     protected $name;
 
     /**
-     * @var
+     * @var string
      */
     protected $image;
 
     /**
-     * @var
+     * @var bool
      */
     protected $isActive;
 
     /**
-     * @var
+     * @var TournamentStage[]|ArrayCollection
      */
     protected $tournamentStages;
+
+    /**
+     * @var Player[]|ArrayCollection
+     */
+    protected $playersToTournament;
 
     public function __constructor()
     {
@@ -50,7 +55,7 @@ class Tournament
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -58,7 +63,7 @@ class Tournament
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getImage()
     {
@@ -66,7 +71,7 @@ class Tournament
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function isActive()
     {
@@ -76,7 +81,7 @@ class Tournament
 
 
     /**
-     * @return mixed
+     * @return TournamentStage[]
      */
     public function getTournamentStages()
     {
@@ -86,6 +91,7 @@ class Tournament
 
     /**
      * Alias for getTournamentStages
+     * @return TournamentStage[]
      */
     public function getStages()
     {
@@ -93,7 +99,16 @@ class Tournament
     }
 
     /**
-     * @param mixed $name
+     * @return PlayerToTournament[]
+     */
+    public function getPlayerToTournament()
+    {
+        return $this->playersToTournament;
+    }
+
+
+    /**
+     * @param string $name
      *
      * @return $this
      */
@@ -105,7 +120,7 @@ class Tournament
     }
 
     /**
-     * @param mixed $tournamentStage
+     * @param TournamentStage $tournamentStage
      *
      * @return $this;
      */

@@ -21,3 +21,6 @@ Galileo\SimpleBet\ModelBundle\Entity\Tournament:
         tournamentStages:
             targetEntity: TournamentStage
             mappedBy: tournament
+        playersToTournament:
+            targetEntity: PlayerToTournament
+            mappedBy: tournament
