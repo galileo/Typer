@@ -4,6 +4,9 @@ namespace Galileo\SimpleBet\MainBundle\Hydrator;
 
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\Internal\Hydration\AbstractHydrator;
+use Doctrine\ORM\Internal\Hydration\ObjectHydrator;
+use Galileo\SimpleBet\ModelBundle\Entity\Player;
+use Galileo\SimpleBet\ModelBundle\Providers\BetStats;
 use PDO;
 
 class BetStatsHydrator extends AbstractHydrator
@@ -12,7 +15,7 @@ class BetStatsHydrator extends AbstractHydrator
     {
         $result = array();
         $cache  = array();
-        foreach($this->_stmt->fetchAll(AbstractQuery::HYDRATE_OBJECT) as $row) {
+        foreach($this->_stmt->fetchAll(PDO::FETCH_BOTH) as $row) {
             $this->hydrateRowData($row, $cache, $result);
         }
 
@@ -21,11 +24,21 @@ class BetStatsHydrator extends AbstractHydrator
 
     protected function hydrateRowData(array $row, array &$cache, array &$result)
     {
-
-        die();
         if(count($row) == 0) {
             return false;
         }
+
+        $player = new Player();
+        $player->setDisplayName($row[19]);
+        $player->setFirstName($row[17]);
+        $player->setLastName($row[18]);
+
+        $newBetStats = new BetStats($player);
+        $newBetStats->setTotalBets($row[20]);
+        $newBetStats->setTotalPoints($row[21]);
+
+
+        $result[$row[0]] = $newBetStats;
 
         $keys = array_keys($row);
 
@@ -43,6 +56,5 @@ class BetStatsHydrator extends AbstractHydrator
             $value = $row;
         }
 
-        $result[$id] = $value;
     }
 }

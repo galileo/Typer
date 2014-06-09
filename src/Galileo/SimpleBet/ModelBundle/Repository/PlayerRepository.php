@@ -27,25 +27,13 @@ class PlayerRepository extends EntityRepository
                                        WHERE b.player = p.id
                                        GROUP BY p.id ORDER BY totalPoints DESC, pointRate DESC'
                                    )
-                                   ->getResult();
+                                   ->getResult('BetStatsHydrator');
 
-        $arrayCollection = new ArrayCollection();
-        foreach ($playersAndBetStats as $playerAndBet) {
-            /** @var Player $player */
-            $player = $playerAndBet[0];
-
-            $betStats = new BetStats($player);
-            $betStats->setTotalBets($playerAndBet['totalBets']);
-            $betStats->setTotalPoints($playerAndBet['totalPoints']);
-
-            $arrayCollection->add($betStats);
-        }
-
-        return $arrayCollection;
+        return $playersAndBetStats;
     }
 
-
-    public function tournamentPlayerStats(Tournament $tournament, $limit = null) {
+    public function tournamentPlayerStats(Tournament $tournament, $limit = null)
+    {
 
         $playersAndBetStats = $this->getEntityManager()
                                    ->createQuery(
@@ -62,27 +50,9 @@ class PlayerRepository extends EntityRepository
                                        '
                                    )
                                    ->setParameter(1, $tournament)
-                ->getResult();
+                                   ->setMaxResults($limit)
+                                   ->getResult('BetStatsHydrator');
 
-        $itemCount = 0;
-
-        $arrayCollection = new ArrayCollection();
-        foreach ($playersAndBetStats as $playerAndBet) {
-            /** @var Player $player */
-            $player = $playerAndBet[0];
-
-            $betStats = new BetStats($player);
-            $betStats->setTotalBets($playerAndBet['totalBets']);
-            $betStats->setTotalPoints($playerAndBet['totalPoints']);
-
-            $arrayCollection->add($betStats);
-
-
-            if ($limit && ++$itemCount >= $limit) {
-                break;
-            }
-        }
-
-        return $arrayCollection;
+        return $playersAndBetStats;
     }
 }
