@@ -63,6 +63,8 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        hydrators:
+            BetStatsHydrator: \Galileo\SimpleBet\MainBundle\Hydrator\BetStatsHydrator
 
 doctrine_migrations:
     dir_name: %kernel.root_dir%/DoctrineMigrations

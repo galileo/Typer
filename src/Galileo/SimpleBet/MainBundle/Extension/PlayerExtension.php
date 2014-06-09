@@ -17,7 +17,8 @@ class PlayerExtension extends \Twig_Extension
     {
         $displayName = $player->getDisplayName();
         if (null === $displayName) {
-            $displayName = sprintf('%s %s.', $player->getFirstName(), $player->getLastName()[0]);
+            $lastName = $player->getLastName();
+            $displayName = sprintf('%s %s.', $player->getFirstName(), $lastName[0]);
         }
 
         return $displayName;
