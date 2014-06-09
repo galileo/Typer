@@ -51,6 +51,16 @@
             <argument>GalileoSimpleBetModelBundle:Player</argument>
         </service>
 
+        <!-- ChatMessage repository -->
+        <service id="gsbm.repository.chat_message"
+                 class="Doctrine\ORM\EntityRepository"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository"
+                >
+
+            <argument>GalileoSimpleBetModelBundle:ChatMessage</argument>
+        </service>
+
     </services>
 
 </container>

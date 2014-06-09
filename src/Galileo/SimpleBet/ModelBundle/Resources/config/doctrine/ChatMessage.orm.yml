@@ -1,0 +1,23 @@
+Galileo\SimpleBet\ModelBundle\Entity\ChatMessage:
+    type: entity
+    table: gsbm_chat_message
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        date:
+            type: datetime
+        message:
+            type: text
+    manyToOne:
+        player:
+            targetEntity: Player
+            joinColumn:
+                name: player_id
+                referencedColumnName: id
+        tournament:
+            targetEntity: Tournament
+            joinColumn:
+                name: tournament_id
+                referencedColumnName: id

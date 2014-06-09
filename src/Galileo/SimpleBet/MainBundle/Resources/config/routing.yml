@@ -25,3 +25,7 @@ gsbm_bet_view:
 gsbm_player_tournament_bet_accuracy:
     pattern: /tournament/{tournamentId}/accuracy
     defaults: { _controller: gsbm.controller.statistics:playerTournamentAccuracyStatisticsView }
+
+gsbm_player_add_message:
+    pattern: /tournament/{tournamentId}/message/add
+    defaults: { _controller: gsbm.controller.chat_message:createChatMessageAction }

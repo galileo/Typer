@@ -1,0 +1,11 @@
+{% if app.user %}
+{% for message in messages %}
+    <div>
+        <strong>{{ message.player|display_name }}</strong>
+        {{ message.message }}
+    </div>
+{% endfor %}
+
+{{ form(form) }}
+
+{% endif %}
