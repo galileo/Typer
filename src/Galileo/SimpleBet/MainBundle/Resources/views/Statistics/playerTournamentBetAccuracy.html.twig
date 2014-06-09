@@ -1,6 +1,7 @@
-{% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
+{% extends('GalileoSimpleBetMainBundle:Tournament:view.html.twig') %}
 
 {% block content %}
+    <h4>Dystrybucja punków dla graczy</h4>
     <table class="table">
         {% for element in playerAndBetStatistics %}
             <tr>

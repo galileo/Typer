@@ -57,7 +57,8 @@ class StatisticsController
         $playerAndBetStatistics = $this->betStatisticsManager->tournamentPlayerBetAccuracy($tournament);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Statistics:playerTournamentBetAccuracy.html.twig',
-            array('playerAndBetStatistics' => $playerAndBetStatistics)
+            array('tournament'             => $tournament,
+                  'playerAndBetStatistics' => $playerAndBetStatistics)
         );
     }
 
