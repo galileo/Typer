@@ -5,7 +5,7 @@
     <p>To już 8 lat od naszej pierwszej rozgrywki!</p>
     {% for tournament in tournaments %}
         <h4>
-            <a href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
+            <a href="{{ path('gsbm_tournament_view_current_games', { 'tournamentId': tournament.id }) }}">
                 {{ tournament.name }}
             </a>
         </h4>

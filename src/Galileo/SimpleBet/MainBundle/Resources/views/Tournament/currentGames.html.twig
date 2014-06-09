@@ -1,0 +1,6 @@
+{% extends('GalileoSimpleBetMainBundle:Tournament:view.html.twig') %}
+
+{% block content %}
+    <h2>Mecze</h2>
+    {{ include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': games}) }}
+{% endblock %}

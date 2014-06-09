@@ -1,0 +1,38 @@
+<table class="table table-condensed">
+    <tr>
+        <th colspan="2">Drużyny</th>
+        <th>Wynik</th>
+    </tr>
+    {% for game in games %}
+        <tr>
+            <td><span class="label label-default">
+                {{ game.bets.count }}
+                </span>
+            </td>
+            <td class="text-center">
+                <span class="pull-left">{{ game.date|date }}</span><span>{{ game.homeTeam }}
+                    - {{ game.awayTeam }}</span>
+            </td>
+            <td>
+                {{ label(game.score) }}
+                {% if app.user %}
+
+                    {% if game.availableForCurrentPlayer %}
+                        <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+                            {% if game.yourBet %}
+                                {{ label_primary(game.yourBet) }}
+                            {% else %}
+                                {{ label_primary('?:?') }}
+                            {% endif %}
+                        </a>
+                        <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': tournament.id, 'gameId' : game.id}) }}">
+                            Typy
+                        </a>
+                    {% else %}
+                        Dołącz do nas
+                    {% endif %}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>

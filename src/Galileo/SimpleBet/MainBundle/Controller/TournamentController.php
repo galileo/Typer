@@ -1,13 +1,12 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
-
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
 use Galileo\SimpleBet\ModelBundle\Entity\TournamentStage;
+use Galileo\SimpleBet\ModelBundle\Repository\GameRepository;
+
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -24,12 +23,12 @@ class TournamentController
     protected $tournamentRepository;
 
     /**
-     * @var EntityRepository
+     * @var GameRepository
      */
     protected $gameRepository;
 
 
-    function __construct(EntityRepository $tournamentRepository, EntityRepository $gameRepository, EngineInterface $templating)
+    function __construct(EntityRepository $tournamentRepository, GameRepository $gameRepository, EngineInterface $templating)
     {
         $this->tournamentRepository = $tournamentRepository;
         $this->templating = $templating;
@@ -55,7 +54,7 @@ class TournamentController
             array('tournament' => $tournament)
         );
     }
-    
+
     public function gameBetsAction($tournamentId, $gameId)
     {
         $tournament = $this->tournamentRepository->find($tournamentId);
@@ -64,8 +63,19 @@ class TournamentController
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:viewWithBets.html.twig',
             array(
                 'tournament' => $tournament,
-                'game' => $game,
+                'game'       => $game,
             )
         );
+    }
+
+    public function currentGamesAction($tournamentId)
+    {
+        $tournament = $this->tournamentRepository->find($tournamentId);
+        $games = $this->gameRepository->tournamentGames($tournament);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:currentGames.html.twig', array(
+                'tournament' => $tournament,
+                'games' => $games
+            ));
     }
 } 
