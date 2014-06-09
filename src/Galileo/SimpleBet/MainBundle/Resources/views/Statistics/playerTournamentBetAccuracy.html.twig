@@ -5,7 +5,7 @@
     <table class="table">
         {% for element in playerAndBetStatistics %}
             <tr>
-                <td>{{ element.player.firstName }}</td>
+                <td>{{ element.player|display_name }}</td>
                 <td>{{ include('@GalileoSimpleBetMain/Statistics/viewBetAccuracy.html.twig', {'betStatistics': element.betStatistics}) }}</td>
             </tr>
         {% endfor %}
