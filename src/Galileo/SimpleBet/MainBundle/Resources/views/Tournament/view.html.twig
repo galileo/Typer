@@ -32,6 +32,11 @@
                 <button type="button" class="btn btn-default">Statystyki graczy</button>
             </a>
         </div>
+        <div class="btn-group">
+            <a href="{{ path('gsbm_tournament_rule', {'tournamentId': tournament.id}) }}">
+                <button type="button" class="btn btn-default">Zasady</button>
+            </a>
+        </div>
     </div>
 {% endblock %}
 

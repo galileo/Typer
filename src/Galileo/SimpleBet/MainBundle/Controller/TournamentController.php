@@ -55,6 +55,15 @@ class TournamentController
         );
     }
 
+    public function ruleAction($tournamentId)
+    {
+        $tournament = $this->tournamentRepository->find($tournamentId);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:viewRules.html.twig',
+            array('tournament' => $tournament)
+        );
+    }
+
     public function gameBetsAction($tournamentId, $gameId)
     {
         $tournament = $this->tournamentRepository->find($tournamentId);

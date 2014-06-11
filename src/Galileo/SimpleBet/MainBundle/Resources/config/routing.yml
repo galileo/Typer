@@ -10,6 +10,10 @@ gsbm_tournament_view:
     pattern:  /t/{tournamentId}
     defaults: { _controller: gsbm.controller.tournament:listAction }
 
+gsbm_tournament_rule:
+    pattern:  /t/{tournamentId}/rules
+    defaults: { _controller: gsbm.controller.tournament:ruleAction }
+
 gsbm_tournament_view_current_games:
     pattern:  /tournament/{tournamentId}/games
     defaults: { _controller: gsbm.controller.tournament:currentGamesAction }
