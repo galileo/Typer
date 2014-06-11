@@ -79,7 +79,7 @@ class ChatMessageController
             throw new NotFoundHttpException(sprintf('Tournament %d not found.', $tournamentId));
         }
 
-        $messages = $this->chatMessageRepository->findBy(array('tournament' => $tournament), array('id' => 'asc'));
+        $messages = $this->chatMessageRepository->findBy(array('tournament' => $tournament), array('id' => 'DESC'));
 
 
         $message = new ChatMessage();

@@ -1,11 +1,9 @@
 {% if app.user %}
-{% for message in messages %}
-    <div>
-        <strong>{{ message.player|display_name }}</strong>
-        {{ message.message }}
-    </div>
-{% endfor %}
-
+    {% for message in messages %}
+        <p class="head"><span class="pull-left">{{ message.date|date }}</span>{{ message.player|display_name }}</p>
+        <p>
+            {{ message.message }}
+        </p>
+    {% endfor %}
 {{ form(form) }}
-
 {% endif %}

@@ -53,6 +53,11 @@
                 {{ label_danger('0 puntków') }}
             </p>
             {{ render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id })) }}
+
+            <div class="panel panel-default chat">
+                <div class="panel-heading">Chat:</div>
+                {{ render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})) }}
+            </div>
         </div>
     </div>
     <div class="row">
@@ -65,14 +70,6 @@
                     </div>
                 </div>
             {% endif %}
-
-            <div class="panel panel-default">
-                <div class="panel-heading">Chat:</div>
-                <div class="panel-body">
-                    {{ render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})) }}
-                </div>
-            </div>
-
         </div>
         <div class="col-lg-6">
             {% if app.user %}
