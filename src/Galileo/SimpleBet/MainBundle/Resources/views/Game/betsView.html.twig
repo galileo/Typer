@@ -14,5 +14,5 @@
         {% endfor %}
     </table>
 {% else %}
-    <p class="alert alert-info">Typy pozostałych użytkowników zostaną opublikowane o {{ game.date|date }}.</p>
+    <p class="alert alert-info">Typy pozostałych użytkowników zostaną opublikowane o {{ game.date|date_modify("-1 hour")|date }}.</p>
 {% endif %}

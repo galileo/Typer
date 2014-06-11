@@ -20,5 +20,11 @@
             <tag name="doctrine.event_listener" event="postLoad" />
         </service>
 
+        <!-- Twig listener - change the default date format -->
+        <service id="gsbm.listener.twig.date" class="Galileo\SimpleBet\MainBundle\Listener\TwigDateRequestListener">
+            <argument type="service" id="twig" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+        </service>
+
     </services>
 </container>
