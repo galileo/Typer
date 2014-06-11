@@ -27,7 +27,6 @@ class CalculateBetPointsListener
 
     public function prePersist(LifecycleEventArgs $event)
     {
-        die('asfdasdf');
         $game = $event->getEntity();
 
         if ($game instanceof Game) {
