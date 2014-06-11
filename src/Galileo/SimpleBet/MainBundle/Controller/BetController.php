@@ -69,7 +69,7 @@ class BetController
     protected $session;
 
     public function __construct(EngineInterface $templating,
-
+                                FormFactory $formFactory,
                                 GameManagerInterface $gameManager,
                                 CurrentPlayerManager $currentPlayerManager,
                                 BetManagerInterface $betManager,

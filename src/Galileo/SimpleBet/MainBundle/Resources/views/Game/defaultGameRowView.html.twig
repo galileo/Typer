@@ -1,0 +1,24 @@
+<td>{{ label(game.bets.count) }}</td>
+<td class="text-center">
+    <span class="pull-left">{{ game.date|date }}</span>
+    <span>{{ game.homeTeam }} - {{ game.awayTeam }}</span>
+</td>
+<td>
+    {{ label(game.score) }}
+    {% if app.user %}
+        {% if game.availableForCurrentPlayer %}
+            <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+                {% if game.yourBet %}
+                    {{ label_primary(game.yourBet) }}
+                {% else %}
+                    {{ label_primary('?:?') }}
+                {% endif %}
+            </a>
+            <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': tournament.id, 'gameId' : game.id}) }}">
+                Typy
+            </a>
+        {% else %}
+            Dołącz do nas
+        {% endif %}
+    {% endif %}
+</td>
