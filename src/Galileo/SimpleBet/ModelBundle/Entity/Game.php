@@ -182,7 +182,7 @@ class Game
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection
+     * @return \Doctrine\Common\Collections\ArrayCollection|Bet[]
      */
     public function getBets()
     {

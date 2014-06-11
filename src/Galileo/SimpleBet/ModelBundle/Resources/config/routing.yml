@@ -1,0 +1,4 @@
+galileo_simple_bet_model_admin_game:
+    resource: "@GalileoSimpleBetModelBundle/Resources/config/routing/game.xml"
+    prefix:   /admin/game
+

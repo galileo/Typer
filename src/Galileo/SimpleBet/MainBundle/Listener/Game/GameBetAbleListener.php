@@ -35,6 +35,8 @@ class GameBetAbleListener
 
     public function postLoad(LifecycleEventArgs $event)
     {
+
+
         $game = $event->getEntity();
 
         if ($game instanceof Game) {

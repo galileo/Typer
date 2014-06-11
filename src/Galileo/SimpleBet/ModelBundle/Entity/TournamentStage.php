@@ -11,6 +11,11 @@ class TournamentStage
     protected $games;
     protected $tournament;
 
+    public function __toString()
+    {
+        return $this->name;
+    }
+
     /**
      * @return mixed
      */
