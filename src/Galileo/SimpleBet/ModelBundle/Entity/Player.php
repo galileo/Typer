@@ -23,6 +23,8 @@ class Player extends User
      */
     protected $betStats;
 
+    protected $championship;
+
     function __construct()
     {
         $this->bets = new ArrayCollection();
@@ -101,4 +103,24 @@ class Player extends User
     {
         return $this->bets;
     }
+
+    /**
+     * @param mixed $championship
+     * @return $this
+     */
+    public function setChampionship($championship)
+    {
+        $this->championship = $championship;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getChampionship()
+    {
+        return $this->championship;
+    }
+
+
 }

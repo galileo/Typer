@@ -9,7 +9,8 @@ class PlayerExtension extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('display_name', array($this, 'playerDisplayName'))
+            new \Twig_SimpleFilter('display_name', array($this, 'playerDisplayName')),
+            new \Twig_SimpleFilter('championship', array($this, 'championship'))
         );
     }
 
@@ -22,6 +23,10 @@ class PlayerExtension extends \Twig_Extension
         }
 
         return $displayName;
+    }
+
+    public function championship(Player $player) {
+          return str_repeat('<span class="glyphicon glyphicon-star"></span>', $player->getChampionship());
     }
 
     public function getName()

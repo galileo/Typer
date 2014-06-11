@@ -20,6 +20,9 @@ Galileo\SimpleBet\ModelBundle\Entity\Player:
             type: string
             column: display_name
             nullable: true
+        championship:
+            type: integer
+            nullable: true
 
     oneToMany:
         bets:

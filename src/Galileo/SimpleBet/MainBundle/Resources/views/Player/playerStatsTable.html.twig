@@ -9,7 +9,8 @@
     {% for betStat in playerStats %}
         <tr>
             <td>{{ loop.index }}</td>
-            <td>{{ betStat.player|display_name }}</td>
+            <td>{{ betStat.player|championship|raw }}
+                {{ betStat.player|display_name }}</td>
             <td><span class="label label-primary">{{ betStat.totalBets }}</span></td>
             <td><span class="label label-default">{{ betStat.pointsPerBet|round(2) }}</span></td>
             <td class="text-right">{{ label_success(betStat.totalPoints) }}</td>
