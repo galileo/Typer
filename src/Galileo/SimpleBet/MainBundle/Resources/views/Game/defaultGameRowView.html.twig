@@ -5,18 +5,14 @@
 </td>
 <td>
     {{ game.score|game_bet(game.yourBet)|raw }}
-    {#{{ label(game.score) }}#}
     {% if app.user %}
         {% if game.availableForCurrentPlayer %}
-            {#<a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">#}
-                {#{% if game.yourBet %}#}
-                    {#{{ label_primary(game.yourBet) }}#}
-                {#{% else %}#}
-                    {#{{ label_primary('?:?') }}#}
-                {#{% endif %}#}
-            {#</a>#}
             <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': tournament.id, 'gameId' : game.id}) }}">
-                Typy
+                {% if game.isActive %}
+                    <span class="glyphicon glyphicon-edit"></span>
+                {% else %}
+                    <span class="glyphicon glyphicon-list"></span>
+                {% endif %}
             </a>
         {% else %}
             Dołącz do nas

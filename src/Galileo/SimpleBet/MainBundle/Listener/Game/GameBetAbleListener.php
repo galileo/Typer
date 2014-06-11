@@ -50,9 +50,16 @@ class GameBetAbleListener
     protected function recognizeBetAbility(Game $game)
     {
         $this->initialize();
-        if ($this->gameManager->isBettingAvailable($game)) {
-            $game->markAsBetAble();
+
+        if ($game->getIsActive(1)) {
+            if (!$this->gameManager->isBettingAvailable($game)) {
+                $game->setIsActive(0);
+                $em = $this->container->get('doctrine.orm.entity_manager');
+                $em->persist($game);
+                $em->flush();
+            }
         }
+
 
         if ($this->gameManager->isAvailableForPlayer($game)) {
             $game->markAsAvailableForCurrentPlayer();

@@ -98,7 +98,7 @@ class BetController
             throw new NotFoundHttpException($e->getMessage());
         }
 
-        if (!$game->isBetAble()) {
+        if (!$game->getIsActive()) {
 
             $this->betIsNotAvailable();
 

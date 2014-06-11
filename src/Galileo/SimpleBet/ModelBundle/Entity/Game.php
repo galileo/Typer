@@ -28,11 +28,6 @@ class Game
     protected $isPlayed;
 
     /**
-     * @var bool
-     */
-    protected $isBetAble = false;
-
-    /**
      * @var Bet
      */
     protected $yourBet;
@@ -187,16 +182,6 @@ class Game
     public function getBets()
     {
         return $this->bets;
-    }
-
-    public function isBetAble()
-    {
-        return $this->isBetAble;
-    }
-
-    public function markAsBetAble()
-    {
-        $this->isBetAble = true;
     }
 
     /**
