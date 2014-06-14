@@ -1,9 +1,17 @@
 {% if app.user %}
-    {% for message in messages %}
-        <p class="head"><span class="pull-left">{{ message.date|date }}</span>{{ message.player|display_name }}</p>
-        <p>
-            {{ message.message }}
-        </p>
-    {% endfor %}
-{{ form(form) }}
+    <div class="panel-body">
+        {% for message in messages %}
+
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge">{{ message.date|date }}</span>
+                    {{ message.player|display_name }}
+                </li>
+            </ul>
+            <p>
+                {{ message.message }}
+            </p>
+        {% endfor %}
+    </div>
+    {{ form(form) }}
 {% endif %}

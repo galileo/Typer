@@ -4,7 +4,7 @@
         <th>Wynik</th>
     </tr>
     {% for game in games %}
-        <tr>
+        <tr {% if currentGame is defined and currentGame.equals(game) %}class="selected"{% endif %}>
             {% if showStage %}
                 <td>{{ game.tournamentStage.name }}</td>
             {% endif %}

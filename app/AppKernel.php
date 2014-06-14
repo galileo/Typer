@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Galileo\SimpleBet\MigrationOldBundle\GalileoSimpleBetMigrationOldBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Galileo\BootstrapBundle\GalileoBootstrapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

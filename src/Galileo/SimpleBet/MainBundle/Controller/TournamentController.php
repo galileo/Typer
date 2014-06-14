@@ -73,7 +73,7 @@ class TournamentController
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:viewWithBets.html.twig',
             array(
                 'tournament' => $tournament,
-                'game'       => $game,
+                'currentGame'       => $game,
             )
         );
     }

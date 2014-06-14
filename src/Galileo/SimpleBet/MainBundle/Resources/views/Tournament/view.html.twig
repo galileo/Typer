@@ -16,75 +16,20 @@
     {% if tournament.isActive == 0 %}
         <p class="alert alert-danger text-center">Ten turniej został już zakończony.</p>
     {% endif %}
-    <div class="btn-group btn-group-justified">
-        <div class="btn-group">
-            <a href="{{ path('gsbm_tournament_view_current_games', {'tournamentId': tournament.id}) }}">
-                <button type="button" class="btn btn-default">Najbliższe mecze</button>
-            </a>
-        </div>
-        <div class="btn-group">
-            <a href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
-                <button type="button" class="btn btn-default">Mecze w grupach</button>
-            </a>
-        </div>
-        <div class="btn-group">
-            <a href="{{ path('gsbm_player_tournament_bet_accuracy', {'tournamentId': tournament.id}) }}">
-                <button type="button" class="btn btn-default">Statystyki graczy</button>
-            </a>
-        </div>
-        <div class="btn-group">
-            <a href="{{ path('gsbm_tournament_rule', {'tournamentId': tournament.id}) }}">
-                <button type="button" class="btn btn-default">Zasady</button>
-            </a>
-        </div>
-    </div>
+    {{ include('@GalileoSimpleBetMain/Tournament/menuView.html.twig') }}
 {% endblock %}
 
 {% block content %}
-
     {% for stage in tournament.stages %}
         {{ include('GalileoSimpleBetMainBundle:TournamentStage:viewMatches.html.twig', {'type': 'table', 'stage': stage}) }}
     {% endfor %}
 {% endblock %}
 
 {% block sidebar %}
-    <div class="row">
-        <div class="col-lg-12">
-            <strong>Dystrybucja punktów</strong>
-
-            <p>
-                {{ label_success('3 punkty') }}
-                {{ label_warning('1 punkt') }}
-                {{ label_danger('0 puntków') }}
-            </p>
-            {{ render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id })) }}
-
-            <div class="panel panel-default chat">
-                <div class="panel-heading">Chat:</div>
-                {{ render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})) }}
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-6">
-            {% if app.user %}
-                <div class="panel panel-default">
-                    <div class="panel-heading">Informacje:</div>
-                    <div class="panel-body">
-                        {{ render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id})) }}
-                    </div>
-                </div>
-            {% endif %}
-        </div>
-        <div class="col-lg-6">
-            {% if app.user %}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Wszyscy zawodnicy
-                    </div>
-                    {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})) }}
-                </div>
-            {% endif %}
-        </div>
-    </div>
+    {% if app.user %}
+        {{ panel('Rezultaty typów:', render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id }))) }}
+        {{ panel('Informacje', render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id}))) }}
+        {{ panel('Wszyscy zawodnicy:', render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})),{'skipBody': true}) }}
+        {{ panel('Czat:', render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})), {'skipBody': true}) }}
+    {% endif %}
 {% endblock %}

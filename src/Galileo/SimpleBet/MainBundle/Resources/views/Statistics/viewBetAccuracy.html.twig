@@ -1,3 +1,8 @@
+<div>
+    Perfekcyjne: {{ betStatistics.getPerfectPercentage }}%
+    Dobre: {{ betStatistics.getGoodPercentage }}%
+    Chybione: {{ betStatistics.getBadPercentage }}%
+</div>
 <div class="progress">
     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ betStatistics.getPerfectPercentage }}" aria-valuemin="0"
          aria-valuemax="100" style="width: {{ betStatistics.getPerfectPercentage }}%">

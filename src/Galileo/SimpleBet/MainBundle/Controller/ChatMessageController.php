@@ -86,8 +86,8 @@ class ChatMessageController
         $form = $this->formFactory
             ->createBuilder('form', $message)
             ->setAction($this->messageUrl($tournamentId))
-            ->add('message', 'text')
-            ->add('dodaj', 'submit')
+            ->add('message', 'text', array('label' => 'Wiadomość'))
+            ->add('Dodaj', 'submit')
             ->getForm();
 
 

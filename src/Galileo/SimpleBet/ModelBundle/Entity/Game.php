@@ -228,4 +228,9 @@ class Game
     {
         return $this->availableForCurrentPlayer;
     }
+
+    public function equals(Game $game)
+    {
+        return $game->getId() == $this->getId();
+    }
 }

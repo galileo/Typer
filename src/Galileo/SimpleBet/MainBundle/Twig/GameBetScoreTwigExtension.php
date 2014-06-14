@@ -9,10 +9,13 @@ use Galileo\SimpleBet\ModelBundle\Entity\Score;
 
 class GameBetScoreTwigExtension extends \Twig_Extension
 {
+    protected $labelTemplate = '<span class="label label-%s" title="%s">%s</span>';
+
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('game_bet', array($this, 'score'))
+            new \Twig_SimpleFilter('game_bet', array($this, 'score')),
+            new \Twig_SimpleFilter('bet_point', array($this, 'points'))
         );
     }
 
@@ -32,7 +35,7 @@ class GameBetScoreTwigExtension extends \Twig_Extension
 
         $compare = new SimpleScoreCompare();
 
-        $template = '<span class="label label-%s" title="%s">%s</span>';
+        $template = $this->labelTemplate;
 
         switch ($compare->compare($gameScore, $bet->getScore())) {
             case ScoreCompareInterface::PERFECT:
@@ -47,6 +50,23 @@ class GameBetScoreTwigExtension extends \Twig_Extension
 
         return sprintf($template, $label, $bet->getScore(), $gameScore);
     }
+
+    public function points(Bet $bet)
+    {
+        switch ($bet->getPointsEarned()){
+            case 3:
+                $label = 'success';
+                break;
+            case 1:
+                $label = 'warning';
+                break;
+            default:
+                return '';
+        }
+
+        return sprintf($this->labelTemplate, $label, $bet->getPointsEarned(), $bet->getPointsEarned());
+    }
+
 
     public function getName()
     {

@@ -67,11 +67,11 @@
         {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
     </div>
     <div class="row">
-        <div class="col-sm-7 col-md-6 content">
-            {% block content %}{% endblock content %}
-        </div>
         <div class="col-sm-5 col-md-6 sidebar">
             {% block sidebar %}{% endblock sidebar %}
+        </div>
+        <div class="col-sm-7 col-md-6 content">
+            {% block content %}{% endblock content %}
         </div>
     </div>
 </div>
