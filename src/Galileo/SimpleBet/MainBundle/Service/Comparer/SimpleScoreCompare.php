@@ -41,7 +41,7 @@ class SimpleScoreCompare implements ScoreCompareInterface
     protected function isPerfect()
     {
         if ($this->betScore->getAway() == $this->gameScore->getAway() &&
-            $this->betScore->getAway() == $this->gameScore->getAway()
+            $this->betScore->getHome() == $this->gameScore->getHome ()
         ) {
             return true;
         }

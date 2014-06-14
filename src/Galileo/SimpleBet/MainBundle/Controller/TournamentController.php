@@ -9,6 +9,7 @@ use Galileo\SimpleBet\ModelBundle\Repository\GameRepository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TournamentController
 {
@@ -48,7 +49,7 @@ class TournamentController
 
     public function listAction($tournamentId)
     {
-        $tournament = $this->tournamentRepository->find($tournamentId);
+        $tournament = $this->findOrFail($tournamentId);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:view.html.twig',
             array('tournament' => $tournament)
@@ -66,7 +67,7 @@ class TournamentController
 
     public function gameBetsAction($tournamentId, $gameId)
     {
-        $tournament = $this->tournamentRepository->find($tournamentId);
+        $tournament = $this->findOrFail($tournamentId);
         $game = $this->gameRepository->find($gameId);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:viewWithBets.html.twig',
@@ -79,12 +80,28 @@ class TournamentController
 
     public function currentGamesAction($tournamentId)
     {
-        $tournament = $this->tournamentRepository->find($tournamentId);
+        $tournament = $this->findOrFail($tournamentId);
         $games = $this->gameRepository->tournamentGames($tournament);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:currentGames.html.twig', array(
                 'tournament' => $tournament,
                 'games' => $games
             ));
+    }
+
+    /**
+     * @param $tournamentId
+     * @return null|object
+     */
+    protected function findOrFail($tournamentId)
+    {
+        $tournament = $this->tournamentRepository->find($tournamentId);
+
+        if (null === $tournament)
+        {
+            throw new NotFoundHttpException('Tournament not found.');
+        }
+
+        return $tournament;
     }
 } 

@@ -57,11 +57,6 @@ class GameManager implements GameManagerInterface
      */
     public function isBettingAvailable(Game $game)
     {
-        $isNotAvailableForPlayer = !$this->isAvailableForPlayer($game);
-        if ($isNotAvailableForPlayer) {
-            return false;
-        }
-
         $gameDate = $game->getDate();
         if (!$gameDate instanceof \DateTime) {
             throw new \InvalidArgumentException(sprintf('Date for game "%s" is not valid DateTime object', $game->getId()));

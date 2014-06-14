@@ -3,15 +3,17 @@
     <span class="pull-left">{{ game.date|date }}</span>
     <span>{{ game.homeTeam }} - {{ game.awayTeam }}</span>
 </td>
-<td>
+<td class="text-center">
     {{ game.score|game_bet(game.yourBet)|raw }}
+</td>
+<td>
     {% if app.user %}
         {% if game.availableForCurrentPlayer %}
             <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': tournament.id, 'gameId' : game.id}) }}">
                 {% if game.isActive %}
-                    <span class="glyphicon glyphicon-edit"></span>
+                    <span class="glyphicon glyphicon-edit" title="Edytuj"> Edytuj</span>
                 {% else %}
-                    <span class="glyphicon glyphicon-list"></span>
+                    <span class="glyphicon glyphicon-list" title="Lista"> Lista</span>
                 {% endif %}
             </a>
         {% else %}
