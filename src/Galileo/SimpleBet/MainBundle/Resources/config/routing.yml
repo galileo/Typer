@@ -2,10 +2,6 @@ homepage:
     pattern:  /
     defaults: { _controller: gsbm.controller.tournament:homeAction }
 
-gsbm_tournament_view_game_bets:
-    pattern:  /t/{tournamentId}-{gameId}
-    defaults: { _controller: gsbm.controller.tournament:gameBetsAction }
-
 gsbm_tournament_view:
     pattern:  /t/{tournamentId}
     defaults: { _controller: gsbm.controller.tournament:listAction }
@@ -17,6 +13,15 @@ gsbm_tournament_rule:
 gsbm_tournament_view_current_games:
     pattern:  /tournament/{tournamentId}/games
     defaults: { _controller: gsbm.controller.tournament:currentGamesAction }
+
+gsbm_tournament_stage:
+    pattern:  /tournament/{tournamentId}/stage/{stageId}
+    defaults: { _controller: gsbm.controller.tournament_stage:viewStageAction }
+
+gsbm_tournament_stage_game_view:
+    pattern:  /tournament/{tournamentId}/stage/{stageId}/game/{gameId}
+    defaults: { _controller: gsbm.controller.tournament_stage:viewStageGameAction }
+
 
 gsbm_player_join_tournament:
     pattern:   /p/j/t/{tournamentId}

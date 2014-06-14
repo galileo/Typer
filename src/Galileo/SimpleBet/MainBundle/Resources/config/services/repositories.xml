@@ -13,6 +13,14 @@
             <argument>GalileoSimpleBetModelBundle:Tournament</argument>
         </service>
 
+        <!-- TournamentStage repository -->
+        <service id="gsbm.repository.tournament_stage"
+                 class="Doctrine\ORM\EntityRepository"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+            <argument>GalileoSimpleBetModelBundle:TournamentStage</argument>
+        </service>
+
         <!-- PlayerToTournament repository -->
         <service id="gsbm.repository.player_to_tournament"
                  class="Doctrine\ORM\EntityRepository"

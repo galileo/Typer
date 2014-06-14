@@ -9,6 +9,7 @@
         <parameter key="gsbm.manager.bet.class">Galileo\SimpleBet\MainBundle\Service\Manager\BetManager</parameter>
         <parameter key="gsbm.manager.game.class">Galileo\SimpleBet\MainBundle\Service\Manager\GameManager</parameter>
         <parameter key="gsbm.manager.bet_statistics.class">Galileo\SimpleBet\MainBundle\Service\Manager\BetStatisticsManager</parameter>
+        <parameter key="gsbm.manager.table.class">Galileo\SimpleBet\MainBundle\Service\Manager\TableManager</parameter>
     </parameters>
 
     <services>
@@ -37,6 +38,11 @@
 
         <service id="gsbm.manager.bet_statistics" class="%gsbm.manager.bet_statistics.class%">
             <argument type="service" id="gsbm.repository.bet" />
+        </service>
+
+        <!-- Table manager -->
+        <service id="gsbm.manager.table" class="%gsbm.manager.table.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
 
     </services>

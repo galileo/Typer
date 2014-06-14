@@ -89,6 +89,17 @@ class TournamentController
             ));
     }
 
+    public function todayGamesAction($tournamentId)
+    {
+        $tournament = $this->findOrFail($tournamentId);
+        $games = $this->gameRepository->todayGames($tournament);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:todayGames.html.twig', array(
+                'tournament' => $tournament,
+                'games' => $games
+            ));
+    }
+
     /**
      * @param $tournamentId
      * @return null|object

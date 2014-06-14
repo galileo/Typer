@@ -5,6 +5,7 @@
 
     <parameters>
         <parameter key="gsbm.controller.tournament.class">Galileo\SimpleBet\MainBundle\Controller\TournamentController</parameter>
+        <parameter key="gsbm.controller.tournament_stage.class">Galileo\SimpleBet\MainBundle\Controller\TournamentStageController</parameter>
         <parameter key="gsbm.controller.game.class">Galileo\SimpleBet\MainBundle\Controller\GameController</parameter>
         <parameter key="gsbm.controller.player.class">Galileo\SimpleBet\MainBundle\Controller\PlayerController</parameter>
         <parameter key="gsbm.controller.bet.class">Galileo\SimpleBet\MainBundle\Controller\BetController</parameter>
@@ -22,6 +23,14 @@
             <argument type="service" id="gsbm.repository.tournament"/>
             <argument type="service" id="gsbm.repository.game"/>
             <argument type="service" id="templating"/>
+        </service>
+
+        <!-- TournamentStage controller -->
+        <service id="gsbm.controller.tournament_stage" class="%gsbm.controller.tournament_stage.class%">
+            <argument type="service" id="templating"/>
+            <argument type="service" id="gsbm.repository.tournament_stage"/>
+            <argument type="service" id="gsbm.repository.game"/>
+            <argument type="service" id="gsbm.manager.table"/>
         </service>
 
         <!-- Player controller -->

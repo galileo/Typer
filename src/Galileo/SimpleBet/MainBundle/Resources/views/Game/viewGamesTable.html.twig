@@ -1,11 +1,7 @@
 <table class="table table-condensed">
-    <tr>
-        <th colspan="2">Drużyny</th>
-        <th>Wynik</th>
-    </tr>
     {% for game in games %}
         <tr {% if currentGame is defined and currentGame.equals(game) %}class="selected"{% endif %}>
-            {% if showStage %}
+            {% if showStage is defined and showStage %}
                 <td>{{ game.tournamentStage.name }}</td>
             {% endif %}
             {{ include('GalileoSimpleBetMainBundle:Game:defaultGameRowView.html.twig') }}

@@ -87,7 +87,7 @@ class ChatMessageController
             ->createBuilder('form', $message)
             ->setAction($this->messageUrl($tournamentId))
             ->add('message', 'text', array('label' => 'Wiadomość'))
-            ->add('Dodaj', 'submit')
+            ->add('dodaj', 'submit')
             ->getForm();
 
 
@@ -139,7 +139,6 @@ class ChatMessageController
 
             return new RedirectResponse($referer);
         }
-
     }
 
     protected function messageUrl($tournamentId)

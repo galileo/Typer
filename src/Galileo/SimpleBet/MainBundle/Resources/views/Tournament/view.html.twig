@@ -27,9 +27,11 @@
 
 {% block sidebar %}
     {% if app.user %}
-        {{ panel('Rezultaty typów:', render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id }))) }}
-        {{ panel('Informacje', render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id}))) }}
+        {#{{ panel('Rezultaty typów:', render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id }))) }}#}
+        {#{{ panel('Informacje', render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id}))) }}#}
         {{ panel('Wszyscy zawodnicy:', render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})),{'skipBody': true}) }}
+        <div class="chat">
         {{ panel('Czat:', render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})), {'skipBody': true}) }}
+        </div>
     {% endif %}
 {% endblock %}

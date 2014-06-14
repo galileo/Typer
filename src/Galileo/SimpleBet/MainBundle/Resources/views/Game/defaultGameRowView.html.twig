@@ -9,7 +9,7 @@
 <td>
     {% if app.user %}
         {% if game.availableForCurrentPlayer %}
-            <a href="{{ path('gsbm_tournament_view_game_bets', {'tournamentId': tournament.id, 'gameId' : game.id}) }}">
+            <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
                 {% if game.isActive %}
                     <span class="glyphicon glyphicon-edit" title="Edytuj"> Edytuj</span>
                 {% else %}

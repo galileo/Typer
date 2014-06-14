@@ -73,4 +73,16 @@ class TournamentStage
     }
 
 
+    public function setTableProvider()
+    {
+
+    }
+
+    public function getTable()
+    {
+
+        $this->tableProvider->getTable();
+
+        return $this->table;
+    }
 }

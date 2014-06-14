@@ -4,10 +4,21 @@
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 
 
+use Doctrine\ORM\EntityManager;
 use Galileo\SimpleBet\ModelBundle\Entity\TournamentStage;
 
 class TableManager implements TableManagerInterface
 {
+    /**
+     * @var EntityManager
+     */
+    private $entityManager;
+
+    public function __construct(EntityManager $entityManager)
+    {
+
+        $this->entityManager = $entityManager;
+    }
 
     public function generateHomeTable(TournamentStage $tournamentStage)
     {
@@ -21,7 +32,8 @@ class TableManager implements TableManagerInterface
 
     public function generateTable(TournamentStage $tournamentStage)
     {
-        $sql = "SELECT t.*, points
+
+        $sql = "SELECT t.*, SUM(points) points
 FROM (
 (     SELECT  g.home_team_id team_id,
           SUM(IF(s.home > s.away, 3, IF(s.home = s.away, 1, 0))) points
@@ -39,6 +51,12 @@ UNION(
 ) tabela
 JOIN gsbm_team t ON tabela.team_id = t.id
 GROUP BY team_id ORDER BY points DESC
-"
+";
+
+        $stmt = $this->entityManager->getConnection()->prepare($sql);
+        $stmt->execute();
+        $all = $stmt->fetchAll();
+
+        return $all;
     }
 }

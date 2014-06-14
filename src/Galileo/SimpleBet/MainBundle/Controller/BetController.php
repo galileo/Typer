@@ -104,7 +104,8 @@ class BetController
 
             return $this->redirect($this->gameUrl(
                     $gameId,
-                    $game->getTournamentStage()->getTournament()->getId()
+                    $game->getTournamentStage()->getTournament()->getId(),
+                    $game->getTournamentStage()->getId()
                 )
             );
         }
@@ -115,9 +116,9 @@ class BetController
 
         $form = $this->formFactory
             ->createBuilder('form', $score)
-            ->add('home', 'integer')
-            ->add('away', 'integer')
-            ->add('save', 'submit')
+            ->add('home', 'integer', array('label' => 'Gole gosporarzy'))
+            ->add('away', 'integer', array('label' => 'Gole gości'))
+            ->add('save', 'submit', array('label'=> 'Zapisz'))
             ->getForm();
 
         $form->handleRequest($request);
@@ -130,7 +131,8 @@ class BetController
             return $this->redirect(
                 $this->gameUrl(
                     $game->getId(),
-                    $game->getTournamentStage()->getTournament()->getId()
+                    $game->getTournamentStage()->getTournament()->getId(),
+                    $game->getTournamentStage()->getId()
                 )
             );
         }
@@ -138,8 +140,10 @@ class BetController
 
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Bet:bet.html.twig', array(
-                'form' => $form->createView(),
-                'game' => $game
+                'form'       => $form->createView(),
+                'game'       => $game,
+                'stage'      => $game->getTournamentStage(),
+                'tournament' => $game->getTournamentStage()->getTournament(),
             )
         );
     }
@@ -185,12 +189,13 @@ class BetController
         );
     }
 
-    protected function gameUrl($gameId, $tournamentId)
+    protected function gameUrl($gameId, $tournamentId, $stageId)
     {
         return $this->router->generate(
-            'gsbm_tournament_view_game_bets', array(
+            'gsbm_tournament_stage_game_view', array(
                 'tournamentId' => $tournamentId,
-                'gameId'       => $gameId
+                'stageId'      => $stageId,
+                'gameId'       => $gameId,
             )
         );
     }

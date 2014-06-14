@@ -1,0 +1,9 @@
+<table class="table">
+    {% for tableRow in table %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ tableRow.name }}</td>
+            <td>{{ tableRow.points }}</td>
+        </tr>
+    {% endfor %}
+</table>
