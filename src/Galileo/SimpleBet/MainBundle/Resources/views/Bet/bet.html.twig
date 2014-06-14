@@ -1,10 +1,10 @@
-{% extends('GalileoSimpleBetMainBundle:TournamentStage:view.html.twig') %}
+{% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
 
 {% block sidebar %}
     <h4>Wytpuj wynik:
         {{ game.homeTeam.name }} -
         {{ game.awayTeam.name }}
     </h4>
-    {{ panel('Wynik', form(form)) }}
+    {{ form(form) }}
 
 {% endblock %}

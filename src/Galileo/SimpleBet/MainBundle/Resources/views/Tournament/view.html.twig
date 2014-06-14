@@ -2,7 +2,7 @@
 
 {% block top_left %}
     {{ include('GalileoSimpleBetMainBundle:Tournament:logo.html.twig', {'tournament': tournament}) }}
-    <h2>{{ tournament.name }}</h2>
+    <h2>{% block subtitle %}{% endblock %}{{ tournament.name }}</h2>
 {% endblock %}
 
 {% block top_right %}

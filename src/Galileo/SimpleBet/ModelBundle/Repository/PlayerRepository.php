@@ -36,19 +36,19 @@ class PlayerRepository extends EntityRepository
     {
 
         $playersAndBetStats = $this->getEntityManager()
-                                   ->createQuery(
-                                       'SELECT p, COUNT(b.id) totalBets,
-                                       SUM(b.pointsEarned) totalPoints,
-                                       COUNT(b.id) / SUM(b.pointsEarned) pointRate
-                                       FROM GalileoSimpleBetModelBundle:Player p
-                                       LEFT JOIN p.bets b
-                                       JOIN b.game g
-                                       JOIN g.tournamentStage ts
+                      ->createQuery(
+                          'SELECT p, COUNT(b.id) totalBets,
+                          SUM(b.pointsEarned) totalPoints,
+                          COUNT(b.id) / SUM(b.pointsEarned) pointRate
+                          FROM GalileoSimpleBetModelBundle:Player p
+                          LEFT JOIN p.bets b
+                          JOIN b.game g
+                          JOIN g.tournamentStage ts
 
-                                       WHERE ts.tournament = ?1
-                                       GROUP BY p.id ORDER BY totalPoints DESC, pointRate DESC
-                                       '
-                                   )
+                          WHERE ts.tournament = ?1
+                          GROUP BY p.id ORDER BY totalPoints DESC, pointRate DESC
+                          '
+                      )
                                    ->setParameter(1, $tournament)
                                    ->setMaxResults($limit)
                                    ->getResult('BetStatsHydrator');

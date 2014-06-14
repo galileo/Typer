@@ -4,8 +4,10 @@
     {{ parent() }}
     {{ panel('Najbliższe 24 godziny',render(controller('gsbm.controller.tournament:todayGamesAction', {'tournamentId': stage.tournament.id })), {'skipBody': true}) }}
 {% endblock %}
+{% block subtitle %}
+   {{ stage.name }}:
+{% endblock %}
 {% block content %}
-    <h2>{{ stage.name }}</h2>
     {{ panel('Mecze',include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': stage.games}), {'skipBody': true}) }}
 
     {% if table is defined %}
