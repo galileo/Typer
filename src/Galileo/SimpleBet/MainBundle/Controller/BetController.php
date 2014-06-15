@@ -4,6 +4,7 @@
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
 
+use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
 use Galileo\SimpleBet\ModelBundle\Entity\Bet;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
@@ -68,12 +69,18 @@ class BetController
      */
     protected $session;
 
+    /**
+     * @var EntityRepository
+     */
+    protected $scoreRepository;
+
     public function __construct(EngineInterface $templating,
                                 FormFactory $formFactory,
                                 GameManagerInterface $gameManager,
                                 CurrentPlayerManager $currentPlayerManager,
                                 BetManagerInterface $betManager,
                                 EntityManager $entityManager,
+                                EntityRepository $scoreRepository,
                                 Router $router,
                                 Session $session
     )
@@ -88,64 +95,81 @@ class BetController
 
         $this->player = $this->playerManager->getCurrentPlayer();
         $this->session = $session;
+        $this->scoreRepository = $scoreRepository;
     }
 
     public function betAction(Request $request, $gameId)
     {
         try {
             $game = $this->gameManager->findGameOrFail($gameId);
+            $tournament = $game->getTournamentStage()->getTournament();
+            $tournamentStage = $game->getTournamentStage();
         } catch (NotFoundResourceException $e) {
             throw new NotFoundHttpException($e->getMessage());
         }
 
         if (!$game->getIsActive()) {
-
-            $this->betIsNotAvailable();
-
-            return $this->redirect($this->gameUrl(
-                    $gameId,
-                    $game->getTournamentStage()->getTournament()->getId(),
-                    $game->getTournamentStage()->getId()
-                )
-            );
-        }
-
-        $bet = $this->betManager->getBetOrCreate($this->player, $game);
-
-        $score = $bet->getScore();
-
-        $form = $this->formFactory
-            ->createBuilder('form', $score)
-            ->add('home', 'integer', array('label' => 'Gole gosporarzy'))
-            ->add('away', 'integer', array('label' => 'Gole gości'))
-            ->add('save', 'submit', array('label'=> 'Zapisz'))
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $this->entityManager->persist($bet);
-            $this->entityManager->persist($score);
-            $this->entityManager->flush();
+            $this->setNotAvailableMessage();
 
             return $this->redirect(
-                $this->gameUrl(
-                    $game->getId(),
-                    $game->getTournamentStage()->getTournament()->getId(),
-                    $game->getTournamentStage()->getId()
+                $this->gameUrl($gameId, $tournament->getId(), $tournamentStage->getId())
+            );
+        }
+        $bet = $this->betManager->getBetOrCreate($this->player, $game);
+
+        if ($request->isMethod('POST')) {
+            $formArray = $request->request->get('form');
+
+            $currentScore = $this->scoreRepository->findOneBy(array(
+                    'home' => $formArray['home'],
+                    'away' => $formArray['away']
+                )
+            );
+
+            if (null === $currentScore) {
+                $currentScore = new Score();
+                $currentScore
+                    ->setAway($formArray['away'])
+                    ->setHome($formArray['home'])
+                    ->setScoreType('simple');
+
+                $this->entityManager->persist($currentScore);
+                $bet->setScore($currentScore);
+                $this->entityManager->persist($bet);
+                $this->entityManager->flush();
+
+            } else {
+                $bet->setScore($currentScore);
+
+                $this->entityManager->persist($currentScore);
+                $this->entityManager->persist($bet);
+                $this->entityManager->flush();
+
+            }
+
+            return $this->redirect(
+                $this->gameUrl($gameId, $tournament->getId(), $tournamentStage->getId())
+            );
+        } else {
+            $score = $bet->getScore();
+
+            $form = $this->formFactory
+                ->createBuilder('form', $score)
+                ->add('home', 'integer', array('label' => 'Gole gosporarzy'))
+                ->add('away', 'integer', array('label' => 'Gole gości'))
+                ->add('save', 'submit', array('label' => 'Zapisz'))
+                ->getForm();
+
+
+            return $this->templating->renderResponse(
+                'GalileoSimpleBetMainBundle:Bet:bet.html.twig', array(
+                    'form' => $form->createView(),
+                    'game' => $game,
+                    'stage' => $game->getTournamentStage(),
+                    'tournament' => $game->getTournamentStage()->getTournament(),
                 )
             );
         }
-
-
-        return $this->templating->renderResponse(
-            'GalileoSimpleBetMainBundle:Bet:bet.html.twig', array(
-                'form'       => $form->createView(),
-                'game'       => $game,
-                'stage'      => $game->getTournamentStage(),
-                'tournament' => $game->getTournamentStage()->getTournament(),
-            )
-        );
     }
 
     public function viewAction($gameId)
@@ -170,7 +194,7 @@ class BetController
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Bet:view.html.twig', array(
                 'game' => $game,
-                'bet'  => $bet
+                'bet' => $bet
             )
         );
 
@@ -194,13 +218,13 @@ class BetController
         return $this->router->generate(
             'gsbm_tournament_stage_game_view', array(
                 'tournamentId' => $tournamentId,
-                'stageId'      => $stageId,
-                'gameId'       => $gameId,
+                'stageId' => $stageId,
+                'gameId' => $gameId,
             )
         );
     }
 
-    protected function betIsNotAvailable()
+    protected function setNotAvailableMessage()
     {
         $this->session->getFlashBag()->add(
             'error',

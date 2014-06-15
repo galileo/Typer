@@ -52,6 +52,7 @@
             <argument type="service" id="gsbm.manager.current_player" />
             <argument type="service" id="gsbm.manager.bet" />
             <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="gsbm.repository.score" />
             <argument type="service" id="router" />
             <argument type="service" id="session" />
         </service>

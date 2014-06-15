@@ -1,14 +1,9 @@
 {% if app.user %}
     <div class="panel-body">
         {% for message in messages %}
-
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <span class="badge">{{ message.date|date }}</span>
-                    {{ message.player|display_name }}
-                </li>
-            </ul>
             <p>
+                    <span class="badge">{{ message.date|date }}</span>
+                    {{ label_primary(message.player|display_name) }}
                 {{ message.message }}
             </p>
         {% endfor %}

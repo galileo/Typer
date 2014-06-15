@@ -104,17 +104,28 @@ class BetStatistics
 
     public function getPerfectPercentage()
     {
-        return round($this->perfect / $this->getAll() * 100, 0);
+        if ($this->getAll()) {
+            return round($this->perfect / $this->getAll() * 100, 0);
+        }
+
+        return 0;
     }
 
     public function getGoodPercentage()
     {
-        return round($this->good / $this->getAll() * 100, 0);
+        if ($this->getAll()) {
+            return round($this->good / $this->getAll() * 100, 0);
+        }
+
+        return 0;
     }
 
     public function getBadPercentage()
     {
-        return 100 - $this->getGoodPercentage() - $this->getPerfectPercentage();
+        if ($this->getAll()) {
+            return 100 - $this->getGoodPercentage() - $this->getPerfectPercentage();
+        }
+        return 0;
     }
 
 } 
