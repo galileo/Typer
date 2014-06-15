@@ -26,7 +26,7 @@ class GameController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('GalileoSimpleBetModelBundle:Game')->findAll();
+        $entities = $em->getRepository('GalileoSimpleBetModelBundle:Game')->findBy(array(), array('id' => 'DESC'));
 
         return $this->render('GalileoSimpleBetModelBundle:Game:index.html.twig', array(
             'entities' => $entities,
