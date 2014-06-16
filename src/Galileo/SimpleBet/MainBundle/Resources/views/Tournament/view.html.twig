@@ -9,6 +9,12 @@
     <div class="panel panel-default">
         <div class="panel-heading">Top 5</div>
         {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament, 'limit': 5})) }}
+        <div class="text-center">
+
+            <a href="{{ path('gsbm_tournament_player_standings', {'tournamentId': tournament.id}) }}">
+                &gt; pełna tabela
+            </a>
+        </div>
     </div>
 {% endblock %}
 
@@ -23,15 +29,4 @@
     {% for stage in tournament.stages %}
         {{ include('GalileoSimpleBetMainBundle:TournamentStage:viewMatches.html.twig', {'type': 'table', 'stage': stage}) }}
     {% endfor %}
-{% endblock %}
-
-{% block sidebar %}
-    {% if app.user %}
-        {#{{ panel('Rezultaty typów:', render(controller('gsbm.controller.statistics:getBetAccuracyStatsView', {'tournamentId': tournament.id }))) }}#}
-        {#{{ panel('Informacje', render(controller("gsbm.controller.player:viewPlayerToTournamentAction", {'tournamentId': tournament.id}))) }}#}
-        <div class="chat">
-        {{ panel('Czat:', render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})), {'skipBody': true}) }}
-        </div>
-        {{ panel('Wszyscy zawodnicy:', render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})),{'skipBody': true}) }}
-    {% endif %}
 {% endblock %}

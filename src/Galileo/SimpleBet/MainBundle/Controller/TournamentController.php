@@ -73,7 +73,7 @@ class TournamentController
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:viewWithBets.html.twig',
             array(
                 'tournament' => $tournament,
-                'currentGame'       => $game,
+                'currentGame' => $game,
             )
         );
     }
@@ -84,9 +84,18 @@ class TournamentController
         $games = $this->gameRepository->tournamentGames($tournament);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:currentGames.html.twig', array(
-                'tournament' => $tournament,
-                'games' => $games
-            ));
+            'tournament' => $tournament,
+            'games' => $games
+        ));
+    }
+
+    public function standingsAction($tournamentId)
+    {
+        $tournament = $this->findOrFail($tournamentId);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:playerStandings.html.twig', array(
+            'tournament' => $tournament,
+        ));
     }
 
     public function todayGamesAction($tournamentId)
@@ -95,9 +104,9 @@ class TournamentController
         $games = $this->gameRepository->todayGames($tournament);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:todayGames.html.twig', array(
-                'tournament' => $tournament,
-                'games' => $games
-            ));
+            'tournament' => $tournament,
+            'games' => $games
+        ));
     }
 
     /**
@@ -108,8 +117,7 @@ class TournamentController
     {
         $tournament = $this->tournamentRepository->find($tournamentId);
 
-        if (null === $tournament)
-        {
+        if (null === $tournament) {
             throw new NotFoundHttpException('Tournament not found.');
         }
 

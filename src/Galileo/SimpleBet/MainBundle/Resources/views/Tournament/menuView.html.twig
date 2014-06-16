@@ -17,13 +17,4 @@
             Zasady
         </a>
     </li>
-    <li
-            {#{% if app.request.get('_route') == 'gsbm_tournament_player_standings' %}class="active"{% endif %}#}
-            >
-        <a href="
-        {#{{ path('gsbm_tournament_player_standings', {'tournamentId': tournament.id}) }}#}
-        ">
-            Klasyfikacjia
-        </a>
-    </li>
 </ul>

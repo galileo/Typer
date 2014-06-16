@@ -4,7 +4,7 @@
 
     <title>Kto to wygra pl: {% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
     <!-- Bootstrap -->
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" media="screen">
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" media="screen">
@@ -63,54 +63,62 @@
         </div>
     {% endfor %}
     {% if app.user %}
-    <div class="row">
-        <div>
+        <div class="row">
+            <div>
 
-            <div class="alert alert-danger text-center">UWAGA!!! O godzinie 12:00 15.06.2014 na stronie pojawiła się ogromna
-                aktualizacja bazodanowa odnośnie wyników i typowania. <br /> Jeśli ktokolwiek zauważy jakiekolwiek dziwne
-                zachowanie systemu, proszę o natychmiastowy kontakt. </div>
-            <div class="alert alert-warning text-center">
-                Dodatkowa informacja, do środy proszę wszystkich o dostarczenie mi kasy.
+                <div class="alert alert-danger text-center">UWAGA!!! O godzinie 12:00 15.06.2014 na stronie pojawiła
+                    się ogromna
+                    aktualizacja bazodanowa odnośnie wyników i typowania. <br/> Jeśli ktokolwiek zauważy jakiekolwiek
+                    dziwne
+                    zachowanie systemu, proszę o natychmiastowy kontakt.
+                </div>
+                <div class="alert alert-warning text-center">
+                    Dodatkowa informacja, do środy proszę wszystkich o dostarczenie mi kasy.
+                </div>
             </div>
         </div>
-    </div>
     {% endif %}
-    <hr />
+    <hr/>
     <div class="row">
         {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
     </div>
     <div class="row">
-        <div class="col-sm-5 col-md-6 sidebar">
-            {% block sidebar %}{% endblock sidebar %}
-        </div>
-        <div class="col-sm-7 col-md-6 content">
-            {% block content %}{% endblock content %}
+        {% set _sidebar = block('sidebar') %}
+        {% set includeSidebar = _sidebar is not empty %}
+
+        {% if includeSidebar %}<div class="col-sm-7 col-md-7 col-lg-8 content">{% else %}<div class="col-12 content">{% endif %}
+                {% block content %}{% endblock content %}
+            </div>
+        {% if includeSidebar %}
+            <div class="col-sm-5 col-md-5 col-lg-4 sidebar">
+                {{ _sidebar|raw }}
+            </div>
+        {% endif %}
         </div>
     </div>
-</div>
 
-<!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
-<script src="{{ asset('js/jquery.js') }}"></script>
-<!-- Include all JavaScripts, compiled by Assetic -->
-<script src="{{ asset('js/bootstrap.js') }}"></script>
+    <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <!-- Include all JavaScripts, compiled by Assetic -->
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
 
-<script>
-    (function (i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function () {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-1015424-19', 'ktotowygra.pl');
-    ga('send', 'pageview');
+        ga('create', 'UA-1015424-19', 'ktotowygra.pl');
+        ga('send', 'pageview');
 
-</script>
+    </script>
 
 </body>
 </html>

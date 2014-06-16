@@ -29,6 +29,7 @@ class BetStatsHydrator extends AbstractHydrator
         }
 
         $player = new Player();
+        $player->setId($row[16]);
         $player->setChampionship($row[20]);
         $player->setDisplayName($row[19]);
         $player->setFirstName($row[17]);

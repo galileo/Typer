@@ -4,3 +4,9 @@
     <h2>Mecze</h2>
     {{ include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': games, 'showStage': true}) }}
 {% endblock %}
+
+{% block sidebar %}
+    <div class="chat">
+    {{ panel('Czat:', render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})), {'skipBody': true}) }}
+    </div>
+{% endblock %}

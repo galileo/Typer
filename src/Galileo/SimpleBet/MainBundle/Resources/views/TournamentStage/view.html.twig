@@ -7,7 +7,7 @@
 {% block subtitle %}
    {{ stage.name }}:
 {% endblock %}
-{% block content %}
+{% block sidebar %}
     {{ panel('Mecze',include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': stage.games}), {'skipBody': true}) }}
 
     {% if table is defined %}

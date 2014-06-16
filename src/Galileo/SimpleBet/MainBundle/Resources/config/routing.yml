@@ -18,10 +18,13 @@ gsbm_tournament_stage:
     pattern:  /tournament/{tournamentId}/stage/{stageId}
     defaults: { _controller: gsbm.controller.tournament_stage:viewStageAction }
 
+gsbm_tournament_player_standings:
+    pattern:  /tournament/{tournamentId}/standings
+    defaults: { _controller: gsbm.controller.tournament:standingsAction }
+
 gsbm_tournament_stage_game_view:
     pattern:  /tournament/{tournamentId}/stage/{stageId}/game/{gameId}
     defaults: { _controller: gsbm.controller.tournament_stage:viewStageGameAction }
-
 
 gsbm_player_join_tournament:
     pattern:   /p/j/t/{tournamentId}

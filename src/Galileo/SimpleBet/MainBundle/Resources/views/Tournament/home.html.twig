@@ -1,6 +1,11 @@
 {% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
 
 {% block content %}
+    <h4>Tabela wszechczasów</h4>
+    {{ render(controller('gsbm.controller.player:bestPlayerAction')) }}
+{% endblock %}
+
+{% block sidebar %}
     <h3>3 mistrzostwa świata!</h3>
     <p>To już 8 lat od naszej pierwszej rozgrywki!</p>
     {% for tournament in tournaments %}
@@ -10,9 +15,4 @@
             </a>
         </h4>
     {% endfor %}
-{% endblock %}
-
-{% block sidebar %}
-    <h4>Tabela wszechczasów</h4>
-    {{ render(controller('gsbm.controller.player:bestPlayerAction')) }}
 {% endblock %}
