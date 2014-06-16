@@ -57,9 +57,25 @@ class StatisticsController
         $playerAndBetStatistics = $this->betStatisticsManager->tournamentPlayerBetAccuracy($tournament);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Statistics:playerTournamentBetAccuracy.html.twig',
-            array('tournament'             => $tournament,
-                  'playerAndBetStatistics' => $playerAndBetStatistics)
+            array('tournament' => $tournament,
+                'playerAndBetStatistics' => $playerAndBetStatistics)
         );
     }
+
+    public function bestBetGamesAction($tournamentId)
+    {
+        $tournament = $this->tournamentRepository->find($tournamentId);
+
+        $bestBettedGames = $this->betStatisticsManager->bestBettedGames($tournamentId, $limit = 5);
+        $worstBettedGames = $this->betStatisticsManager->worstBettedGames($tournamentId, $limit = 5);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Statistics:bestBettedGamesView.html.twig',
+            array('tournament' => $tournament,
+                'bestBettedGames' => $bestBettedGames,
+                'worstBettedGames' => $worstBettedGames,
+            )
+        );
+    }
+
 
 } 

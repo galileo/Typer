@@ -2,6 +2,11 @@
     <li {% if app.request.get('_route') == 'gsbm_tournament_view_current_games' %}class="active"{% endif %}>
         <a href="{{ path('gsbm_tournament_view_current_games', {'tournamentId': tournament.id}) }}">Najbliższe mecze</a>
     </li>
+    <li {% if app.request.get('_route') == 'gsbm_tournament_statistic_overview' %}class="active"{% endif %}>
+        <a href="{{ path('gsbm_tournament_statistic_overview', {'tournamentId': tournament.id}) }}">
+            TOP 5 - Statystyki
+        </a>
+    </li>
     <li {% if app.request.get('_route') == 'gsbm_tournament_view' %}class="active"{% endif %}>
         <a href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
             Mecze w grupach

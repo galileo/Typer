@@ -29,4 +29,7 @@ interface BetStatisticsManagerInterface
      * @return array
      */
     public function tournamentPlayerBetAccuracy(Tournament $tournament);
+
+    public function bestBettedGames($tournamentId, $limit = null);
+
 }

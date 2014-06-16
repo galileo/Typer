@@ -22,6 +22,10 @@ gsbm_tournament_player_standings:
     pattern:  /tournament/{tournamentId}/standings
     defaults: { _controller: gsbm.controller.tournament:standingsAction }
 
+gsbm_tournament_statistic_overview:
+    pattern:  /tournament/{tournamentId}/statistic_overview
+    defaults: { _controller: gsbm.controller.statistics:bestBetGamesAction }
+
 gsbm_tournament_stage_game_view:
     pattern:  /tournament/{tournamentId}/stage/{stageId}/game/{gameId}
     defaults: { _controller: gsbm.controller.tournament_stage:viewStageGameAction }

@@ -58,7 +58,7 @@ class BetStatisticsManager implements BetStatisticsManagerInterface
             $betStatistics = $this->createBetStatistics($bets);
 
             $playerAndBets[] = array(
-                'player'        => $player,
+                'player' => $player,
                 'betStatistics' => $betStatistics
             );
         }
@@ -92,4 +92,13 @@ class BetStatisticsManager implements BetStatisticsManagerInterface
         return $betStatistics;
     }
 
-} 
+    public function bestBettedGames($tournamentId, $limit = null)
+    {
+        return $this->betRepository->bestBettedGames($tournamentId, $limit);
+    }
+
+    public function worstBettedGames($tournamentId, $limit = null)
+    {
+        return $this->betRepository->worstBettedGames($tournamentId, $limit);
+    }
+}
