@@ -29,5 +29,4 @@ interface GameManagerInterface
      */
     public function isAvailableForPlayer(Game $game);
 
-
 }

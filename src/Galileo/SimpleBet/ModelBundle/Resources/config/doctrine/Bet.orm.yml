@@ -17,6 +17,7 @@ Galileo\SimpleBet\ModelBundle\Entity\Bet:
   manyToOne:
       score:
           name: score_id
+          cascade: [all]
           targetEntity: Galileo\SimpleBet\ModelBundle\Entity\Score
           joinColumn:
               name: score_id

@@ -9,7 +9,7 @@ class Game
     protected $id;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @var ArrayCollection
      */
     protected $bets;
 
@@ -177,7 +177,7 @@ class Game
     }
 
     /**
-     * @return \Doctrine\Common\Collections\ArrayCollection|Bet[]
+     * @return ArrayCollection|Bet[]
      */
     public function getBets()
     {
@@ -232,5 +232,17 @@ class Game
     public function equals(Game $game)
     {
         return $game->getId() == $this->getId();
+    }
+
+    /**
+     * @param Bet $bet
+     *
+     * @return $this
+     */
+    public function addBet($bet)
+    {
+        $this->bets->add($bet);
+
+        return $this;
     }
 }

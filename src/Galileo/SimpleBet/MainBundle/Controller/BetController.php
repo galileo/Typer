@@ -6,13 +6,12 @@ namespace Galileo\SimpleBet\MainBundle\Controller;
 
 use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
-use Galileo\SimpleBet\ModelBundle\Entity\Bet;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
-use Galileo\SimpleBet\ModelBundle\Entity\Score;
 use Galileo\SimpleBet\MainBundle\Service\Manager\GameManagerInterface;
 use Galileo\SimpleBet\MainBundle\Service\Manager\BetManagerInterface;
 
 use Doctrine\ORM\EntityManager;
+use Galileo\SimpleBet\ModelBundle\Form\Type\BetScoreType;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -104,6 +103,7 @@ class BetController
             $game = $this->gameManager->findGameOrFail($gameId);
             $tournament = $game->getTournamentStage()->getTournament();
             $tournamentStage = $game->getTournamentStage();
+            $bet = $this->betManager->getBetOrCreate($this->player, $game);
         } catch (NotFoundResourceException $e) {
             throw new NotFoundHttpException($e->getMessage());
         }
@@ -115,61 +115,23 @@ class BetController
                 $this->gameUrl($gameId, $tournament->getId(), $tournamentStage->getId())
             );
         }
-        $bet = $this->betManager->getBetOrCreate($this->player, $game);
 
-        if ($request->isMethod('POST')) {
-            $formArray = $request->request->get('form');
+        $form = $this->formFactory->create(new BetScoreType($this->entityManager), $bet);
+        $form->handleRequest($request);
 
-            $currentScore = $this->scoreRepository->findOneBy(array(
-                    'home' => $formArray['home'],
-                    'away' => $formArray['away']
-                )
-            );
-
-            if (null === $currentScore) {
-                $currentScore = new Score();
-                $currentScore
-                    ->setAway($formArray['away'])
-                    ->setHome($formArray['home'])
-                    ->setScoreType('simple');
-
-                $this->entityManager->persist($currentScore);
-                $bet->setScore($currentScore);
-                $this->entityManager->persist($bet);
-                $this->entityManager->flush();
-
-            } else {
-                $bet->setScore($currentScore);
-
-                $this->entityManager->persist($currentScore);
-                $this->entityManager->persist($bet);
-                $this->entityManager->flush();
-
-            }
-
-            return $this->redirect(
-                $this->gameUrl($gameId, $tournament->getId(), $tournamentStage->getId())
-            );
-        } else {
-            $score = $bet->getScore();
-
-            $form = $this->formFactory
-                ->createBuilder('form', $score)
-                ->add('home', 'integer', array('label' => 'Gole gosporarzy'))
-                ->add('away', 'integer', array('label' => 'Gole gości'))
-                ->add('save', 'submit', array('label' => 'Zapisz'))
-                ->getForm();
-
-
-            return $this->templating->renderResponse(
-                'GalileoSimpleBetMainBundle:Bet:bet.html.twig', array(
-                    'form' => $form->createView(),
-                    'game' => $game,
-                    'stage' => $game->getTournamentStage(),
-                    'tournament' => $game->getTournamentStage()->getTournament(),
-                )
-            );
+        if ($form->isValid()) {
+            $this->entityManager->persist($bet);
+            $this->entityManager->flush();
         }
+
+        return $this->templating->renderResponse(
+            'GalileoSimpleBetMainBundle:Bet:bet.html.twig', array(
+                'form' => $form->createView(),
+                'game' => $game,
+                'stage' => $game->getTournamentStage(),
+                'tournament' => $game->getTournamentStage()->getTournament(),
+            )
+        );
     }
 
     public function viewAction($gameId)
@@ -180,21 +142,16 @@ class BetController
             throw new AccessDeniedException('Ups');
         }
 
-
-        $bet = $this->betManager->findBet(
+        $bet = $this->betManager->getBetOrCreate(
             $this->player,
             $game
         );
 
-        if (null === $bet) {
-            $bet = new Bet();
-        }
-
-
         return $this->templating->renderResponse(
             'GalileoSimpleBetMainBundle:Bet:view.html.twig', array(
                 'game' => $game,
-                'bet' => $bet
+                'bet' => $bet,
+
             )
         );
 
