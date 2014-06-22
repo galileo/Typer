@@ -1,21 +1,28 @@
-<td>{{ label(game.bets.count) }}</td>
-<td class="text-center">
-    <span class="pull-left">{{ game.date|date }}</span>
-    <span>{{ game.homeTeam }} - {{ game.awayTeam }}</span>
+<td class="text-right">
+    {{ game.homeTeam }}
 </td>
 <td class="text-center">
     {{ game.score|game_bet(game.yourBet)|raw }}
 </td>
+<td class="text-left">
+    {{ game.awayTeam }}
+</td>
 <td>
     {% if app.user %}
         {% if game.availableForCurrentPlayer %}
-            <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
-                {% if game.isActive %}
-                    <span class="glyphicon glyphicon-edit" title="Edytuj"> Edytuj</span>
-                {% else %}
-                    <span class="glyphicon glyphicon-list" title="Lista"> Lista</span>
-                {% endif %}
-            </a>
+            {% if game.isActive %}
+                <button type="button" class="btn btn-default btn-xs pull-right">
+                    <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+                        <span class="glyphicon glyphicon-edit" title="Edytuj"> Edytuj</span>
+                    </a>
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-default btn-xs pull-right">
+                    <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
+                        <span class="glyphicon glyphicon-list" title="Typy"> Typy</span>
+                    </a>
+                </button>
+            {% endif %}
         {% else %}
             Dołącz do nas
         {% endif %}

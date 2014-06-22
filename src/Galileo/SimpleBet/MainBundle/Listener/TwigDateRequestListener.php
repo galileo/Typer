@@ -14,6 +14,6 @@ class TwigDateRequestListener
     }
 
     public function onKernelRequest(GetResponseEvent $event) {
-        $this->twig->getExtension('core')->setDateFormat('Y-m-d H:i', '%d days');
+        $this->twig->getExtension('core')->setDateFormat('Y-m-d \g\o\d\z.H:i', '%d days');
     }
 }

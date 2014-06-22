@@ -1,9 +1,15 @@
-<table class="table table-condensed">
+<table class="table table-condensed table-striped">
     {% for game in games %}
-        <tr {% if currentGame is defined and currentGame.equals(game) %}class="selected"{% endif %}>
+        <tr class="text-center">
             {% if showStage is defined and showStage %}
-                <td>{{ game.tournamentStage.name }}</td>
+            <td class="groupInfo">{{ game.tournamentStage.name }}</td>
             {% endif %}
+            <td colspan="4" class="gameDate">
+                {{ game.date|date }}
+                typowało: {{ (game.bets.count) }}
+            </td>
+        </tr>
+        <tr {% if currentGame is defined and currentGame.equals(game) %}class="selected"{% endif %}>
             {{ include('GalileoSimpleBetMainBundle:Game:defaultGameRowView.html.twig') }}
         </tr>
     {% endfor %}

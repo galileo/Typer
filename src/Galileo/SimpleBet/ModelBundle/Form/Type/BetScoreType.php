@@ -29,17 +29,15 @@ class BetScoreType extends AbstractType
     {
         $em = $this->entityManager;
 
-
         $builder
             ->add(
-                $builder->create('score', 'text', array('label' => 'Wpisz wynik np. 1:2 '))
+                $builder->create('score', 'text', array('label' => 'Wpisz wynik np. 1:2 ',
+                    'invalid_message' => 'Wynik wpisany w złym formacie poprawny to goleDomowe:goleWyjazdowe przykładowo: 2:1'))
                     ->addModelTransformer(
                         new ScoreTransformer($em)
                     )
             )
             ->add('save', 'submit', array('label' => 'Zapisz'));
-
-
     }
 
     /**
