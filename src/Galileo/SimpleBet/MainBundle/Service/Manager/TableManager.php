@@ -74,7 +74,7 @@ UNION(
 ) tabela
 JOIN gsbm_team t ON tabela.team_id = t.id
 GROUP BY team_id
-ORDER BY goals_scored DESC, goals_diff DESC, points DESC";
+ORDER BY points DESC, goals_diff DESC, goals_scored DESC";
 
         $stmt = $this->entityManager->getConnection()->prepare($sql);
         $stmt->bindValue('1', $tournamentStage->getId());

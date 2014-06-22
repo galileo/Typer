@@ -83,9 +83,15 @@ class TournamentController
         $tournament = $this->findOrFail($tournamentId);
         $games = $this->gameRepository->tournamentGames($tournament);
 
+        $previousGames = $this->gameRepository->getTournamentGames($tournament, 5, false, 'g.date', 'DESC');
+        $nextGames = $this->gameRepository->getTournamentGames($tournament, 5, true, 'g.date', 'ASC');
+
+
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:currentGames.html.twig', array(
             'tournament' => $tournament,
-            'games' => $games
+            'games' => $games,
+            'previous' => $previousGames,
+            'next' => $nextGames,
         ));
     }
 

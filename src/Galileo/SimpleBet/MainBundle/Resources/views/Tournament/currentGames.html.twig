@@ -1,8 +1,10 @@
 {% extends('GalileoSimpleBetMainBundle:Tournament:view.html.twig') %}
 
 {% block content %}
-    <h2>Mecze</h2>
-    {{ include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': games, 'showStage': true}) }}
+    <h2>Następne</h2>
+    {{ include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': next, 'showStage': true}) }}
+    <h2>Poprzednie</h2>
+    {{ include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': previous, 'showStage': true}) }}
 {% endblock %}
 
 {% block sidebar %}
