@@ -190,7 +190,7 @@ class BetController
     {
         $this->session->getFlashBag()->add(
             'success',
-            'Ustawiono nowy wynik'
+            'Ustawiono nowy wynik'omposer
         );
     }
 

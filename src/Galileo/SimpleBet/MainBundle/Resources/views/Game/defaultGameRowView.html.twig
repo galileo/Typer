@@ -5,19 +5,19 @@
     {% if app.user %}
         {% if game.availableForCurrentPlayer %}
             {% if game.isActive %}
-                <button type="button" class="btn btn-default btn-xs">
                     <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+                <button type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-edit"
                               title="Edytuj"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
-                    </a>
                 </button>
+                    </a>
             {% else %}
-                <button type="button" class="btn btn-{{ game.score|bet_label(game.yourBet)|raw }} btn-xs">
                     <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
+                <button type="button" class="btn btn-{{ game.score|bet_label(game.yourBet)|raw }} btn-xs">
                         <span class="glyphicon glyphicon-list"
                               title="Typy"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
-                    </a>
                 </button>
+                    </a>
             {% endif %}
         {% endif %}
     {% else %}
