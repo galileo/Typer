@@ -1,30 +1,29 @@
 <td class="text-right">
     {{ game.homeTeam }}
 </td>
-<td class="text-center">
-    {{ game.score|game_bet(game.yourBet)|raw }}
-</td>
-<td class="text-left">
-    {{ game.awayTeam }}
-</td>
-<td>
+<td class="text-center text-align-center">
     {% if app.user %}
         {% if game.availableForCurrentPlayer %}
             {% if game.isActive %}
-                <button type="button" class="btn btn-default btn-xs pull-right">
+                <button type="button" class="btn btn-default btn-xs">
                     <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
-                        <span class="glyphicon glyphicon-edit" title="Edytuj"> Edytuj</span>
+                        <span class="glyphicon glyphicon-edit"
+                              title="Edytuj"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
                     </a>
                 </button>
             {% else %}
-                <button type="button" class="btn btn-default btn-xs pull-right">
+                <button type="button" class="btn btn-{{ game.score|bet_label(game.yourBet)|raw }} btn-xs">
                     <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
-                        <span class="glyphicon glyphicon-list" title="Typy"> Typy</span>
+                        <span class="glyphicon glyphicon-list"
+                              title="Typy"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
                     </a>
                 </button>
             {% endif %}
-        {% else %}
-            Dołącz do nas
         {% endif %}
+    {% else %}
+        {{ game.score }}
     {% endif %}
+</td>
+<td class="text-left">
+    {{ game.awayTeam }}
 </td>

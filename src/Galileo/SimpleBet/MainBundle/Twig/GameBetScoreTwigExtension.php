@@ -15,8 +15,19 @@ class GameBetScoreTwigExtension extends \Twig_Extension
     {
         return array(
             new \Twig_SimpleFilter('game_bet', array($this, 'score')),
+            new \Twig_SimpleFilter('bet_label', array($this, 'label')),
             new \Twig_SimpleFilter('bet_point', array($this, 'points'))
         );
+    }
+
+    public function label(Score $gameScore = null,  Bet $bet = null)
+    {
+        if (null === $gameScore || null === $bet)
+        {
+            return 'default';
+        }
+
+        return $this->getLabel($gameScore, $bet);
     }
 
     public function score(Score $gameScore = null,  Bet $bet = null)
@@ -26,29 +37,12 @@ class GameBetScoreTwigExtension extends \Twig_Extension
             {
                 return '?:?';
             }
-            return $gameScore;
         }
 
         if (null === $gameScore) {
             return $bet->getScore();
         }
-
-        $compare = new SimpleScoreCompare();
-
-        $template = $this->labelTemplate;
-
-        switch ($compare->compare($gameScore, $bet->getScore())) {
-            case ScoreCompareInterface::PERFECT:
-                $label = 'success';
-                break;
-            case ScoreCompareInterface::GOOD:
-                $label = 'warning';
-                break;
-            default:
-                $label = 'danger';
-        }
-
-        return sprintf($template, $label, $bet->getScore(), $gameScore);
+        return $gameScore;
     }
 
     public function points(Bet $bet)
@@ -71,5 +65,28 @@ class GameBetScoreTwigExtension extends \Twig_Extension
     public function getName()
     {
         return 'gsbm_game_bet_extension';
+    }
+
+    /**
+     * @param Score $gameScore
+     * @param Bet $bet
+     * @return string
+     */
+    protected function getLabel(Score $gameScore, Bet $bet)
+    {
+        $compare = new SimpleScoreCompare();
+
+        switch ($compare->compare($gameScore, $bet->getScore())) {
+            case ScoreCompareInterface::PERFECT:
+                $label = 'success';
+                break;
+            case ScoreCompareInterface::GOOD:
+                $label = 'warning';
+                break;
+            default:
+                $label = 'danger';
+                return $label;
+        }
+        return $label;
     }
 }

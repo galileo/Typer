@@ -122,6 +122,11 @@ class BetController
         if ($form->isValid()) {
             $this->entityManager->persist($bet);
             $this->entityManager->flush();
+            $this->setBetChanged();
+
+            return $this->redirect(
+                $this->gameUrl($gameId, $tournament->getId(), $tournamentStage->getId())
+            );
         }
 
         return $this->templating->renderResponse(
@@ -178,6 +183,14 @@ class BetController
                 'stageId' => $stageId,
                 'gameId' => $gameId,
             )
+        );
+    }
+
+    protected function setBetChanged()
+    {
+        $this->session->getFlashBag()->add(
+            'success',
+            'Ustawiono nowy wynik'
         );
     }
 
