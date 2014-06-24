@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "php": "~5.5.13",
+        "php": "~5.5.12",
         "ext-intl": "*",
         "symfony/symfony": "2.4.*",
         "doctrine/orm": "~2.2,>=2.2.3",
