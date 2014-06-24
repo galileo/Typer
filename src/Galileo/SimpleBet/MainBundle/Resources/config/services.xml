@@ -10,5 +10,6 @@
         <import resource="services/listeners.xml"/>
         <import resource="services/form.types.xml"/>
         <import resource="services/extensions.xml"/>
+        <import resource="services/providers.xml"/>
     </imports>
 </container>

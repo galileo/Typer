@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityRepository;
 use Exception;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
 use Galileo\SimpleBet\MainBundle\Service\Manager\PlayerToTournamentManagerInterface;
+use Galileo\SimpleBet\MainBundle\Service\Provider\PointsProviderInterface;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Galileo\SimpleBet\ModelBundle\Entity\PlayerToTournament;
 use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
@@ -60,13 +61,19 @@ class PlayerController
      */
     protected $playerRepository;
 
+    /**
+     * @var PointsProviderInterface
+     */
+    protected $todayPointsProvider;
+
     function __construct(CurrentPlayerManager $currentPlayerManager,
                          EntityRepository $tournamentRepository,
                          EntityRepository $playerRepository,
                          PlayerToTournamentManagerInterface $playerToTournamentManager,
                          EngineInterface $templating,
                          Router $router,
-                         Session $session
+                         Session $session,
+                         PointsProviderInterface $pointsProviderInterface
     )
     {
         $this->tournamentRepository = $tournamentRepository;
@@ -77,6 +84,7 @@ class PlayerController
 
         $this->player = $currentPlayerManager->getCurrentPlayer();
         $this->playerRepository = $playerRepository;
+        $this->todayPointsProvider = $pointsProviderInterface;
     }
 
     /**
@@ -130,7 +138,10 @@ class PlayerController
         $playerStats = $this->playerRepository->tournamentPlayerStats($tournament, $limit);
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Player:playerStatsTable.html.twig',
-            array('playerStats' => $playerStats)
+            array(
+                'playerStats' => $playerStats,
+                'todayPoints' => $this->todayPointsProvider
+            )
         );
     }
 

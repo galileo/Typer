@@ -42,6 +42,7 @@
             <argument type="service" id="templating" />
             <argument type="service" id="router" />
             <argument type="service" id="session" />
+            <argument type="service" id="gsbm.provider.points.today" />
         </service>
 
         <!-- Bet controller -->
