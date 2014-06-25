@@ -1,12 +1,15 @@
 {% if app.user %}
-    <div class="panel-body">
+    <table class="table table-striped table-condensed">
+        <tr></tr>
         {% for message in messages %}
-            <p>
-                    <span class="badge">{{ message.date|date }}</span>
-                    {{ label_primary(message.player|display_name) }}
-                {{ message.message }}
-            </p>
+            <tr>
+                <td class="groupInfo">{{ message.date|date }}</td>
+                <td class="groupInfo"><strong>{{ message.player|display_name }}</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ message.message }}</td>
+            </tr>
         {% endfor %}
-    </div>
+    </table>
     {{ form(form) }}
 {% endif %}
