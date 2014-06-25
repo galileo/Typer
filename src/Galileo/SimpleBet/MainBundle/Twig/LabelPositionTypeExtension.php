@@ -1,11 +1,9 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Twig;
 
-
-class LabelPositionTypeExtension extends \Twig_Extension{
-
+class LabelPositionTypeExtension extends \Twig_Extension
+{
     /**
      * Returns the name of the extension.
      *

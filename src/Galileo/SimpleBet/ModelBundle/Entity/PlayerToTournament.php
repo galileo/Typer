@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\ModelBundle\Entity;
-
 
 class PlayerToTournament
 {
@@ -25,7 +23,6 @@ class PlayerToTournament
      * @var boolean
      */
     protected $isActive;
-
 
     /**
      * @return int

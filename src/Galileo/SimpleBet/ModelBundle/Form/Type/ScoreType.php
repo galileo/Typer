@@ -40,7 +40,6 @@ class ScoreType extends AbstractType
         );
     }
 
-
     /**
      * {@inheritdoc}
      */

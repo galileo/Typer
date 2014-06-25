@@ -40,7 +40,6 @@ class Tournament
         $this->tournamentStages = new ArrayCollection();
     }
 
-
     public function __toString()
     {
         return $this->name;
@@ -78,8 +77,6 @@ class Tournament
         return $this->isActive;
     }
 
-
-
     /**
      * @return TournamentStage[]
      */
@@ -87,7 +84,6 @@ class Tournament
     {
         return $this->tournamentStages;
     }
-
 
     /**
      * Alias for getTournamentStages
@@ -105,7 +101,6 @@ class Tournament
     {
         return $this->playersToTournament;
     }
-
 
     /**
      * @param string $name

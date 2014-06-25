@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\ModelBundle\Repository;
-
 
 use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\ModelBundle\Entity\Bet;
@@ -85,7 +83,6 @@ class BetRepository extends EntityRepository
             ->setParameter(2, 1)
             ->setMaxResults($limit)
             ->getResult();
-
 
         return $objects;
     }

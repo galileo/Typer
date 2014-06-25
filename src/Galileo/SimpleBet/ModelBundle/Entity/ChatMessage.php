@@ -2,8 +2,8 @@
 
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
-class ChatMessage {
-
+class ChatMessage
+{
     protected $id;
     protected $message;
     protected $player;
@@ -90,5 +90,4 @@ class ChatMessage {
         $this->date = $date;
     }
 
-
-} 
+}

@@ -22,8 +22,7 @@ class GameBetScoreTwigExtension extends \Twig_Extension
 
     public function label(Score $gameScore = null,  Bet $bet = null)
     {
-        if (null === $gameScore || null === $bet)
-        {
+        if (null === $gameScore || null === $bet) {
             return 'default';
         }
 
@@ -33,8 +32,7 @@ class GameBetScoreTwigExtension extends \Twig_Extension
     public function score(Score $gameScore = null,  Bet $bet = null)
     {
         if (null === $bet) {
-            if (null == $gameScore)
-            {
+            if (null == $gameScore) {
                 return '?:?';
             }
         }
@@ -42,12 +40,13 @@ class GameBetScoreTwigExtension extends \Twig_Extension
         if (null === $gameScore) {
             return $bet->getScore();
         }
+
         return $gameScore;
     }
 
     public function points(Bet $bet)
     {
-        switch ($bet->getPointsEarned()){
+        switch ($bet->getPointsEarned()) {
             case 3:
                 $label = 'success';
                 break;
@@ -61,15 +60,14 @@ class GameBetScoreTwigExtension extends \Twig_Extension
         return sprintf($this->labelTemplate, $label, $bet->getPointsEarned(), $bet->getPointsEarned());
     }
 
-
     public function getName()
     {
         return 'gsbm_game_bet_extension';
     }
 
     /**
-     * @param Score $gameScore
-     * @param Bet $bet
+     * @param  Score  $gameScore
+     * @param  Bet    $bet
      * @return string
      */
     protected function getLabel(Score $gameScore, Bet $bet)
@@ -85,8 +83,10 @@ class GameBetScoreTwigExtension extends \Twig_Extension
                 break;
             default:
                 $label = 'danger';
+
                 return $label;
         }
+
         return $label;
     }
 }

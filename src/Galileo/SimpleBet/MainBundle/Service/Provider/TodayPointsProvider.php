@@ -15,11 +15,10 @@ class TodayPointsProvider implements PointsProviderInterface
      */
     protected $entityManager;
 
-    function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
-
 
     /**
      * {@inheritdoc}

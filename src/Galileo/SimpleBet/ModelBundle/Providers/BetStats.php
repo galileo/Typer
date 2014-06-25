@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\ModelBundle\Providers;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 
@@ -23,13 +21,12 @@ class BetStats
      */
     protected $player;
 
-
     /**
      * @param Player $player
      *
      * @return \Galileo\SimpleBet\ModelBundle\Providers\BetStats|\Galileo\SimpleBet\ModelBundle\Entity\Player
      */
-    function __construct(Player $player)
+    public function __construct(Player $player)
     {
         $this->player = $player;
     }
@@ -41,7 +38,6 @@ class BetStats
     {
         return $this->player;
     }
-
 
     /**
      * @return int

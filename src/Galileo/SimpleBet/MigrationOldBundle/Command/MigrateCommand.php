@@ -1,7 +1,6 @@
 <?php
 namespace Galileo\SimpleBet\MigrationOldBundle\Command;
 
-
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand as Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

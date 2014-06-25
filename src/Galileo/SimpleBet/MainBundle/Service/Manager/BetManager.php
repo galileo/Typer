@@ -18,15 +18,14 @@ class BetManager implements BetManagerInterface
      */
     protected $betRepository;
 
-    function __construct(EntityRepository $betRepository)
+    public function __construct(EntityRepository $betRepository)
     {
         $this->betRepository = $betRepository;
     }
 
-
     /**
      * @param Player $player
-     * @param Game $game
+     * @param Game   $game
      *
      * @return Bet
      */
@@ -50,7 +49,7 @@ class BetManager implements BetManagerInterface
 
     /**
      * @param Player $player
-     * @param Game $game
+     * @param Game   $game
      *
      * @throws NotFoundResourceException
      *
@@ -68,7 +67,7 @@ class BetManager implements BetManagerInterface
 
     /**
      * @param Player $player
-     * @param Game $game
+     * @param Game   $game
      *
      * @return Bet
      */

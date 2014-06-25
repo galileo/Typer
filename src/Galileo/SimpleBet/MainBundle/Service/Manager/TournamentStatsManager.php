@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
 
@@ -19,4 +17,4 @@ class TournamentStatsManager
         $tournamentStats = new TournamentStats();
 //        $this->tournamentRepository->
     }
-} 
+}

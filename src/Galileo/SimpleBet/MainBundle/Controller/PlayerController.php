@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Controller;
-
 
 use Doctrine\ORM\EntityRepository;
 use Exception;
@@ -66,7 +64,7 @@ class PlayerController
      */
     protected $todayPointsProvider;
 
-    function __construct(CurrentPlayerManager $currentPlayerManager,
+    public function __construct(CurrentPlayerManager $currentPlayerManager,
                          EntityRepository $tournamentRepository,
                          EntityRepository $playerRepository,
                          PlayerToTournamentManagerInterface $playerToTournamentManager,
@@ -236,10 +234,10 @@ class PlayerController
      */
     protected function getPlayer()
     {
-        if (!$this->player instanceof Player){
+        if (!$this->player instanceof Player) {
             throw new AccessDeniedException('Please log in.');
         }
 
         return $this->player;
     }
-} 
+}

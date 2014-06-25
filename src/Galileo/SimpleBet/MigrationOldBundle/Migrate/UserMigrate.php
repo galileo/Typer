@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,7 +16,6 @@ class UserMigrate
      */
     private $em;
 
-
     private $user = array();
     /**
      * @var null
@@ -32,7 +29,7 @@ class UserMigrate
         }
     }
 
-    function __construct($mysqlLink, $em, \Symfony\Component\Console\Output\OutputInterface $output = null)
+    public function __construct($mysqlLink, $em, \Symfony\Component\Console\Output\OutputInterface $output = null)
     {
         $this->mysqlLink = $mysqlLink;
         $this->em = $em;

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Controller;
-
 
 use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\MainBundle\Service\Manager\TableManagerInterface;
@@ -100,4 +98,4 @@ class TournamentStageController
         return $game;
     }
 
-} 
+}

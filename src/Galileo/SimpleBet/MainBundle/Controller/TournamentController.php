@@ -28,8 +28,7 @@ class TournamentController
      */
     protected $gameRepository;
 
-
-    function __construct(EntityRepository $tournamentRepository, GameRepository $gameRepository, EngineInterface $templating)
+    public function __construct(EntityRepository $tournamentRepository, GameRepository $gameRepository, EngineInterface $templating)
     {
         $this->tournamentRepository = $tournamentRepository;
         $this->templating = $templating;
@@ -86,7 +85,6 @@ class TournamentController
         $previousGames = $this->gameRepository->getTournamentGames($tournament, 5, false, 'g.date', 'DESC');
         $nextGames = $this->gameRepository->getTournamentGames($tournament, 5, true, 'g.date', 'ASC');
 
-
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Tournament:currentGames.html.twig', array(
             'tournament' => $tournament,
             'games' => $games,
@@ -129,4 +127,4 @@ class TournamentController
 
         return $tournament;
     }
-} 
+}

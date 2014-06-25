@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Listener\Game;
-
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Galileo\SimpleBet\MainBundle\Service\Manager\BetManagerInterface;
@@ -36,10 +34,9 @@ class CalculateBetPointsListener
 
     private function calculateGame(Game $game)
     {
-        foreach ($game->getBets() as $bet)
-        {
+        foreach ($game->getBets() as $bet) {
             var_dump($bet);
 
         }
     }
-} 
+}

@@ -133,10 +133,9 @@ class Bet
         $this->isChangeAble = $isChangeAble;
     }
 
-
     public function __toString()
     {
         return $this->score ? $this->score->getHome() . ':' . $this->score->getAway() : '-:-';
     }
 
-} 
+}

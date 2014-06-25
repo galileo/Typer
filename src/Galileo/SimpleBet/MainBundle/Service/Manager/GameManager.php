@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 
 use Galileo\SimpleBet\ModelBundle\Entity\Game;

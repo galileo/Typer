@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\TournamentStage;
 
-interface TableManagerInterface {
-
+interface TableManagerInterface
+{
     public function generateHomeTable(TournamentStage $tournamentStage);
 
     public function generateAwayTable(TournamentStage $tournamentStage);

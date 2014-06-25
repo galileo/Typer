@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
 
 use Galileo\SimpleBet\ModelBundle\Entity\Team;
@@ -14,10 +13,9 @@ class TeamMigrate extends Write
      */
     private $mysqlLink;
 
-
     protected $teams = array();
 
-    function __construct($mysqlLink, $em, \Symfony\Component\Console\Output\OutputInterface $output = null)
+    public function __construct($mysqlLink, $em, \Symfony\Component\Console\Output\OutputInterface $output = null)
     {
         $this->mysqlLink = $mysqlLink;
         $this->em = $em;
@@ -62,7 +60,8 @@ class TeamMigrate extends Write
         return $this->teams[$id];
     }
 
-    public function getTeamObject($id){
+    public function getTeamObject($id)
+    {
         return $this->teamObjects[$id];
     }
 

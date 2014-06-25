@@ -2,6 +2,6 @@
 
 namespace Galileo\SimpleBet\MainBundle\Service\Provider;
 
-interface PointsProviderInterface extends PlayerPointsProviderInterface{
-
-} 
+interface PointsProviderInterface extends PlayerPointsProviderInterface
+{
+}

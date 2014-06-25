@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
-
 
 use Doctrine\ORM\EntityManager;
 use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
@@ -65,4 +63,4 @@ class MigrateOldDatabase
         $this->em->commit();
 
     }
-} 
+}

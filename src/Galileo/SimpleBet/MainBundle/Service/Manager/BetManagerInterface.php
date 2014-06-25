@@ -10,7 +10,7 @@ interface BetManagerInterface
 {
     /**
      * @param Player $player
-     * @param Game $game
+     * @param Game   $game
      *
      * @return Bet
      */
@@ -18,7 +18,7 @@ interface BetManagerInterface
 
     /**
      * @param Player $player
-     * @param Game $game
+     * @param Game   $game
      *
      * @throws ResourceNotFoundException
      *
@@ -28,7 +28,7 @@ interface BetManagerInterface
 
     /**
      * @param Player $player
-     * @param Game $game
+     * @param Game   $game
      *
      * @return Bet
      */

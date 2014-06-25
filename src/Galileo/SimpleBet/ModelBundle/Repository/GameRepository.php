@@ -93,4 +93,4 @@ class GameRepository extends EntityRepository
 
         return $games;
     }
-} 
+}

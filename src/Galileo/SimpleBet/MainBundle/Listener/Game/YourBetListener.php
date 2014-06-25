@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Listener\Game;
-
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Galileo\SimpleBet\MainBundle\Service\Manager\BetManagerInterface;
@@ -56,4 +54,4 @@ class YourBetListener
         }
 
     }
-} 
+}

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
-
 
 use Doctrine\ORM\EntityManager;
 use Galileo\SimpleBet\ModelBundle\Entity\TournamentStage;

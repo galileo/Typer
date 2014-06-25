@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -25,12 +24,11 @@ class Player extends User
 
     protected $championship;
 
-    function __construct()
+    public function __construct()
     {
         $this->bets = new ArrayCollection();
         parent::__construct();
     }
-
 
     /**
      * @return mixed
@@ -106,11 +104,12 @@ class Player extends User
 
     /**
      * @param mixed $championship
-     * @return $this
+     *                            @return $this
      */
     public function setChampionship($championship)
     {
         $this->championship = $championship;
+
         return $this;
     }
 
@@ -121,6 +120,5 @@ class Player extends User
     {
         return $this->championship;
     }
-
 
 }

@@ -1,20 +1,17 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Listener\Bet;
-
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Galileo\SimpleBet\ModelBundle\Entity\Bet;
 
-class PlayerToTournamentListener {
-
+class PlayerToTournamentListener
+{
     public function postLoad(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
 
-        if ($entity instanceof Bet)
-        {
+        if ($entity instanceof Bet) {
             $this->updateBetChangAble($entity);
         }
     }
@@ -23,4 +20,4 @@ class PlayerToTournamentListener {
     {
         $entity->setIsChangeAble(false);
     }
-} 
+}

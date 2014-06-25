@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Service\Comparer;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\Score;
 
-class SimpleScoreCompare implements ScoreCompareInterface
+class SimpleScoreComparer implements ScoreCompareInterface
 {
 
     /**
@@ -20,8 +18,8 @@ class SimpleScoreCompare implements ScoreCompareInterface
     protected $betScore;
 
     /**
-     * @param Score $gameScore
-     * @param Score $betScore
+     * @param  Score $gameScore
+     * @param  Score $betScore
      * @return int
      */
     public function compare(Score $gameScore, Score $betScore)
@@ -31,7 +29,7 @@ class SimpleScoreCompare implements ScoreCompareInterface
 
         if ($this->isPerfect()) {
             return ScoreCompareInterface::PERFECT;
-        } else if ($this->isGood()) {
+        } elseif ($this->isGood()) {
             return ScoreCompareInterface::GOOD;
         }
 
@@ -66,9 +64,8 @@ class SimpleScoreCompare implements ScoreCompareInterface
         return false;
     }
 
-
     /**
-     * @param Score $gameScore
+     * @param  Score $gameScore
      * @return bool
      */
     protected function homeWins(Score $gameScore)
@@ -81,7 +78,7 @@ class SimpleScoreCompare implements ScoreCompareInterface
     }
 
     /**
-     * @param Score $gameScore
+     * @param  Score $gameScore
      * @return bool
      */
     protected function awayWins(Score $gameScore)
@@ -94,7 +91,7 @@ class SimpleScoreCompare implements ScoreCompareInterface
     }
 
     /**
-     * @param Score $gameScore
+     * @param  Score $gameScore
      * @return bool
      */
     protected function isDraw(Score $gameScore)

@@ -15,7 +15,7 @@ class BetStatsHydrator extends AbstractHydrator
     {
         $result = array();
         $cache  = array();
-        foreach($this->_stmt->fetchAll(PDO::FETCH_BOTH) as $row) {
+        foreach ($this->_stmt->fetchAll(PDO::FETCH_BOTH) as $row) {
             $this->hydrateRowData($row, $cache, $result);
         }
 
@@ -24,7 +24,7 @@ class BetStatsHydrator extends AbstractHydrator
 
     protected function hydrateRowData(array $row, array &$cache, array &$result)
     {
-        if(count($row) == 0) {
+        if (count($row) == 0) {
             return false;
         }
 
@@ -39,7 +39,6 @@ class BetStatsHydrator extends AbstractHydrator
         $newBetStats->setTotalBets($row[21]);
         $newBetStats->setTotalPoints($row[22]);
 
-
         $result[$row[0]] = $newBetStats;
 
         $keys = array_keys($row);
@@ -49,7 +48,7 @@ class BetStatsHydrator extends AbstractHydrator
 
         $value = false;
 
-        if(count($row) == 2) {
+        if (count($row) == 2) {
             // If only one more field assume that this is the value field
             $value = $row[$keys[1]];
         } else {

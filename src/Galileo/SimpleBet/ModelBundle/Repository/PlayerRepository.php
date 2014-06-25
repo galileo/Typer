@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Galileo\SimpleBet\ModelBundle\Repository;
 
 use Doctrine\Common\Collections\ArrayCollection;

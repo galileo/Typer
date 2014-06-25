@@ -5,16 +5,15 @@ namespace Galileo\SimpleBet\MainBundle\Service\Manager;
 use Galileo\SimpleBet\ModelBundle\Entity\Player;
 use Galileo\SimpleBet\ModelBundle\Entity\PlayerToTournament;
 
-class TournamentManager {
-
-
+class TournamentManager
+{
     /**
      * @var TournamentProvider
      */
     protected $tournamentProvider;
 
-    public function __construct(TournamentProvider $tournamentProvider) {
-
+    public function __construct(TournamentProvider $tournamentProvider)
+    {
         $this->tournamentProvider = $tournamentProvider;
     }
 
@@ -33,4 +32,4 @@ class TournamentManager {
 
         return $playerToTournament;
     }
-} 
+}

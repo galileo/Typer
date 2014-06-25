@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Twig;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\Score;
 
-class ScoreTwigExtension extends \Twig_Extension{
-
+class ScoreTwigExtension extends \Twig_Extension
+{
     public function getFilters()
     {
         return array(
@@ -15,20 +13,19 @@ class ScoreTwigExtension extends \Twig_Extension{
         );
     }
 
-    public function process1X2(Score $score){
+    public function process1X2(Score $score)
+    {
         if ($score->getHome() > $score->getAway()) {
             return "1";
-        }
-        else if ($score->getHome() == $score->getAway()) {
+        } elseif ($score->getHome() == $score->getAway()) {
             return "X";
         }
 
         return "2";
     }
 
-
     public function getName()
     {
         return 'gsbm_score_extension';
     }
-} 
+}

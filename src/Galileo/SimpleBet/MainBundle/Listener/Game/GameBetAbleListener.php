@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Listener\Game;
-
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Galileo\SimpleBet\MainBundle\Service\Manager\GameManagerInterface;
@@ -27,7 +25,6 @@ class GameBetAbleListener
         $this->container = $container;
     }
 
-
     protected function initialize()
     {
         $this->gameManager = $this->container->get('gsbm.manager.game');
@@ -35,7 +32,6 @@ class GameBetAbleListener
 
     public function postLoad(LifecycleEventArgs $event)
     {
-
 
         $game = $event->getEntity();
 
@@ -60,10 +56,9 @@ class GameBetAbleListener
             }
         }
 
-
         if ($this->gameManager->isAvailableForPlayer($game)) {
             $game->markAsAvailableForCurrentPlayer();
         }
     }
 
-} 
+}

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Statistics;
-
 
 class BetStatistics
 {
@@ -81,7 +79,6 @@ class BetStatistics
         return $this;
     }
 
-
     public function getAll()
     {
         return $this->bad + $this->good + $this->perfect;
@@ -125,7 +122,8 @@ class BetStatistics
         if ($this->getAll()) {
             return 100 - $this->getGoodPercentage() - $this->getPerfectPercentage();
         }
+
         return 0;
     }
 
-} 
+}

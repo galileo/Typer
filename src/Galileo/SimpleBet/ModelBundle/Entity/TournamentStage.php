@@ -72,7 +72,6 @@ class TournamentStage
         $this->tournament = $tournament;
     }
 
-
     public function setTableProvider()
     {
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\Bet;
 use Galileo\SimpleBet\ModelBundle\Entity\Game;
@@ -21,7 +19,7 @@ class MigrateBets extends Write
      */
     private $user;
 
-    function __construct($link, $em, $user)
+    public function __construct($link, $em, $user)
     {
         $this->link = $link;
         $this->em = $em;
@@ -38,8 +36,7 @@ class MigrateBets extends Write
         $stmt = mysqli_query($this->link, $sql);
         $bets = mysqli_fetch_all($stmt, MYSQLI_ASSOC);
 
-        foreach ($bets as $row)
-        {
+        foreach ($bets as $row) {
             $score = new Score();
             $score->setScoreType('simple');
             $score->setHome($row['gole1']);

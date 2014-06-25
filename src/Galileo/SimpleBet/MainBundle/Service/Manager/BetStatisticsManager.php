@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
-
 
 use Galileo\SimpleBet\MainBundle\Statistics\BetStatistics;
 use Galileo\SimpleBet\ModelBundle\Entity\Bet;
@@ -65,7 +63,6 @@ class BetStatisticsManager implements BetStatisticsManagerInterface
 
         return $playerAndBets;
     }
-
 
     /**
      * @param Bet[] $bets

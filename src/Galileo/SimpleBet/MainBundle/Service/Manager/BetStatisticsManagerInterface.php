@@ -16,7 +16,7 @@ interface BetStatisticsManagerInterface
     public function tournamentBetAccuracyStatistics($tournamentId);
 
     /**
-     * @param Player $player
+     * @param Player     $player
      * @param Tournament $tournament
      *
      * @return BetStatistics

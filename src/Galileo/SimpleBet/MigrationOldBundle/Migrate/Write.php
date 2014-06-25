@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
-
 
 class Write
 {
@@ -12,12 +10,10 @@ class Write
      */
     protected $output = null;
 
-
     /**
      * @var \Doctrine\ORM\EntityManager
      */
     protected $em;
-
 
     public function write($message)
     {
@@ -37,4 +33,4 @@ class Write
 
     }
 
-} 
+}

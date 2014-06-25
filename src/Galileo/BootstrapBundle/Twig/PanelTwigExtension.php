@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\BootstrapBundle\Twig;
-
 
 use Twig_Function_Method;
 
@@ -38,7 +36,6 @@ class PanelTwigExtension extends \Twig_Extension
 </div>
 PANEL;
         $content = $this->processContent($content, $options);
-
 
         return sprintf($template, $title, $content);
     }

@@ -52,7 +52,6 @@ class BetScoreType extends AbstractType
             ));
     }
 
-
     /**
      * {@inheritdoc}
      */

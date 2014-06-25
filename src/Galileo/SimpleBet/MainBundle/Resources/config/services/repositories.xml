@@ -49,7 +49,7 @@
                  >
             <argument>GalileoSimpleBetModelBundle:Bet</argument>
         </service>
-        
+
         <!-- Player repository -->
         <service id="gsbm.repository.player"
                  class="Doctrine\ORM\EntityRepository"

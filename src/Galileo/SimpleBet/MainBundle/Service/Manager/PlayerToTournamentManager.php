@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Service\Manager;
-
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -23,15 +21,14 @@ class PlayerToTournamentManager implements PlayerToTournamentManagerInterface
      */
     protected $playerToTournamentRepository;
 
-    function __construct(EntityManager $entityManager, EntityRepository $playerToTournamentRepository)
+    public function __construct(EntityManager $entityManager, EntityRepository $playerToTournamentRepository)
     {
         $this->entityManager = $entityManager;
         $this->playerToTournamentRepository = $playerToTournamentRepository;
     }
 
-
     /**
-     * @param \Galileo\SimpleBet\ModelBundle\Entity\Player $player
+     * @param \Galileo\SimpleBet\ModelBundle\Entity\Player     $player
      * @param \Galileo\SimpleBet\ModelBundle\Entity\Tournament $tournament
      *
      * @throws \Exception
@@ -60,8 +57,8 @@ class PlayerToTournamentManager implements PlayerToTournamentManagerInterface
     }
 
     /**
-     * @param Player $player
-     * @param Tournament $tournament
+     * @param  Player     $player
+     * @param  Tournament $tournament
      * @return boolean
      */
     public function checkPlayerInTournament(Player $player, Tournament $tournament)
@@ -72,8 +69,8 @@ class PlayerToTournamentManager implements PlayerToTournamentManagerInterface
     }
 
     /**
-     * @param Player $player
-     * @param Tournament $tournament
+     * @param  Player     $player
+     * @param  Tournament $tournament
      * @return array
      */
     public function getPlayerToTournament(Player $player, Tournament $tournament)

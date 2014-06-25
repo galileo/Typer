@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Controller;
-
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
@@ -51,7 +49,7 @@ class ChatMessageController
      */
     protected $entityManager;
 
-    function __construct(EngineInterface $templating,
+    public function __construct(EngineInterface $templating,
                          EntityRepository $tournamentRepository,
                          EntityRepository $chatMessageRepository,
                          CurrentPlayerManager $playerManager,
@@ -81,7 +79,6 @@ class ChatMessageController
 
         $messages = $this->chatMessageRepository->findBy(array('tournament' => $tournament), array('id' => 'DESC'));
 
-
         $message = new ChatMessage();
         $form = $this->formFactory
             ->createBuilder('form', $message)
@@ -89,7 +86,6 @@ class ChatMessageController
             ->add('message', 'text', array('label' => 'Wiadomość'))
             ->add('dodaj', 'submit')
             ->getForm();
-
 
         return $this->templating->renderResponse('GalileoSimpleBetMainBundle:ChatMessage:viewTournamentChat.html.twig',
             array('messages' => $messages, 'form' => $form->createView())
@@ -106,7 +102,6 @@ class ChatMessageController
             ->add('dodaj', 'submit')
             ->getForm();
 
-
     }
 
     public function createChatMessageAction(Request $request, $tournamentId)
@@ -115,7 +110,6 @@ class ChatMessageController
         if (null === $tournament) {
             throw new NotFoundHttpException(sprintf('Tournament %d not found.', $tournamentId));
         }
-
 
         $message = new ChatMessage();
         $message->setDate(new \DateTime());
@@ -149,6 +143,5 @@ class ChatMessageController
             )
         );
     }
-
 
 }

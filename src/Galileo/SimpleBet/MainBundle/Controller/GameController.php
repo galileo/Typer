@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Controller;
-
 
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -10,7 +8,6 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class GameController
 {
-
 
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -22,10 +19,9 @@ class GameController
      */
     protected $templating;
 
-    function __construct(EntityManager $entityManager, EngineInterface $templating)
+    public function __construct(EntityManager $entityManager, EngineInterface $templating)
     {
     }
-
 
     /**
      * @param $gameId
@@ -44,4 +40,4 @@ class GameController
 
         return $game;
     }
-} 
+}

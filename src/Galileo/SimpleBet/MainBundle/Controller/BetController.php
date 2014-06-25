@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MainBundle\Controller;
-
 
 use Doctrine\ORM\EntityRepository;
 use Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager;
@@ -201,4 +199,4 @@ class BetController
             'Zmiana lub dodanie typu nie jest możliwa'
         );
     }
-} 
+}

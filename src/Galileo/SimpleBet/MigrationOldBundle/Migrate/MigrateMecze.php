@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Galileo\SimpleBet\MigrationOldBundle\Migrate;
-
 
 use Galileo\SimpleBet\ModelBundle\Entity\Game;
 use Galileo\SimpleBet\ModelBundle\Entity\Score;
@@ -23,7 +21,7 @@ class MigrateMecze extends Write
      */
     private $teamMigrate;
 
-    function __construct($link, $em, OutputInterface $output, UserMigrate $user, TeamMigrate $teamMigrate)
+    public function __construct($link, $em, OutputInterface $output, UserMigrate $user, TeamMigrate $teamMigrate)
     {
         $this->link = $link;
         $this->em = $em;

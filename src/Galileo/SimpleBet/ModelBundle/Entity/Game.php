@@ -43,7 +43,6 @@ class Game
         $this->date = new DateTime();
     }
 
-
     /**
      * @return Team
      */
