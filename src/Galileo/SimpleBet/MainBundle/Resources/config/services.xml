@@ -4,6 +4,7 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <imports>
+
         <import resource="services/controllers.xml"/>
         <import resource="services/repositories.xml"/>
         <import resource="services/managers.xml"/>
@@ -11,5 +12,24 @@
         <import resource="services/form.types.xml"/>
         <import resource="services/extensions.xml"/>
         <import resource="services/providers.xml"/>
+        <import resource="services/models.xml"/>
+
     </imports>
+
+    <parameters>
+        <parameter key="gsbm.helper.entity.http_load.class">Galileo\SimpleBet\MainBundle\Service\Helper\HttpLoadHelper</parameter>
+    </parameters>
+
+    <services>
+
+        <!-- HELPERS -->
+
+        <!-- EntityLoad helper -->
+        <service id="gsbm.helper.entity.http_load" class="%gsbm.helper.entity.http_load.class%">
+            <argument type="service" id="gsbm.repository.player"/>
+            <argument type="service" id="gsbm.repository.tournament"/>
+            <argument type="service" id="gsbm.repository.game"/>
+        </service>
+
+    </services>
 </container>

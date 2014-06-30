@@ -3,6 +3,8 @@
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
 use Doctrine\ORM\EntityRepository;
+use Galileo\SimpleBet\MainBundle\Service\Factory\TournamentStagePlayerPointsFactory;
+use Galileo\SimpleBet\MainBundle\Service\Helper\HttpLoadHelper;
 use Galileo\SimpleBet\MainBundle\Service\Manager\BetStatisticsManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -25,15 +27,29 @@ class StatisticsController
      */
     protected $betStatisticsManager;
 
+    /**
+     * @var HttpLoadHelper
+     */
+    protected $httpLoadHelper;
+
+    /**
+     * @var TournamentStagePlayerPointsFactory
+     */
+    protected $stagePlayerPointsFactory;
+
     public function __construct(
+        HttpLoadHelper $httpLoadHelper,
         EngineInterface $templating,
         BetStatisticsManagerInterface $betStatisticsManager,
+        TournamentStagePlayerPointsFactory $stagePlayerPointsFactory,
         EntityRepository $tournamentRepository
     )
     {
+        $this->httpLoadHelper = $httpLoadHelper;
         $this->templating = $templating;
         $this->tournamentRepository = $tournamentRepository;
         $this->betStatisticsManager = $betStatisticsManager;
+        $this->stagePlayerPointsFactory = $stagePlayerPointsFactory;
     }
 
     public function getBetAccuracyStatsView($tournamentId)
@@ -46,7 +62,7 @@ class StatisticsController
         );
     }
 
-    public function playerTournamentAccuracyStatisticsView($tournamentId)
+    public function playerTournamentAccuracyStatisticsViewAction($tournamentId)
     {
         $tournament = $this->tournamentRepository->find($tournamentId);
 
@@ -64,7 +80,7 @@ class StatisticsController
 
     public function bestBetGamesAction($tournamentId)
     {
-        $tournament = $this->tournamentRepository->find($tournamentId);
+        $tournament = $this->httpLoadHelper->loadTournamentOrFail($tournamentId);
 
         $bestBettedGames = $this->betStatisticsManager->bestBettedGames($tournamentId, $limit = 5);
         $worstBettedGames = $this->betStatisticsManager->worstBettedGames($tournamentId, $limit = 5);
@@ -73,6 +89,18 @@ class StatisticsController
             array('tournament' => $tournament,
                 'bestBettedGames' => $bestBettedGames,
                 'worstBettedGames' => $worstBettedGames,
+            )
+        );
+    }
+
+    public function stagePlayerStatisticsAction($tournamentId)
+    {
+        $tournament = $this->httpLoadHelper->loadTournamentOrFail($tournamentId);
+
+        return $this->templating->renderResponse('GalileoSimpleBetMainBundle:Statistics:stagePlayerStatisticsView.html.twig',
+            array(
+                'tournament' => $tournament,
+                'pointFactory' => $this->stagePlayerPointsFactory
             )
         );
     }

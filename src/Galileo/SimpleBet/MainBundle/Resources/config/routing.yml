@@ -40,7 +40,11 @@ gsbm_bet_view:
 
 gsbm_player_tournament_bet_accuracy:
     pattern: /tournament/{tournamentId}/accuracy
-    defaults: { _controller: gsbm.controller.statistics:playerTournamentAccuracyStatisticsView }
+    defaults: { _controller: gsbm.controller.statistics:playerTournamentAccuracyStatisticsViewAction }
+
+gsbm_player_tournament_stage_player_points:
+    pattern: /tournament/{tournamentId}/stats/stages
+    defaults: { _controller: gsbm.controller.statistics:stagePlayerStatisticsAction }
 
 gsbm_player_add_message:
     pattern: /tournament/{tournamentId}/message/add

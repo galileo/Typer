@@ -65,8 +65,9 @@
     {% if app.user %}
         <div class="row">
             <div>
-                <div class="alert alert-danger text-center">
-                    Uwaga! Zmieniono sposób dodawania typów. Teraz wpisujemy wynik np. 2:3 zamist wpisywać w dwa pola.
+                <div class="alert alert-success text-center">
+                    Statystki kto ile zdobył w poszczególnej grupie <a href="{{ path('gsbm_player_tournament_stage_player_points', {'tournamentId': 4}) }}">tutaj</a>.
+                    Ktoś ma jakiś fajny pomysł na statystyki? Niech się wypowie.
                 </div>
             </div>
         </div>

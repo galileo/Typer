@@ -32,4 +32,6 @@ interface BetStatisticsManagerInterface
 
     public function bestBettedGames($tournamentId, $limit = null);
 
+    public function worstBettedGames($tournamentId, $limit = null);
+
 }

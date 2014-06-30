@@ -60,8 +60,10 @@
 
         <!-- Statistics controller -->
         <service id="gsbm.controller.statistics" class="%gsbm.controller.statistics.class%">
+            <argument type="service" id="gsbm.helper.entity.http_load" />
             <argument type="service" id="templating" />
             <argument type="service" id="gsbm.manager.bet_statistics" />
+            <argument type="service" id="gsbm.model.factory.point.tournament_stage" />
             <argument type="service" id="gsbm.repository.tournament" />
         </service>
 

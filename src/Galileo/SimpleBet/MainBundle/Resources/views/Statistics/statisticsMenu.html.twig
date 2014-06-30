@@ -1,0 +1,8 @@
+<ul class="nav nav-pills nav-stacked">
+    <li {% if app.request.get('_route') == 'gsbm_tournament_statistic_overview' %}class="active"{% endif %}>
+         <a href="{{ path('gsbm_tournament_statistic_overview', {'tournamentId': tournament.id}) }}">Top 5 - Mecze</a>
+    </li>
+    <li {% if app.request.get('_route') == 'gsbm_player_tournament_stage_player_points' %}class="active"{% endif %}>
+        <a href="{{ path('gsbm_player_tournament_stage_player_points', {'tournamentId': tournament.id}) }}">Zdobyte punkty</a>
+    </li>
+</ul>
