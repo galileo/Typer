@@ -34,3 +34,8 @@ build/
 .sass-cache/
 
 bin/
+
+# Node files
+web/vendor
+npm-debug.log
+node_modules/
