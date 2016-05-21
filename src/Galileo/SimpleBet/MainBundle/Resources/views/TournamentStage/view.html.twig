@@ -2,6 +2,9 @@
 
 {% block top %}
     {{ parent() }}
+
+    {{ render(controller('gsbm.controller.player:viewPlayerToTournamentAction', {'tournamentId': stage.tournament.id })) }}
+
     {{ panel('Najbliższe 24 godziny',render(controller('gsbm.controller.tournament:todayGamesAction', {'tournamentId': stage.tournament.id })), {'skipBody': true}) }}
 {% endblock %}
 {% block subtitle %}
