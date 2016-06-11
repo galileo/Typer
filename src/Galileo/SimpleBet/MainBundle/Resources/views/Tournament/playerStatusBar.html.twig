@@ -1,0 +1,10 @@
+<p>
+    {% if playerToTournament %}
+        {% if false == playerToTournament.isActive %}
+            <a class="btn btn-lg btn-warning disabled btn-block">Oczekujesz na akceptację</a>
+        {% endif %}
+    {% else %}
+        <a class="btn btn-lg btn-block btn-success"
+           href="{{ path('gsbm_player_join_tournament', {'tournamentId': tournament.id }) }}">Dołącz do turnieju</a>
+    {% endif %}
+</p>

@@ -1,0 +1,17 @@
+<table class="table table-condensed table-hover table-striped">
+    {% for playerPointModel in collection %}
+        {% if loop.index == 1 %}
+        <tr>
+            <td colspan="4" class="text-right">Skuteczność lidera etapu:
+                <span class="label label-default">{{ (playerPointModel.points * 100 / (playerPointModel.entries * 3))|round(2) }}%</span>
+            </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td style="width: 5%;">{{ loop.index }}.</td>
+            <td style="width: 75%;">{{ playerPointModel.player|championship|raw }} {{ playerPointModel.player|display_name }}</td>
+            <td style="width: 10%;">{{ playerPointModel.entries }}</td>
+            <td style="width: 10%;">{{ label_success(playerPointModel.points) }}</td>
+        </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,15 @@
+{% extends('GalileoSimpleBetMainBundle:Statistics:statisticsBaseView.html.twig') %}
+
+{% block content %}
+
+    <ol class="breadcrumb">
+        <li><a href="#">{{ tournament.name }}</a></li>
+        <li>Poszczególne fazy</li>
+        <li>Zdobyte punkty</li>
+    </ol>
+
+    {% for stage in tournament.stages %}
+        {{ panel(stage.name, include('GalileoSimpleBetMainBundle:Player:playerPoints.html.twig', {'collection': pointFactory.buildCollection(stage)}), {'skipBody': true}) }}
+    {% endfor %}
+
+{% endblock %}

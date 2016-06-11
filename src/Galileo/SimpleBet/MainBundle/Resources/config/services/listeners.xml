@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="gsbm.listener.entity.player_to_tournament" class="Galileo\SimpleBet\MainBundle\Listener\Bet\PlayerToTournamentListener">
+            <tag name="doctrine.event_listener" event="postLoad" />
+        </service>
+
+        <!-- Game listener - add bet able information -->
+        <service id="gsbm.listener.entity.game_bet_able" class="Galileo\SimpleBet\MainBundle\Listener\Game\GameBetAbleListener">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_listener" event="postLoad" />
+        </service>
+
+        <!-- Game listener - add current user bet into entity -->
+        <service id="gsbm.listener.entity.game.add_you_bet" class="Galileo\SimpleBet\MainBundle\Listener\Game\YourBetListener">
+            <argument type="service" id="service_container" />
+            <tag name="doctrine.event_listener" event="postLoad" />
+        </service>
+
+        <!-- Twig listener - change the default date format -->
+        <service id="gsbm.listener.twig.date" class="Galileo\SimpleBet\MainBundle\Listener\TwigDateRequestListener">
+            <argument type="service" id="twig" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+        </service>
+
+    </services>
+</container>

@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% block subject %}
+{% autoescape false %}
+Typer: Resetowanie hasła!
+{% endautoescape %}
+{% endblock %}
+{% block body_text %}
+{% autoescape false %}
+Cześć {{ user.firstName }}!
+
+    Nazwa twojego użytkownika to: {{ user.username }}
+
+    Natomiast pod tym adresem możesz zmienić swoje obecne hasło: {{ confirmationUrl }}
+
+Pozdrawiam
+Gali
+{% endautoescape %}
+{% endblock %}
+{% block body_html %}
+
+Cześć {{ user.firstName }}!
+
+    Nazwa twojego użytkownika to: {{ user.username }}
+
+    Natomiast pod tym adresem możesz zmienić swoje obecne hasło: {{ confirmationUrl }}
+
+Pozdrawiam
+Gali
+
+{% endblock %}

@@ -1,0 +1,51 @@
+homepage:
+    pattern:  /
+    defaults: { _controller: gsbm.controller.tournament:homeAction }
+
+gsbm_tournament_view:
+    pattern:  /t/{tournamentId}
+    defaults: { _controller: gsbm.controller.tournament:listAction }
+
+gsbm_tournament_rule:
+    pattern:  /t/{tournamentId}/rules
+    defaults: { _controller: gsbm.controller.tournament:ruleAction }
+
+gsbm_tournament_view_current_games:
+    pattern:  /tournament/{tournamentId}/games
+    defaults: { _controller: gsbm.controller.tournament:currentGamesAction }
+
+gsbm_tournament_stage:
+    pattern:  /tournament/{tournamentId}/stage/{stageId}
+    defaults: { _controller: gsbm.controller.tournament_stage:viewStageAction }
+
+gsbm_tournament_player_standings:
+    pattern:  /tournament/{tournamentId}/standings
+    defaults: { _controller: gsbm.controller.tournament:standingsAction }
+
+gsbm_tournament_statistic_overview:
+    pattern:  /tournament/{tournamentId}/statistic_overview
+    defaults: { _controller: gsbm.controller.statistics:bestBetGamesAction }
+
+gsbm_tournament_stage_game_view:
+    pattern:  /tournament/{tournamentId}/stage/{stageId}/game/{gameId}
+    defaults: { _controller: gsbm.controller.tournament_stage:viewStageGameAction }
+
+gsbm_player_join_tournament:
+    pattern:   /p/j/t/{tournamentId}
+    defaults: { _controller: gsbm.controller.player:joinTournamentAction }
+
+gsbm_bet_view:
+    pattern: /bet/{gameId}
+    defaults: { _controller: gsbm.controller.bet:betAction }
+
+gsbm_player_tournament_bet_accuracy:
+    pattern: /tournament/{tournamentId}/accuracy
+    defaults: { _controller: gsbm.controller.statistics:playerTournamentAccuracyStatisticsViewAction }
+
+gsbm_player_tournament_stage_player_points:
+    pattern: /tournament/{tournamentId}/stats/stages
+    defaults: { _controller: gsbm.controller.statistics:stagePlayerStatisticsAction }
+
+gsbm_player_add_message:
+    pattern: /tournament/{tournamentId}/message/add
+    defaults: { _controller: gsbm.controller.chat_message:createChatMessageAction }

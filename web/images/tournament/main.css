@@ -1,0 +1,66 @@
+body{
+    color: #808080;
+}
+
+
+.main-content
+{
+    margin-top: 60px;
+}
+.tournament.logo img
+{
+    height: 150px;
+}
+
+.chat .panel-body {
+    height: 200px;
+    overflow: scroll;
+}
+.chat .head
+{
+    background-color: #DDDDDD;
+    color: #777777;
+    text-align: center;
+}
+
+
+.betView table tr td,
+.betView table tr th {
+    text-align: center;
+}
+
+.me,
+.me td,
+.active {
+    color: #FFF;
+    background-color: #8af08a!important;
+}
+
+.selected {
+    background-color: #fffa78;
+}
+
+.btn-info a,
+.btn-danger a,
+.btn-warning a,
+.btn-success a
+{
+    color: #FFFFFF;
+}
+
+
+td.gameDate
+{
+    padding: 1px !important;
+    font-size: 10px;
+}
+
+td.groupInfo
+{
+    padding: 1px !important;
+    font-size: 10px;
+}
+
+.todayPoints {
+    color: #00e300;
+}

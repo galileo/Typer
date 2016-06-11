@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Kto to wygra pl: {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+    <!-- Bootstrap -->
+    <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ asset('bundles/galileosimplebetmodel/css/main.css') }}" rel="stylesheet" media="screen">
+
+    <!-- HTML5 Shim and Respond.js add IE8 support of HTML5 elements and media queries -->
+    {% include 'BraincraftedBootstrapBundle::ie8-support.html.twig' %}
+
+</head>
+
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('homepage') }}">Kto to wygra?</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path('homepage') }}">Home</a></li>
+                {% if app.user %}
+                    <li><a href="">Cześć: {{ app.user.firstName }}</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">
+                            <sapn class="badge">Wyloguj</sapn>
+                        </a></li>
+                {% else %}
+                    <li><a href="{{ path('fos_user_security_login') }}">Zaloguj</a></li>
+                    <li><a href="{{ path('fos_user_registration_register') }}">Zarejestruj</a></li>
+                    <li><a href="{{ path('fos_user_resetting_request') }}">Przypomnij hasło</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main-content container theme-showcase" role="main">
+    <div class="row">
+        <div class="col-sm-8 col-md-9">
+            {% block top_left %}{% endblock %}
+        </div>
+        <div class="col-sm-4 col-md-3">
+            {% block top_right %}{% endblock %}
+        </div>
+    </div>
+
+    <div class="row">{% block top %}{% endblock %}</div>
+
+    {% for flashMessage in app.session.flashbag.get('notice') %}
+        <div class="flash-notice">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% if app.user %}
+        <div class="row">
+            <div>
+                <div class="alert alert-success text-center">
+                    Statystki kto ile zdobył w poszczególnej grupie <a href="{{ path('gsbm_player_tournament_stage_player_points', {'tournamentId': 4}) }}">tutaj</a>.
+                    Ktoś ma jakiś fajny pomysł na statystyki? Niech się wypowie.
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <hr/>
+    <div class="row">
+        {% include 'BraincraftedBootstrapBundle::flash.html.twig' %}
+    </div>
+    <div class="row">
+        {% set _sidebar = block('sidebar') %}
+        {% set includeSidebar = _sidebar is not empty %}
+
+        {% if includeSidebar %}<div class="col-sm-7 col-md-7 col-lg-8 content">{% else %}<div class="col-12 content">{% endif %}
+                {% block content %}{% endblock content %}
+            </div>
+        {% if includeSidebar %}
+            <div class="col-sm-5 col-md-5 col-lg-4 sidebar">
+                {{ _sidebar|raw }}
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstraps JavaScript plugins) -->
+    <script src="{{ asset('/vendor/jquery/dist/jquery.js') }}"></script>
+    <!-- Include all JavaScripts, compiled by Assetic -->
+    <script src="{{ asset('/vendor/bootstrap/dist/js/bootstrap.js') }}"></script>
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-1015424-19', 'ktotowygra.pl');
+        ga('send', 'pageview');
+
+    </script>
+
+</body>
+</html>

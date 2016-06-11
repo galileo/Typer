@@ -1,0 +1,18 @@
+<table class="table table-condensed table-hover table-striped">
+    {% for betStat in playerStats %}
+        <tr {% if (app.user) and (app.user.id == betStat.player.id) %}class="me"{% endif %}>
+            <td>{{ loop.index }}</td>
+            <td>{{ betStat.player|championship|raw }}
+                {{ betStat.player|display_name }}</td>
+            <td>{{ betStat.totalBets }}</td>
+            <td class="text-right">{{ label_success(betStat.totalPoints) }}</td>
+            {% if todayPoints is defined %}
+                <td class="todayPoints">
+                    {% if todayPoints.playerPoints(betStat.player) > 0 %}
+                        +{{ todayPoints.playerPoints(betStat.player) }}
+                    {% endif %}
+                </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+</table>

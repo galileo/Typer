@@ -1,0 +1,21 @@
+{% if game.canShowOtherBets %}
+    <table class="table table-condensed table-hover">
+        <tr>
+            <th>Zawodnik</th>
+            <th>Wynik</th>
+            <th>1x0</th>
+            <th>Punkty</th>
+        </tr>
+        {% for bet in game.bets %}
+            <tr {% if (app.user) and (app.user.id == bet.player.id) %}class="me"{% endif %}>
+                <td>{{ bet.player|display_name }}</td>
+                <td>{{ bet.score }}</td>
+                <td>{{ bet.score|score_one_x_two }}</td>
+                <td>{{ bet|bet_point|raw }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p class="alert alert-info">Typy pozostałych użytkowników zostaną opublikowane
+        o {{ game.date|date_modify("-1 hour")|date }}.</p>
+{% endif %}

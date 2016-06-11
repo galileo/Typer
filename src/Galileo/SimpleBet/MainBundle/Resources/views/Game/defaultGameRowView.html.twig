@@ -1,0 +1,29 @@
+<td class="text-right">
+    {{ game.homeTeam }}
+</td>
+<td class="text-center text-align-center">
+    {% if app.user %}
+        {% if game.availableForCurrentPlayer %}
+            {% if game.isActive %}
+                    <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+                <button type="button" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-edit"
+                              title="Edytuj"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
+                </button>
+                    </a>
+            {% else %}
+                    <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
+                <button type="button" class="btn btn-{{ game.score|bet_label(game.yourBet)|raw }} btn-xs">
+                        <span class="glyphicon glyphicon-list"
+                              title="Typy"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
+                </button>
+                    </a>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {{ game.score }}
+    {% endif %}
+</td>
+<td class="text-left">
+    {{ game.awayTeam }}
+</td>

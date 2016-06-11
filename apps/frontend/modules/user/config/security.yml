@@ -1,6 +1,0 @@
-default:
-  is_secure: off
-  
-profileSuccess:
-  is_secure: on
-

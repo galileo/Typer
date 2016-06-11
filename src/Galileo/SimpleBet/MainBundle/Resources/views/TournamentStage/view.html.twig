@@ -1,0 +1,17 @@
+{% extends('GalileoSimpleBetMainBundle:Tournament:viewWithBets.html.twig') %}
+
+{% block top %}
+    {{ parent() }}
+
+    {{ panel('Najbliższe 24 godziny',render(controller('gsbm.controller.tournament:todayGamesAction', {'tournamentId': stage.tournament.id })), {'skipBody': true}) }}
+{% endblock %}
+{% block subtitle %}
+   {{ stage.name }}:
+{% endblock %}
+{% block sidebar %}
+    {{ panel('Mecze',include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': stage.games}), {'skipBody': true}) }}
+
+    {% if table is defined %}
+        {{ panel('Tabela', include('GalileoSimpleBetMainBundle:TournamentStage:tableView.html.twig', {'table': table}), {'skipBody': true}) }}
+    {% endif %}
+{% endblock %}

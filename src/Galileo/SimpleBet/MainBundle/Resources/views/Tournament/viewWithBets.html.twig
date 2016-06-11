@@ -1,0 +1,8 @@
+{% extends('GalileoSimpleBetMainBundle:Tournament:view.html.twig') %}
+
+{% block content %}
+    {{ panel('Twój typ:', render(controller('gsbm.controller.bet:viewAction', {'gameId': currentGame.id}))) }}
+    <div class="betView">
+        {{ panel('Lista:',include('GalileoSimpleBetMainBundle:Game:betsView.html.twig', {'game': currentGame}), {'skipBody': true}) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% if app.user %}
+    <table class="table table-striped table-condensed">
+        <tr></tr>
+        {% for message in messages %}
+            <tr>
+                <td class="groupInfo">{{ message.date|date }}</td>
+                <td class="groupInfo"><strong>{{ message.player|display_name }}</strong></td>
+            </tr>
+            <tr>
+                <td colspan="2">{{ message.message }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {{ form(form) }}
+{% endif %}

@@ -1,0 +1,13 @@
+{% extends('GalileoSimpleBetMainBundle:Tournament:view.html.twig') %}
+
+{% block content %}
+    <h4>Dystrybucja punków dla graczy</h4>
+    <table class="table">
+        {% for element in playerAndBetStatistics %}
+            <tr>
+                <td>{{ element.player|display_name }}</td>
+                <td style="width: 80%">{{ include('@GalileoSimpleBetMain/Statistics/viewBetAccuracy.html.twig', {'betStatistics': element.betStatistics}) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

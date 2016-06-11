@@ -1,0 +1,24 @@
+Galileo\SimpleBet\ModelBundle\Entity\PlayerToTournament:
+    type: entity
+    table: gsbm_player_to_tournament
+    uniqueConstraints:
+            unique_player_in_tournament:
+                columns: player_id, tournament_id
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO}
+    fields:
+        isActive:
+            type: boolean
+            column: is_active
+    manyToOne:
+        player:
+            targetEntity: Player
+            inversedBy: tournaments
+            joinColumn:
+                name: player_id
+                referencedColumnName: id
+        tournament:
+            targetEntity: Tournament
+            mappedBy: tournament

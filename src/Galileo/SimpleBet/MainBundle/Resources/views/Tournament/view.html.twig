@@ -1,0 +1,38 @@
+{% extends('GalileoSimpleBetMainBundle::layout.html.twig') %}
+
+{% block top_left %}
+    {{ include('GalileoSimpleBetMainBundle:Tournament:logo.html.twig', {'tournament': tournament}) }}
+    <h2>{% block subtitle %}{% endblock %}{{ tournament.name }}</h2>
+{% endblock %}
+
+{% block top_right %}
+    <div class="panel panel-default">
+        <div class="panel-heading">Top 5</div>
+        {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament, 'limit': 5})) }}
+        <div class="text-center">
+
+            <a href="{{ path('gsbm_tournament_player_standings', {'tournamentId': tournament.id}) }}">
+                &gt; pełna tabela
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block top %}
+    {% if app.user %}
+        {% if tournament.isActive == 0 %}
+            {{ tournament | dump }}
+            <p class="alert alert-danger text-center">Ten turniej został już zakończony.</p>
+        {% else %}
+            {{ render(controller('gsbm.controller.player:viewPlayerToTournamentAction', {'tournamentId': tournament.id })) }}
+        {% endif %}
+
+        {{ include('@GalileoSimpleBetMain/Tournament/menuView.html.twig') }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% for stage in tournament.stages %}
+        {{ include('GalileoSimpleBetMainBundle:TournamentStage:viewMatches.html.twig', {'type': 'table', 'stage': stage}) }}
+    {% endfor %}
+{% endblock %}

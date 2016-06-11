@@ -1,0 +1,15 @@
+<table class="table">
+    {% for tableRow in table %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ tableRow.name }}</td>
+            <td>{{ tableRow.games }}</td>
+            <td>{{ tableRow.wins }}</td>
+            <td>{{ tableRow.draws }}</td>
+            <td>{{ tableRow.losts }}</td>
+            <td>{{ tableRow.goals_scored }}:{{ tableRow.goals_lost }}</td>
+            <td>{{ tableRow.goals_diff }}</td>
+            <td>{{ tableRow.points }}</td>
+        </tr>
+    {% endfor %}
+</table>

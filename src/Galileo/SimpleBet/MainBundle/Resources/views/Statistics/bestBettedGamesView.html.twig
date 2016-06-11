@@ -1,0 +1,45 @@
+{% extends('GalileoSimpleBetMainBundle:Statistics:statisticsBaseView.html.twig') %}
+
+{% block content %}
+    <h4>TOP 5 największe sensacje </h4>
+    <table class="table">
+        <tr>
+            <th colspan="2">Mecz</th>
+            <th>Wynik</th>
+            <th>Punkty do zdobycia</th>
+            <th>Zdobyte punkty</th>
+            <th>Skuteczność</th>
+        </tr>
+        {% for bet in worstBettedGames %}
+            <tr>
+                <td>{{ bet[0].game.homeTeam }}</td>
+                <td>{{ bet[0].game.awayTeam }}</td>
+                <td>{{ bet[0].game.score }}</td>
+                <td>{{ bet.possiblePoints }}</td>
+                <td>{{ bet.pointsEarned }}</td>
+                <td>{{ bet.efficiency|round(2) }}%</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h4>TOP 5 zwycięstwa faworytów</h4>
+    <table class="table">
+        <tr>
+            <th colspan="2">Mecz</th>
+            <th>Wynik</th>
+            <th>Punkty do zdobycia</th>
+            <th>Zdobyte punkty</th>
+            <th>Skuteczność</th>
+        </tr>
+        {% for bet in bestBettedGames %}
+            <tr>
+                <td>{{ bet[0].game.homeTeam }}</td>
+                <td>{{ bet[0].game.awayTeam }}</td>
+                <td>{{ bet[0].game.score }}</td>
+                <td>{{ bet.possiblePoints }}</td>
+                <td>{{ bet.pointsEarned }}</td>
+                <td>{{ bet.efficiency|round(2) }}%</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

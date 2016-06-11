@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="gsbm.extension.player" class="Galileo\SimpleBet\MainBundle\Extension\PlayerExtension">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="gsbm.extension.game_bet" class="Galileo\SimpleBet\MainBundle\Twig\GameBetScoreTwigExtension">
+            <tag name="twig.extension" />
+        </service>
+
+        <service id="gsbm.extension.score" class="Galileo\SimpleBet\MainBundle\Twig\ScoreTwigExtension">
+            <tag name="twig.extension" />
+        </service>
+
+    </services>
+</container>

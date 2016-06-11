@@ -1,0 +1,12 @@
+{% extends('GalileoSimpleBetMainBundle:Tournament:view.html.twig') %}
+
+{% block content %}
+    {{ panel('Następne', include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': next, 'showStage': true}), {'skipBody': true}) }}
+    {{ panel('Poprzednie', include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': previous, 'showStage': true}), {'skipBody': true}) }}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="chat">
+    {{ panel('Czat:', render(controller('gsbm.controller.chat_message:viewChatMessagesAction', {'tournamentId': tournament.id})), {'skipBody': true}) }}
+    </div>
+{% endblock %}

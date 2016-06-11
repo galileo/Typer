@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="gsbm.manager.current_player.class">Galileo\SimpleBet\MainBundle\Service\Manager\CurrentPlayerManager</parameter>
+        <parameter key="gsbm.manager.player_to_tournament.class">Galileo\SimpleBet\MainBundle\Service\Manager\PlayerToTournamentManager</parameter>
+        <parameter key="gsbm.manager.bet.class">Galileo\SimpleBet\MainBundle\Service\Manager\BetManager</parameter>
+        <parameter key="gsbm.manager.game.class">Galileo\SimpleBet\MainBundle\Service\Manager\GameManager</parameter>
+        <parameter key="gsbm.manager.bet_statistics.class">Galileo\SimpleBet\MainBundle\Service\Manager\BetStatisticsManager</parameter>
+        <parameter key="gsbm.manager.table.class">Galileo\SimpleBet\MainBundle\Service\Manager\TableManager</parameter>
+    </parameters>
+
+    <services>
+
+        <!-- CurrentPlayer manager -->
+        <service id="gsbm.manager.current_player" class="%gsbm.manager.current_player.class%">
+            <argument type="service" id="security.context"/>
+        </service>
+
+        <!-- PlayerToTournament manager -->
+        <service id="gsbm.manager.player_to_tournament" class="%gsbm.manager.player_to_tournament.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+            <argument type="service" id="gsbm.repository.player_to_tournament" />
+        </service>
+
+        <!-- Bet manager -->
+        <service id="gsbm.manager.bet" class="%gsbm.manager.bet.class%">
+            <argument type="service" id="gsbm.repository.bet" />
+        </service>
+
+        <service id="gsbm.manager.game" class="%gsbm.manager.game.class%">
+            <argument type="service" id="gsbm.repository.game" />
+            <argument type="service" id="gsbm.manager.current_player" />
+            <argument type="service" id="gsbm.manager.player_to_tournament" />
+        </service>
+
+        <service id="gsbm.manager.bet_statistics" class="%gsbm.manager.bet_statistics.class%">
+            <argument type="service" id="gsbm.repository.bet" />
+        </service>
+
+        <!-- Table manager -->
+        <service id="gsbm.manager.table" class="%gsbm.manager.table.class%">
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
+
+    </services>
+</container>

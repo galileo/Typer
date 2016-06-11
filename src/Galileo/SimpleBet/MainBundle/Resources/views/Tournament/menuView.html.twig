@@ -1,0 +1,25 @@
+<ul class="nav nav-tabs nav-justified">
+    <li {% if app.request.get('_route') == 'gsbm_tournament_view_current_games' %}class="active"{% endif %}>
+        <a href="{{ path('gsbm_tournament_view_current_games', {'tournamentId': tournament.id}) }}">Najbliższe mecze</a>
+    </li>
+    <li {% if app.request.get('_route') == 'gsbm_tournament_statistic_overview' %}class="active"{% endif %}>
+        <a href="{{ path('gsbm_tournament_statistic_overview', {'tournamentId': tournament.id}) }}">
+            TOP 5 - Statystyki
+        </a>
+    </li>
+    <li {% if app.request.get('_route') == 'gsbm_tournament_view' %}class="active"{% endif %}>
+        <a href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
+            Mecze w grupach
+        </a>
+    </li>
+    <li {% if app.request.get('_route') == 'gsbm_player_tournament_bet_accuracy' %}class="active"{% endif %}>
+        <a href="{{ path('gsbm_player_tournament_bet_accuracy', {'tournamentId': tournament.id}) }}">
+            Statystyki graczy
+        </a>
+    </li>
+    <li {% if app.request.get('_route') == 'gsbm_tournament_rule' %}class="active"{% endif %}>
+        <a href="{{ path('gsbm_tournament_rule', {'tournamentId': tournament.id}) }}">
+            Zasady
+        </a>
+    </li>
+</ul>

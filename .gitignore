@@ -1,7 +1,41 @@
-config/config.php
-lib/symfony
+# Bootstrap
+app/bootstrap*
 
-cache/*
-log/*
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
+web/uploads/*
+web/bundles/*
+web/js/*
+web/css/*
 
-.idea
+# Configuration files
+app/config/parameters.ini
+app/config/parameters.yml
+
+# IDE files
+*.sw[op]
+/nbproject/
+.idea/
+.project
+.settings
+
+# Ant files
+cache.properties
+build/
+
+# OS X
+._*
+.DS_Store
+.Trashes
+
+# SASS
+.sass-cache/
+
+bin/
+
+# Node files
+web/vendor
+npm-debug.log
+node_modules/

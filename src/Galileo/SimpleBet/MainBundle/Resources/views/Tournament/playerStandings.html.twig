@@ -1,0 +1,5 @@
+{% extends('GalileoSimpleBetMainBundle:Tournament:view.html.twig') %}
+
+{% block content %}
+{{ panel('Wszyscy zawodnicy:', render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament})) , {'skipBody': true}) }}
+{% endblock %}
