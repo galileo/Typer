@@ -180,7 +180,13 @@ class Game
      */
     public function getBets()
     {
-        return $this->bets;
+        $betArray = $this->bets->toArray();
+
+        usort($betArray, function ($current, $previous){
+           return $previous->getPointsEarned() - $current->getPointsEarned();
+        });
+
+        return new ArrayCollection($betArray);
     }
 
     /**
