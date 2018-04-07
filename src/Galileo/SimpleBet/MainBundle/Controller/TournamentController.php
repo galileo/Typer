@@ -2,13 +2,9 @@
 
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
-use Galileo\SimpleBet\ModelBundle\Entity\Tournament;
-use Galileo\SimpleBet\ModelBundle\Entity\TournamentStage;
-use Galileo\SimpleBet\ModelBundle\Repository\GameRepository;
-
 use Doctrine\ORM\EntityRepository;
+use Galileo\SimpleBet\ModelBundle\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class TournamentController

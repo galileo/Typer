@@ -2,7 +2,9 @@
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
+
+// @todo Get the knowledge why we use here the own ArrayCollection implementation instead of the Doctrine once
+use Galileo\SimpleBet\MainBundle\Utils\ArrayCollection;
 
 class Game
 {
@@ -180,7 +182,13 @@ class Game
      */
     public function getBets()
     {
-        return $this->bets;
+        $betArray = $this->bets->toArray();
+
+        usort($betArray, function ($current, $previous){
+           return $previous->getPointsEarned() - $current->getPointsEarned();
+        });
+
+        return new ArrayCollection($betArray);
     }
 
     /**

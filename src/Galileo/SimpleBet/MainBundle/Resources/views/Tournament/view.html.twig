@@ -19,10 +19,15 @@
 {% endblock %}
 
 {% block top %}
-    {% if tournament.isActive == 0 %}
-        <p class="alert alert-danger text-center">Ten turniej został już zakończony.</p>
+    {% if app.user %}
+        {% if tournament.isActive == 0 %}
+            <p class="alert alert-danger text-center">Ten turniej został już zakończony.</p>
+        {% else %}
+            {{ render(controller('gsbm.controller.player:viewPlayerToTournamentAction', {'tournamentId': tournament.id })) }}
+        {% endif %}
+
+        {{ include('@GalileoSimpleBetMain/Tournament/menuView.html.twig') }}
     {% endif %}
-    {{ include('@GalileoSimpleBetMain/Tournament/menuView.html.twig') }}
 {% endblock %}
 
 {% block content %}
