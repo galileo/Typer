@@ -1,10 +1,10 @@
 parameters:
     database_driver:   pdo_mysql
-    database_host:     us-cdbr-east-06.cleardb.net
+    database_host:     localhost
     database_port:     ~
-    database_name:     heroku_3114d7988eb57ae
-    database_user:     b0ee6a0207e80c
-    database_password: 8ca58e7e
+    database_name:     punter
+    database_user:     punter
+    database_password: hello_mate_how_are_you
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1

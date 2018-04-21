@@ -1,4 +1,4 @@
-FROM php:5.6-apache
+FROM php:7.2.4-apache
 
 MAINTAINER Kamil Ronewicz <galileox86@gmail.com>
 
@@ -28,17 +28,17 @@ RUN apt-get update && apt-get install -y \
         libicu-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
-        libpng12-dev \
+        libpng-dev \
         libxslt1-dev \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && pecl install mcrypt-1.0.1 \
+    && docker-php-ext-enable mcrypt \
     && docker-php-ext-install -j$(nproc) \
         gd \
         intl \
-        mcrypt \
     && docker-php-ext-install \
         xsl \
         exif \
-        mysql \
         mysqli \
         mbstring \
         pdo_mysql
@@ -47,4 +47,4 @@ RUN apt-get purge -y libxslt1-dev
 
 RUN yes | pecl install xdebug
 
-RUN COPY ./.docker/20-xdebug.ini ${PHP_INI_DIR}/conf.d/20-xdebug.ini
+COPY ./.docker/20-xdebug.ini ${PHP_INI_DIR}/conf.d/20-xdebug.ini
