@@ -80,3 +80,22 @@ You have any ideas please share it with github issue tracker.
 Contribution is also very welcome.
 
 ENJOY IT!
+
+
+### Serialization bug
+
+Change the method in `vendor/doctrine/orm/lib/Doctrine/ORM/Mapping/ClassMetadataInfo.php`
+
+```php
+    public function newInstance()
+    {
+        if ($this->_prototype === null) {
+            if (PHP_VERSION_ID > 50429) {
+                $this->_prototype = $this->reflClass->newInstanceWithoutConstructor();
+            } else {
+                $this->_prototype = unserialize(sprintf('O:%d:"%s":0:{}', strlen($this->name), $this->name));
+            }
+        }
+        return clone $this->_prototype;
+    }
+```

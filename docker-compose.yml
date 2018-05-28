@@ -13,11 +13,11 @@ services:
     extra_hosts:
       - 'symfony-local:127.0.0.1'
   mysql:
-    image: mysql
+    image: mysql:5
     ports:
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: "!@#secuiryt_is_important"
+      MYSQL_DATABASE: ktotowygra
       MYSQL_USER: punter
       MYSQL_PASSWORD: hello_mate_how_are_you
