@@ -2,7 +2,9 @@
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
+
+// @todo Get the knowledge why we use here the own ArrayCollection implementation instead of the Doctrine once
+use Galileo\SimpleBet\MainBundle\Utils\ArrayCollection;
 
 class Game
 {

@@ -19,8 +19,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN echo $TIMEZONE > /etc/timezone && dpkg-reconfigure --frontend noninteractive tzdata
 
-RUN cp /usr/src/php/php.ini-production ${PHP_INI_DIR}/php.ini \
-    && echo "date.timezone = $TIMEZONE" >> ${PHP_INI_DIR}/php.ini \
+RUN echo "date.timezone = $TIMEZONE" >> ${PHP_INI_DIR}/php.ini \
     && echo "memory_limit = $MEMORY_LIMIT" >> ${PHP_INI_DIR}/php.ini
 
 RUN apt-get update && apt-get install -y \
