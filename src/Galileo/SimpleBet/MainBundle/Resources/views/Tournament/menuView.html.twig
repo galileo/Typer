@@ -1,36 +1,24 @@
-<nav class="navbar fixed-bottom navbar-expand navbar-dark bg-secondary">
-
-    <div class="navbar-collapse collapse">
-        <ul class="navbar-nav mr-auto ml-auto">
-            <li class="nav-item {% if app.request.get('_route') == 'gsbm_tournament_view_current_games' %}active{% endif %}">
-                <a class="nav-link"
-                   href="{{ path('gsbm_tournament_view_current_games', {'tournamentId': tournament.id}) }}"
-                >
-                    Najbliższe mecze
-                </a>
-            </li>
-            <li class="nav-item {% if app.request.get('_route') == 'gsbm_tournament_statistic_overview' %}active{% endif %}">
-                <a class="nav-link"
-                   href="{{ path('gsbm_tournament_statistic_overview', {'tournamentId': tournament.id}) }}">
-                    TOP 5 - Statystyki
-                </a>
-            </li>
-            <li class="nav-item {% if app.request.get('_route') == 'gsbm_tournament_view' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
-                    Mecze w grupach
-                </a>
-            </li>
-            <li class="nav-item {% if app.request.get('_route') == 'gsbm_player_tournament_bet_accuracy' %}active{% endif %}">
-                <a class="nav-link"
-                   href="{{ path('gsbm_player_tournament_bet_accuracy', {'tournamentId': tournament.id}) }}">
-                    Statystyki graczy
-                </a>
-            </li>
-            <li class="nav-item {% if app.request.get('_route') == 'gsbm_tournament_rule' %}active{% endif %}">
-                <a class="nav-link" href="{{ path('gsbm_tournament_rule', {'tournamentId': tournament.id}) }}">
-                    Zasady
-                </a>
-            </li>
-        </ul>
+<div class="bottom-menu fixed-bottom text-center bg-white text-dark">
+    <div class="d-flex">
+        <a class="nav-link flex-fill {% if app.request.get('_route') == 'gsbm_tournament_view_current_games' %}bg-dark text-white{% endif %}"
+           href="{{ path('gsbm_tournament_view_current_games', {'tournamentId': tournament.id}) }}"
+        >
+            <i class="fa fa-home fa-lg" aria-hidden="true"></i> Home
+        </a>
+        <a class="nav-link flex-fill {% if app.request.get('_route') == 'gsbm_tournament_view' %}bg-dark text-white{% endif %}"
+           href="{{ path('gsbm_tournament_view', { 'tournamentId': tournament.id }) }}">
+            <i class="fa fa-calendar fa-lg" aria-hidden="true"></i> Etapy
+        </a>
+        <a class="nav-link flex-fill {% if app.request.get('_route') == 'gsbm_tournament_statistic_overview' %}bg-dark text-white{% endif %}"
+           href="{{ path('gsbm_tournament_statistic_overview', {'tournamentId': tournament.id}) }}">
+            <i class="fa fa-diamond fa-lg" aria-hidden="true"></i> TOP 5
+        </a>
+        <a class="nav-link flex-fill {% if app.request.get('_route') == 'gsbm_player_tournament_bet_accuracy' %}bg-dark text-white{% endif %}"
+           href="{{ path('gsbm_player_tournament_bet_accuracy', {'tournamentId': tournament.id}) }}">
+            <i class="fa fa-line-chart fa-lg" aria-hidden="true"></i> Staty
+        </a>
+        <a class="nav-link flex-fill {% if app.request.get('_route') == 'gsbm_tournament_rule' %}bg-dark text-white{% endif %}" href="{{ path('gsbm_tournament_rule', {'tournamentId': tournament.id}) }}">
+            <i class="fa fa-copyright fa-lg" aria-hidden="true"></i> Zasady
+        </a>
     </div>
-</nav>
+</div>
