@@ -26,7 +26,6 @@
             {{ render(controller('gsbm.controller.player:viewPlayerToTournamentAction', {'tournamentId': tournament.id })) }}
         {% endif %}
 
-        {{ include('@GalileoSimpleBetMain/Tournament/menuView.html.twig') }}
     {% endif %}
 {% endblock %}
 
@@ -34,4 +33,8 @@
     {% for stage in tournament.stages %}
         {{ include('GalileoSimpleBetMainBundle:TournamentStage:viewMatches.html.twig', {'type': 'table', 'stage': stage}) }}
     {% endfor %}
+{% endblock %}
+
+{% block footer %}
+    {{ include('@GalileoSimpleBetMain/Tournament/menuView.html.twig') }}
 {% endblock %}
