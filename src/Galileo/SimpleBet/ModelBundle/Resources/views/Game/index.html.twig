@@ -3,6 +3,14 @@
 {% block body -%}
     <h1>Game list</h1>
 
+    <ul>
+        <li>
+            <a href="{{ path('admin_game_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+
     <table class="records_list">
         <thead>
             <tr>
@@ -35,7 +43,7 @@
         </tbody>
     </table>
 
-        <ul>
+    <ul>
         <li>
             <a href="{{ path('admin_game_new') }}">
                 Create a new entry

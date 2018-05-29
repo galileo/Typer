@@ -13,7 +13,7 @@ class TournamentStage
 
     public function __toString()
     {
-        return $this->name;
+        return $this->getTournament()->getName() . ' > ' .$this->name;
     }
 
     /**
