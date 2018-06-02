@@ -16,10 +16,13 @@
                             <img class='shadow' width="40px" src="/flags/{{ game.homeTeam.image }}.svg"
                                  alt="{{ game.homeTeam }}">
                         </div>
-                        <div class="flex-fill text-center">
+                        <div class="flex-fill text-center d-none d-sm-block">
                             {{ game.homeTeam }}
                             -
                             {{ game.awayTeam }}
+                        </div>
+                        <div class="flex-fill text-center d-block d-sm-none">
+                            -
                         </div>
                         <div>
                             <img class='shadow' width="40px" src="/flags/{{ game.awayTeam.image }}.svg"
