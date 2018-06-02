@@ -1,32 +1,36 @@
-
 <td class="text-right">
     <img class='shadow' width="40px" src="/flags/{{ game.homeTeam.image }}.svg" alt="{{ game.homeTeam }}">
+</td>
+<td class="align-middle">
+
     {{ game.homeTeam }}
 </td>
-<td class="text-center text-align-center">
+<td class="text-center text-align-center align-middle">
     {% if app.user %}
         {% if game.availableForCurrentPlayer %}
             {% if game.isActive %}
-                    <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
-                <button type="button" class="btn btn-default btn-xs">
+                <a href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+                    <button type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-edit"
                               title="Edytuj"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
-                </button>
-                    </a>
+                    </button>
+                </a>
             {% else %}
-                    <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
-                <button type="button" class="btn btn-{{ game.score|bet_label(game.yourBet)|raw }} btn-xs">
+                <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
+                    <button type="button" class="btn btn-{{ game.score|bet_label(game.yourBet)|raw }} btn-xs">
                         <span class="glyphicon glyphicon-list"
                               title="Typy"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
-                </button>
-                    </a>
+                    </button>
+                </a>
             {% endif %}
         {% endif %}
     {% else %}
         {{ game.score }}
     {% endif %}
 </td>
-<td class="text-left">
+<td class="text-left align-middle">
     {{ game.awayTeam }}
+</td>
+<td>
     <img class='shadow' width="40px" src="/flags/{{ game.awayTeam.image }}.svg" alt="{{ game.awayTeam }}">
 </td>
