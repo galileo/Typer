@@ -4,19 +4,19 @@
             <div class="pt-2 font-weight-bold">{{ game.tournamentStage.name }}</div>
         {% endif %}
 
-        <div class="border-bottom pb-3 {% if currentGame is defined and currentGame.equals(game) %}selected{% endif %}">
-            {#<div class="m-0 p-0 col"> {{ game.tournamentStage.name }}</div>#}
+        <div class="border-bottom p-2 {% if currentGame is defined and currentGame.equals(game) %}selected{% endif %}">
             <div class="d-flex">
                 <div class="align-self-center align-self-center font-weight-bold">
                     {{ game.date|date('m-d H:i') }}
                 </div>
                 <div class="flex-fill align-self-center pl-3 text-justify">
+                    <a href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
                     <div class="d-flex">
                         <div>
                             <img class='shadow' width="40px" src="/flags/{{ game.homeTeam.image }}.svg"
                                  alt="{{ game.homeTeam }}">
                         </div>
-                        <div class="flex-fill text-center d-none d-sm-block">
+                        <div class="flex-fill text-center align-self-center d-none d-sm-block">
                             {{ game.homeTeam }}
                             -
                             {{ game.awayTeam }}
@@ -29,6 +29,7 @@
                                  alt="{{ game.awayTeam }}">
                         </div>
                     </div>
+                    </a>
                 </div>
                 <div class="pl-3 align-self-center align-right">
                     <div style="width: 100px">
