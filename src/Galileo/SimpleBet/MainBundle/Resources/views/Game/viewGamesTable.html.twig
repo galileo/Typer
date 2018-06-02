@@ -1,16 +1,61 @@
-<table class="table table-condensed table-striped">
+<div class="container-fluid">
     {% for game in games %}
-        <tr class="text-center">
-            {% if showStage is defined and showStage %}
-            <td class="groupInfo">{{ game.tournamentStage.name }}</td>
-            {% endif %}
-            <td colspan="4" class="gameDate">
-                {{ game.date|date }}
-                typowało: {{ (game.bets.count) }}
-            </td>
-        </tr>
-        <tr {% if currentGame is defined and currentGame.equals(game) %}class="selected"{% endif %}>
-            {{ include('GalileoSimpleBetMainBundle:Game:defaultGameRowView.html.twig') }}
-        </tr>
+        {% if showStage is defined and showStage %}
+            <div class="pt-2 font-weight-bold">{{ game.tournamentStage.name }}</div>
+        {% endif %}
+
+        <div class="border-bottom pb-3 {% if currentGame is defined and currentGame.equals(game) %}selected{% endif %}">
+            {#<div class="m-0 p-0 col"> {{ game.tournamentStage.name }}</div>#}
+            <div class="d-flex">
+                <div class="align-self-center align-self-center font-weight-bold">
+                    {{ game.date|date('m-d H:i') }}
+                </div>
+                <div class="flex-fill align-self-center pl-3 text-justify">
+                    <div class="d-flex">
+                        <div>
+                            <img class='shadow' width="40px" src="/flags/{{ game.homeTeam.image }}.svg"
+                                 alt="{{ game.homeTeam }}">
+                        </div>
+                        <div class="flex-fill text-center">
+                            {{ game.homeTeam }}
+                            -
+                            {{ game.awayTeam }}
+                        </div>
+                        <div>
+                            <img class='shadow' width="40px" src="/flags/{{ game.awayTeam.image }}.svg"
+                                 alt="{{ game.awayTeam }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="pl-3 align-self-center align-right">
+                    <div style="width: 100px">
+                        {% if app.user %}
+                            {% if game.availableForCurrentPlayer %}
+                                {% if game.isActive %}
+                                    <a class="btn btn-outline-success btn-sm w-100"
+                                       href="{{ path('gsbm_bet_view', {'gameId': game.id}) }}">
+                                    <span class="glyphicon glyphicon-edit"
+                                          title="Edytuj"> {{ game.score|game_bet(game.yourBet)|raw }}</span>
+                                    </a>
+                                {% else %}
+                                    <a class="btn btn-outline-secondary btn-sm w-100"
+                                       href="{{ path('gsbm_tournament_stage_game_view', {'tournamentId': tournament.id, 'gameId' : game.id, 'stageId': game.tournamentStage.id}) }}">
+
+                                        {{ game.score }}
+                                        (<span class="text-{{ game.score|bet_label(game.yourBet)|raw }}">{{ game.yourBet }}</span>)
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                        {{ (game.bets.count) }}
+
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            {{ game.score }}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     {% endfor %}
-</table>
+</div>
+

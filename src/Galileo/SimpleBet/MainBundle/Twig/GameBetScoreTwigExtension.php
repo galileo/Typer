@@ -33,7 +33,7 @@ class GameBetScoreTwigExtension extends \Twig_Extension
     {
         if (null === $bet) {
             if (null == $gameScore) {
-                return '?:?';
+                return 'Typuj!';
             }
         }
 
