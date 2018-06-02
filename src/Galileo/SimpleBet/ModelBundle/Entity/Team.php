@@ -40,6 +40,11 @@ class Team
         return $this->name;
     }
 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
     /**
      * @param string $id
      *

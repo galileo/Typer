@@ -13,7 +13,7 @@
            href="{{ path('gsbm_tournament_statistic_overview', {'tournamentId': tournament.id}) }}">
             <i class="fa fa-diamond fa-lg" aria-hidden="true"></i> TOP 5
         </a>
-        <a class="nav-link flex-fill {% if app.request.get('_route') == 'gsbm_player_tournament_bet_accuracy' %}bg-dark text-white{% endif %}"
+            <a class="nav-link flex-fill {% if app.request.get('_route') == 'gsbm_player_tournament_bet_accuracy' %}bg-dark text-white{% endif %}"
            href="{{ path('gsbm_player_tournament_bet_accuracy', {'tournamentId': tournament.id}) }}">
             <i class="fa fa-line-chart fa-lg" aria-hidden="true"></i> Staty
         </a>
