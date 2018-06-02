@@ -27,7 +27,7 @@ class PlayerExtension extends \Twig_Extension
 
     public function championship(Player $player)
     {
-          return str_repeat('<span class="glyphicon glyphicon-star"></span>', $player->getChampionship());
+          return str_repeat('<i class="text-warning fa fa-star-o" aria-hidden="true"></i>', $player->getChampionship());
     }
 
     public function getName()
