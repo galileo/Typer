@@ -20,17 +20,17 @@ class GameRepository extends EntityRepository
     public function tournamentGames($tournament)
     {
         $games = $this->getEntityManager()
-                      ->createQuery(
-                          'SELECT g
+            ->createQuery(
+                'SELECT g
                           FROM GalileoSimpleBetModelBundle:Game g
                           JOIN g.tournamentStage ts
                           WHERE ts.tournament = ?1
                           ORDER BY g.date ASC
                           '
-                      )
-                      ->setParameter(1, $tournament)
+            )
+            ->setParameter(1, $tournament)
 //                      ->setMaxResults(5)
-                      ->getResult();
+            ->getResult();
 
         return $games;
     }
@@ -38,7 +38,7 @@ class GameRepository extends EntityRepository
     public function getTournamentGames($tournament = null, $limit = null, $next = true, $orderBy = 'g.date', $orderDirection = 'DESC')
     {
         $queryBuilder = $this->getEntityManager()
-                             ->createQueryBuilder();
+            ->createQueryBuilder();
 
         $queryBuilder
             ->add('select', new Select('g'))
@@ -76,8 +76,8 @@ class GameRepository extends EntityRepository
         $tomorrow->add(new \DateInterval('PT24H'));
 
         $games = $this->getEntityManager()
-                      ->createQuery(
-                          'SELECT g
+            ->createQuery(
+                'SELECT g
                           FROM GalileoSimpleBetModelBundle:Game g
                           JOIN g.tournamentStage ts
                           WHERE ts.tournament = ?1
@@ -85,12 +85,33 @@ class GameRepository extends EntityRepository
                           AND g.date < ?3
                           ORDER BY g.date ASC
                           '
-                      )
-                      ->setParameter(1, $tournament)
-                      ->setParameter(2, $dateTime)
-                      ->setParameter(3, $tomorrow)
-                      ->getResult();
+            )
+            ->setParameter(1, $tournament)
+            ->setParameter(2, $dateTime)
+            ->setParameter(3, $tomorrow)
+            ->getResult();
 
         return $games;
+    }
+
+    /**
+     * @param $userId
+     * @param $teamId
+     *
+     * @return array
+     */
+    public function getPreviousGamesWithYourBet($userId, $teamId)
+    {
+        return $this->getEntityManager()
+            ->createQuery('
+                SELECT games
+                FROM GalileoSimpleBetModelBundle:game games
+                JOIN games.bets bets
+                WHERE bets.player = ?1
+                AND (games.homeTeam = ?2 OR games.awayTeam = ?2)
+           ')
+            ->setParameter(1, $userId)
+            ->setParameter(2, $teamId)
+            ->getResult();
     }
 }

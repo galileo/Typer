@@ -12,7 +12,7 @@
    {{ stage.name }}:
 {% endblock %}
 {% block sidebar %}
-    {{ panel('Mecze',include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': stage.games}), {'skipBody': true}) }}
+    {{ panel('Mecze', include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': stage.games}), {'skipBody': true}) }}
 
     {% if table is defined %}
         {{ panel('Tabela', include('GalileoSimpleBetMainBundle:TournamentStage:tableView.html.twig', {'table': table}), {'skipBody': true}) }}

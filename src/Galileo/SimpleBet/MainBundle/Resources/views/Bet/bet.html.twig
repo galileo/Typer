@@ -6,4 +6,14 @@
         {{ game.awayTeam.name }}
     </h4>
     {{ form(form) }}
+
+    <h4>Twoje poprzednie typy</h4>
+    {{ panel(game.homeTeam.name, include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': previousBetForHomeTeam}), {'skipBody': true}) }}
+
+    {{ panel(game.awayTeam.name, include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': previousBetForAwayTeam}), {'skipBody': true}) }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ panel('Mecze', include('GalileoSimpleBetMainBundle:Game:viewGamesTable.html.twig', {'games': stage.games}), {'skipBody': true}) }}
+
 {% endblock %}

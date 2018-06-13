@@ -10,6 +10,7 @@ use Galileo\SimpleBet\MainBundle\Service\Manager\BetManagerInterface;
 
 use Doctrine\ORM\EntityManager;
 use Galileo\SimpleBet\ModelBundle\Form\Type\BetScoreType;
+use Galileo\SimpleBet\ModelBundle\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -71,6 +72,11 @@ class BetController
      */
     protected $scoreRepository;
 
+    /**
+     * @var GameRepository
+     */
+    private $gameRepository;
+
     public function __construct(EngineInterface $templating,
                                 FormFactory $formFactory,
                                 GameManagerInterface $gameManager,
@@ -78,6 +84,7 @@ class BetController
                                 BetManagerInterface $betManager,
                                 EntityManager $entityManager,
                                 EntityRepository $scoreRepository,
+                                GameRepository $gameRepository,
                                 Router $router,
                                 Session $session
     )
@@ -93,6 +100,7 @@ class BetController
         $this->player = $this->playerManager->getCurrentPlayer();
         $this->session = $session;
         $this->scoreRepository = $scoreRepository;
+        $this->gameRepository = $gameRepository;
     }
 
     public function betAction(Request $request, $gameId)
@@ -133,6 +141,8 @@ class BetController
                 'game' => $game,
                 'stage' => $game->getTournamentStage(),
                 'tournament' => $game->getTournamentStage()->getTournament(),
+                'previousBetForHomeTeam' => $this->gameRepository->getPreviousGamesWithYourBet($this->player->getId(), $game->getHomeTeam()->getId()),
+                'previousBetForAwayTeam' => $this->gameRepository->getPreviousGamesWithYourBet($this->player->getId(), $game->getAwayTeam()->getId())
             )
         );
     }
