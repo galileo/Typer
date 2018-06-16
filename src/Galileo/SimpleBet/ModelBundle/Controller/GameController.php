@@ -261,21 +261,9 @@ class GameController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $comparer = new SimpleScoreCompare();
+        /** @var Bet $bet */
         foreach ($game->getBets() as $bet) {
-            /** @vat Bet $bet */
-            $compareValue = $comparer->compare($game->getScore(), $bet->getScore());
-
-            switch ($compareValue) {
-                case ScoreCompareInterface::PERFECT:
-                    $bet->setPointsEarned(3);
-                    break;
-                case ScoreCompareInterface::GOOD:
-                    $bet->setPointsEarned(1);
-                    break;
-                case ScoreCompareInterface::BAD:
-                    $bet->setPointsEarned(0);
-            }
+            $bet->calculateScore($game);
             $em->persist($bet);
         }
         $em->flush();

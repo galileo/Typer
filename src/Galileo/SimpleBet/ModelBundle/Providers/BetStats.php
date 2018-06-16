@@ -12,6 +12,11 @@ class BetStats
     protected $totalPoints;
 
     /**
+     * @var int
+     */
+    protected $smallPoints;
+
+    /**
      * @var integer
      */
     protected $totalBets;
@@ -64,6 +69,14 @@ class BetStats
     }
 
     /**
+     * @return int
+     */
+    public function getSmallPoints()
+    {
+        return $this->smallPoints;
+    }
+
+    /**
      * @param int $totalBets
      */
     public function setTotalBets($totalBets)
@@ -77,5 +90,10 @@ class BetStats
     public function setTotalPoints($totalPoints)
     {
         $this->totalPoints = $totalPoints;
+    }
+
+    public function setSmallPoints($int)
+    {
+        $this->smallPoints = $int;
     }
 }

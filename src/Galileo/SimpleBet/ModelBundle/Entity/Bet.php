@@ -2,6 +2,10 @@
 
 namespace Galileo\SimpleBet\ModelBundle\Entity;
 
+use Galileo\SimpleBet\MainBundle\Service\Comparer\GoalDifferencesComparer;
+use Galileo\SimpleBet\MainBundle\Service\Comparer\ScoreCompareInterface;
+use Galileo\SimpleBet\MainBundle\Service\Comparer\SimpleScoreComparer;
+
 class Bet
 {
     protected $id;
@@ -18,6 +22,8 @@ class Bet
     protected $isActive;
 
     protected $pointsEarned;
+
+    protected $smallPoints;
 
     protected $isChangeAble = true;
 
@@ -131,6 +137,41 @@ class Bet
     public function setIsChangeAble($isChangeAble)
     {
         $this->isChangeAble = $isChangeAble;
+    }
+
+    public function smallPoints()
+    {
+        return $this->smallPoints;
+    }
+
+    public function calculateScore(Game $game)
+    {
+        if (!$game->getIsPlayed()) {
+            $this->smallPoints = 0;
+            $this->pointsEarned = 0;
+
+            return;
+        }
+
+        $goalDifferencesComparer = new GoalDifferencesComparer();
+        $simpleScoreComparer = new SimpleScoreComparer();
+
+        $this->smallPoints = $goalDifferencesComparer->compare($game->getScore(), $this->getScore());
+
+        $compareValue = $simpleScoreComparer->compare($game->getScore(), $this->getScore());
+
+        switch ($compareValue) {
+            case ScoreCompareInterface::PERFECT:
+                $points = 3;
+                break;
+            case ScoreCompareInterface::GOOD:
+                $points = 1;
+                break;
+            default:
+                $points = 0;
+        }
+
+        $this->pointsEarned = $points;
     }
 
     public function __toString()

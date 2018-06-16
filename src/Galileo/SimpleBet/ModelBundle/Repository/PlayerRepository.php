@@ -22,6 +22,7 @@ class PlayerRepository extends EntityRepository
             ->createQuery(
                 'SELECT p, COUNT(b.id) totalBets,
                 SUM(b.pointsEarned) totalPoints,
+                SUM(b.smallPoints) smallPoints,
                 COUNT(b.id) / SUM(b.pointsEarned) pointRate
                 FROM GalileoSimpleBetModelBundle:Player p
                 JOIN p.bets b
@@ -35,11 +36,11 @@ class PlayerRepository extends EntityRepository
 
     public function tournamentPlayerStats(Tournament $tournament, $limit = null)
     {
-
         $playersAndBetStats = $this->getEntityManager()
             ->createQuery(
                 'SELECT p, COUNT(b.id) totalBets,
                 SUM(b.pointsEarned) totalPoints,
+                SUM(b.smallPoints) smallPoints,
                 COUNT(b.id) / SUM(b.pointsEarned) pointRate
                 FROM GalileoSimpleBetModelBundle:Player p
                 LEFT JOIN p.bets b
@@ -68,6 +69,7 @@ class PlayerRepository extends EntityRepository
             ->addSelect('p player')
             ->addSelect('COUNT(b.id) bets')
             ->addSelect('SUM(b.pointsEarned) points')
+            ->addSelect('SUM(b.smallPoints) smallPoints')
             ->from('GalileoSimpleBetModelBundle:Player', 'p')
             ->leftJoin('p.bets', 'b')
             ->join('b.game', 'g')

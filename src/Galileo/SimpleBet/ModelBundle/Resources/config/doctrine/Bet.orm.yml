@@ -13,6 +13,8 @@ Galileo\SimpleBet\ModelBundle\Entity\Bet:
           column: is_active
       pointsEarned:
           type: integer
+      smallPoints:
+          type: integer
 
   manyToOne:
       score:

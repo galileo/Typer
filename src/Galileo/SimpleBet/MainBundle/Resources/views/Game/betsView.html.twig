@@ -4,6 +4,7 @@
             <th>Zawodnik</th>
             <th>Wynik</th>
             <th>1x0</th>
+            <th>Różnica</th>
             <th>Punkty</th>
         </tr>
         {% for bet in game.bets %}
@@ -11,6 +12,7 @@
                 <td>{{ bet.player|display_name }}</td>
                 <td>{{ bet.score }}</td>
                 <td>{{ bet.score|score_one_x_two }}</td>
+                <td>{{ bet.smallPoints }}</td>
                 <td>{{ bet|bet_point|raw }}</td>
             </tr>
         {% endfor %}

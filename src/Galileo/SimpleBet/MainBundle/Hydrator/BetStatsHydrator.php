@@ -37,6 +37,7 @@ class BetStatsHydrator extends AbstractHydrator
 
         $newBetStats = new BetStats($player);
         $newBetStats->setTotalBets($row[21]);
+        $newBetStats->setSmallPoints($row[23]);
         $newBetStats->setTotalPoints($row[22]);
 
         $result[$row[0]] = $newBetStats;
