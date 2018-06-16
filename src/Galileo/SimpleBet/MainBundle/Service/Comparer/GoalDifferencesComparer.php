@@ -8,9 +8,9 @@ class GoalDifferencesComparer implements ScoreCompareInterface
 {
     public function compare(Score $gameScore, Score $betScore)
     {
-        $homeDiff = $gameScore->getAway() - $betScore->getAway();
-        $awayDiff = $gameScore->getHome() - $betScore->getHome();
+        $homeDiff = abs($gameScore->getAway() - $betScore->getAway());
+        $awayDiff = abs($gameScore->getHome() - $betScore->getHome());
 
-        return $homeDiff - $awayDiff;
+        return $homeDiff + $awayDiff;
     }
 }
