@@ -4,7 +4,7 @@ namespace Galileo\SimpleBet\ModelBundle\Entity;
 
 use Galileo\SimpleBet\MainBundle\Service\Comparer\GoalDifferencesComparer;
 use Galileo\SimpleBet\MainBundle\Service\Comparer\ScoreCompareInterface;
-use Galileo\SimpleBet\MainBundle\Service\Comparer\SimpleScoreComparer;
+use Galileo\SimpleBet\MainBundle\Service\Comparer\SimpleScoreCompare;
 
 class Bet
 {
@@ -159,7 +159,7 @@ class Bet
         }
 
         $goalDifferencesComparer = new GoalDifferencesComparer();
-        $simpleScoreComparer = new SimpleScoreComparer();
+        $simpleScoreComparer = new SimpleScoreCompare();
 
         $this->smallPoints = $goalDifferencesComparer->compare($game->getScore(), $this->getScore());
 
