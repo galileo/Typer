@@ -27,6 +27,11 @@ class Bet
 
     protected $isChangeAble = true;
 
+    public function __construct()
+    {
+        $this->smallPoints = 0;
+    }
+
     /**
      * @return mixed
      */
