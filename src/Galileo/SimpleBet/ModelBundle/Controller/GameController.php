@@ -258,7 +258,6 @@ class GameController extends Controller
 
     private function addPoints(Game $game)
     {
-
         $em = $this->getDoctrine()->getManager();
 
         /** @var Bet $bet */

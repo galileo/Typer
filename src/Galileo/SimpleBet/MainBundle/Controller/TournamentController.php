@@ -3,6 +3,7 @@
 namespace Galileo\SimpleBet\MainBundle\Controller;
 
 use Doctrine\ORM\EntityRepository;
+use Galileo\SimpleBet\MainBundle\Statistics\WinnerAward;
 use Galileo\SimpleBet\ModelBundle\Repository\GameRepository;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -72,6 +73,17 @@ class TournamentController
             )
         );
     }
+
+    public function winnerAward($tournamentId) {
+        $tournament = $this->findOrFail($tournamentId);
+
+        $winningPrice = WinnerAward::fromTournament($tournament);
+
+        return $this->templating->renderResponse('@GalileoSimpleBetMain/Tournament/winnerAward.twig', [
+            'winnerAward' => $winningPrice
+        ]);
+    }
+
 
     public function currentGamesAction($tournamentId)
     {

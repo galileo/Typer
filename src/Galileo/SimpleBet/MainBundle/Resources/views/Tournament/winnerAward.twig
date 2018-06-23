@@ -1,0 +1,23 @@
+<div>
+    Oczekiwana wygrana: {{ winnerAward.expectedPrice }}
+    Wplacona suma: {{ winnerAward.totalPaid }}
+
+    <div>
+        <div class="d-flex text-success">
+            <div class="flex-fill">
+                Pierwsze:
+            </div>
+            <div>
+                {{ winnerAward.first }} zl
+            </div>
+        </div>
+        <div class="d-flex text-warning">
+            <div class="flex-fill">Drugie:</div>
+            <div>{{ winnerAward.second }} zl</div>
+        </div>
+        <div class="d-flex text-danger">
+            <div class="flex-fill">Trzecie:</div>
+            <div>{{ winnerAward.third }} zl</div>
+        </div>
+    </div>
+</div>

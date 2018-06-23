@@ -12,6 +12,9 @@ Galileo\SimpleBet\ModelBundle\Entity\PlayerToTournament:
         isActive:
             type: boolean
             column: is_active
+        isPaid:
+            type: boolean
+            column: is_paid
     manyToOne:
         player:
             targetEntity: Player

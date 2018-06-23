@@ -25,6 +25,11 @@ class PlayerToTournament
     protected $isActive;
 
     /**
+     * @var boolean
+     */
+    protected $isPaid;
+
+    /**
      * @return int
      */
     public function getId()
@@ -41,11 +46,19 @@ class PlayerToTournament
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPaid()
+    {
+        return $this->isPaid;
     }
 
     /**
@@ -87,5 +100,4 @@ class PlayerToTournament
     {
         $this->tournament = $tournament;
     }
-
 }

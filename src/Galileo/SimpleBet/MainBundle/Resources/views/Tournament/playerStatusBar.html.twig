@@ -2,6 +2,8 @@
     {% if playerToTournament %}
         {% if false == playerToTournament.isActive %}
             <a class="btn btn-lg btn-warning disabled btn-block">Oczekujesz na akceptację</a>
+        {% elseif false == playerToTournament.isPaid %}
+            <a class="btn btn-lg btn-warning disabled btn-block">Turniej nie oplacony.</a>
         {% endif %}
     {% else %}
         <a class="btn btn-lg btn-block btn-success"

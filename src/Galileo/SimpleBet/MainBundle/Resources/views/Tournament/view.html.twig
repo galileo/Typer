@@ -7,7 +7,10 @@
 
 {% block top_right %}
     <div class="panel panel-default">
-        <div class="panel-heading">Top 5</div>
+        <div class="panel-heading">
+            {{ render(controller("gsbm.controller.tournament:winnerAward", {'tournamentId': tournament.id})) }}
+            Top 5
+        </div>
         {{ render(controller("gsbm.controller.player:tournamentPlayerStatsAction", {'tournament': tournament, 'limit': 5})) }}
         <div class="text-center">
 
