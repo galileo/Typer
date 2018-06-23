@@ -79,9 +79,9 @@ class TournamentController
 
         $winningPrice = WinnerAward::fromTournament($tournament);
 
-        return $this->templating->renderResponse('@GalileoSimpleBetMain/Tournament/winnerAward.twig', [
+        return $this->templating->renderResponse('@GalileoSimpleBetMain/Tournament/winnerAward.twig', array(
             'winnerAward' => $winningPrice
-        ]);
+        ));
     }
 
 
