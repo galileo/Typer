@@ -43,6 +43,7 @@ class TableManager implements TableManagerInterface
     SUM(points) points
 FROM (
     SELECT
+        'H',
         g.home_team_id team_id,
         SUM(IF(is_played, 1, 0)) games,
         SUM(IF(s.home > s.away, 1, 0)) wins,
@@ -57,6 +58,7 @@ FROM (
     GROUP BY g.home_team_id
 UNION(
     SELECT
+        'A',
         g.away_team_id team_id,
         SUM(IF(is_played, 1, 0)) games,
         SUM(IF(s.home < s.away, 1, 0)) wins,
